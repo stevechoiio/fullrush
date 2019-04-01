@@ -1,6 +1,10 @@
 import React from "react";
-import { Text } from "react-native";
-
+import { Text, View } from "react-native";
+import styles from "./styles";
 export default () => {
-  return <Text>Home Screen!</Text>;
+  return (
+    <View style={styles.container}>
+      <Text>Home Screen!</Text>
+    </View>
+  );
 };
