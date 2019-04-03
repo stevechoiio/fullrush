@@ -5,9 +5,10 @@ type User @model {
   id: ID! @isUnique
   name: String!
   email: String! @isUnique
-
-  dateOfBirth: DateTime
-
+  sns: String
+  userReviews: [Review] @relation(name:"UserReviews")
+  handicap: Boolean
+  gender: String
 
   # Uncomment below - you can declare relations between models like this
 
@@ -17,11 +18,33 @@ type User @model {
 type Washroom @model {
   id: ID! @isUnique
   name: String
-  stall: 
-  location:
-  listOfPhotos:
-  listOfReview:
+  stall: Int
+  building: Building @relation (name:"WashroomBuilding")
+  listOfPhotos: [contentType] @relation (name:"WashroomPhotos")
+  listOfReviews: [Review] @relation (name:"WashroomReviews")
   instruction: String
+}
+
+type Review @model {
+  id: ID! @isUnique
+  userid: ID!
+  washroomId: ID!
+  rating0: Int!
+  rating1: Int!
+  raiting2: Int!
+  time: DateTime!
+  comment: String
+}
+
+type Building @model {
+  id: ID! @isUnique
+  name: String
+  address: String
+  locationLat: Float
+  locationLong: Float
+  hoursFrom: DateTime
+  hoursTo: DateTime
+  type: String
 }
 
 
