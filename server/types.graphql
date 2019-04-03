@@ -3,21 +3,43 @@
 
 type User @model {
   id: ID! @isUnique
-  name: String
-  dateOfBirth: DateTime
-
-  # Uncomment below - you can declare relations between models like this
-
-  # posts: [Post!]! @relation(name: "UserPosts")
+  name: String!
+  email: String! @isUnique
+  sns: String
+  userReviews: [Review!]! @relation (name:"User")
+  handicap: Boolean
+  gender: String
 }
 
+type Washroom @model {
+  id: ID! @isUnique
+  name: String
+  stall: Int
+  building: Building @relation (name:"Building")
+  listOfPhotos: [contentType!]! 
+  listOfReviews: [Review!]! @relation (name:"Review")
+  instruction: String
+}
 
-# Uncomment the model below as well
+type Review @model {
+  id: ID! @isUnique
+  user: User @relation (name: "User")
+  washroom: Washroom @relation (name: "Review")
+  rating0: Int!
+  rating1: Int!
+  raiting2: Int!
+  time: DateTime!
+  comment: String
+}
 
-# type Post @model {
-#   id: ID! @isUnique
-#   title: String!
-#
-#   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
-#   author: User! @relation(name: "UserPosts")
-# }
+type Building @model {
+  id: ID! @isUnique
+  name: String
+  address: String
+  locationLat: Float
+  locationLong: Float
+  hoursFrom: DateTime
+  hoursTo: DateTime
+  type: String
+  listOfWashrooms: [Washroom!]! @relation (name:"Building")
+}
