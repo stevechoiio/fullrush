@@ -3,12 +3,25 @@
 
 type User @model {
   id: ID! @isUnique
-  name: String
+  name: String!
+  email: String! @isUnique
+
   dateOfBirth: DateTime
+
 
   # Uncomment below - you can declare relations between models like this
 
   # posts: [Post!]! @relation(name: "UserPosts")
+}
+
+type Washroom @model {
+  id: ID! @isUnique
+  name: String
+  stall: 
+  location:
+  listOfPhotos:
+  listOfReview:
+  instruction: String
 }
 
 
