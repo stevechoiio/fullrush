@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, TouchableOpacity, AsyncStorage } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 import styles from "./styles";
 export default ({ navigation }) => {
   _signOutAsync = async () => {
