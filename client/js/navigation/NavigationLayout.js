@@ -4,6 +4,8 @@ import {
 } from "react-navigation";
 import React from "react";
 import HomeScreen from "../screens/Home";
+import RewardScreen from "../screens/Reward";
+import AccountScreen from "../screens/Account";
 
 const HomeStack = createStackNavigator(
   {
@@ -14,9 +16,29 @@ const HomeStack = createStackNavigator(
   }
 );
 
+const AccountStack = createStackNavigator(
+  {
+    Account: AccountScreen
+  },
+  {
+    headerMode: "none"
+  }
+);
+
+const RewardStack = createStackNavigator(
+  {
+    Reward: RewardScreen
+  },
+  {
+    headerMode: "none"
+  }
+);
+
 export default createBottomTabNavigator(
   {
-    Home: HomeStack
+    Reward: RewardStack,
+    Home: HomeStack,
+    Account: AccountStack
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
