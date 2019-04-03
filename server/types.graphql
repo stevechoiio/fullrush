@@ -19,7 +19,7 @@ type Washroom @model {
   name: String
   stall: Int
   building: Building @relation (name:"Building")
-  #listOfPhotos: [contentType!]! 
+  listOfPhotos: [File!]! @relation (name: "Photos")
   listOfReviews: [Review!]! @relation (name:"Review")
   instruction: String
 }
@@ -47,4 +47,10 @@ type Building @model {
   listOfWashrooms: [Washroom!]! @relation (name:"Building")
 }
 
-
+type File @model {
+  contentType: null
+  name: String!
+  url: String!
+  washroom: Washroom! @relation (name: "Photos")
+  date: DateTime
+}
