@@ -5,6 +5,9 @@ type User @model {
   id: ID! @isUnique
   name: String!
   email: String! @isUnique
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+  password: String!
   sns: String
   userReviews: [Review!]! @relation (name:"User")
   handicap: Boolean
@@ -16,7 +19,7 @@ type Washroom @model {
   name: String
   stall: Int
   building: Building @relation (name:"Building")
-  listOfPhotos: [contentType!]! 
+  #listOfPhotos: [contentType!]! 
   listOfReviews: [Review!]! @relation (name:"Review")
   instruction: String
 }
@@ -43,3 +46,5 @@ type Building @model {
   type: String
   listOfWashrooms: [Washroom!]! @relation (name:"Building")
 }
+
+
