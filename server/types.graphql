@@ -3,7 +3,7 @@
 
 type User @model {
   id: ID! @isUnique
-  name: String!
+  name: String
   email: String! @isUnique
   createdAt: DateTime! # read-only (managed by Graphcool)
   updatedAt: DateTime! # read-only (managed by Graphcool)
