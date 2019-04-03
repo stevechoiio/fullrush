@@ -2,17 +2,15 @@ import React, { Component } from "react";
 import {
   View,
   Text,
-  Image,
-  AsyncStorage,
   TextInput,
   TouchableOpacity,
-  ImageBackground
+  ActivityIndicator
 } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 import { Form, Field } from "react-final-form";
 import styles from "./styles";
 import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
-import { FORM_ERROR } from "final-form";
 
 const AUTHENTICATE_USER = gql`
   mutation Authenticate($email: String!, $password: String!) {
@@ -51,6 +49,7 @@ class LogIn extends Component {
         <Form
           onSubmit={async value => {
             try {
+              this.setState({ loading: true });
               const result = await this.props.loginMutation({
                 variables: { email: value.email, password: value.password }
               });
@@ -117,7 +116,11 @@ class LogIn extends Component {
                   disabled={pristine || invalid}
                   style={styles.button}
                 >
-                  <Text style={styles.buttonText}>Log In</Text>
+                  {this.state.loading ? (
+                    <ActivityIndicator />
+                  ) : (
+                    <Text style={styles.buttonText}>Log In</Text>
+                  )}
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity
