@@ -57,7 +57,7 @@ class LogIn extends Component {
 
               const user = result.data.authenticateUser;
 
-              await AsyncStorage.setItem("token", user.token);
+              await AsyncStorage.setItem("userToken", user.token);
               await AsyncStorage.setItem("id", user.id);
 
               console.log("In Login - Before navigate to Activities");
