@@ -51,7 +51,6 @@ class LogIn extends Component {
         <Form
           onSubmit={async value => {
             try {
-              this.setState({ loading: true });
               const result = await this.props.loginMutation({
                 variables: { email: value.email, password: value.password }
               });
@@ -62,13 +61,10 @@ class LogIn extends Component {
               await AsyncStorage.setItem("id", user.id);
 
               console.log("In Login - Before navigate to Activities");
-              this.setState({ loading: false });
-              this.props.navigation.navigate("Activities");
+
+              this.props.navigation.navigate("Home");
             } catch (e) {
-              this.setState({ loading: false });
-              return {
-                [FORM_ERROR]: "Incorrect email and/or password"
-              };
+              console.log(e);
             }
           }}
           validate={this.validate}
@@ -138,12 +134,6 @@ class LogIn extends Component {
             </View>
           )}
         />
-        <View style={styles.backgroundBottom}>
-          <Image
-            source={require("../../assets/images/background2-bottom.png")}
-            style={styles.bottom}
-          />
-        </View>
       </View>
     );
   }
