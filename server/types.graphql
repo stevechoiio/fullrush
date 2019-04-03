@@ -8,7 +8,7 @@ type User @model {
   createdAt: DateTime! # read-only (managed by Graphcool)
   updatedAt: DateTime! # read-only (managed by Graphcool)
   password: String!
-  sns: String
+  facebookUserId: String @isUnique
   userReviews: [Review!]! @relation (name:"User")
   handicap: Boolean
   gender: String
@@ -19,7 +19,7 @@ type Washroom @model {
   name: String
   stall: Int
   building: Building @relation (name:"Building")
-  #listOfPhotos: [contentType!]! 
+  #listOfPhotos: [File!]! 
   listOfReviews: [Review!]! @relation (name:"Review")
   instruction: String
 }
