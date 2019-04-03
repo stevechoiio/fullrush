@@ -3,7 +3,7 @@
 
 type User @model {
   id: ID! @isUnique
-  name: String!
+  name: String
   email: String! @isUnique
   createdAt: DateTime! # read-only (managed by Graphcool)
   updatedAt: DateTime! # read-only (managed by Graphcool)
@@ -19,7 +19,7 @@ type Washroom @model {
   name: String
   stall: Int
   building: Building @relation (name:"Building")
-  #listOfPhotos: [File!]! 
+  listOfPhotos: [File!]! @relation (name:"Photos")
   listOfReviews: [Review!]! @relation (name:"Review")
   instruction: String
 }
@@ -48,7 +48,8 @@ type Building @model {
 }
 
 type File @model {
-  contentType: null
+  id: ID! @isUnique
+  contentType: String
   name: String!
   url: String!
   washroom: Washroom! @relation (name: "Photos")
