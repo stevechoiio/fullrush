@@ -1,30 +1,37 @@
-import React from "react";
-import { Text, View, ListItem } from "react-native";
+import React, { Component } from "react";
+import { Text, View, FlatList } from "react-native";
 import styles from "./styles";
 import Login from "../Login";
 
-// Dummy: List of Washrooms
-const stub = [
-  {name: "Sample Building 1", building: "on"}, 
-  {name: "Sample Building 2", building: "bc"}, 
-  {name: "Sample Building 3", address: "ab"}
-];
+let sampleWashroom = {
+  id: "01010101",
+  name: "Sample Washroom",
+  stall: 3,
+  building: "BCIT",
+  listofReviews: [],
+  overallRating: 3,
+  instruction: "Try using dyson",
+};
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: "", loading: false };
-  }
-  
-  render() {
-    return (
+let sampleWashroom2 = {
+  id: "1425",
+  name: "Sample Washroom",
+  stall: 3,
+  building: "BCIT",
+  listofReviews: [],
+  overallRating: 3,
+  instruction: "Try using dyson"
+}
+
+const Home = ({data}) => {
+  return(
     <View style={styles.container}>
-      <Text>Hello Home</Text>
+      <FlatList
+        data={[{key: 'a', data: sampleWashroom}, {key: 'b', data: sampleWashroom2}]}
+        renderItem={({item}) => <Text>{item.data.id}, {item.data.name}</Text>}
+        />
     </View>
   );
-}
-}
+};
 
-export default compose(graphql(AUTHENTICATE_USER, { name: "HomeMutation" }))(
-  Home
-);
+export default Home;

@@ -16,6 +16,7 @@
     "react-final-form": "^4.1.0",
     "react-native": "0.59.2",
     "react-native-gesture-handler": "^1.1.0",
+    "react-native-pagination": "^1.5.5",
     "react-navigation": "^3.6.0"
   },
   "devDependencies": {
@@ -25,6 +26,7 @@
     "@react-native-community/eslint-config": "^0.0.3",
     "babel-jest": "^24.5.0",
     "eslint": "^5.16.0",
+    "faker": "^4.1.0",
     "jest": "^24.5.0",
     "metro-react-native-babel-preset": "^0.53.1",
     "react-test-renderer": "16.8.3"
