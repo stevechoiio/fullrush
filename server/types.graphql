@@ -21,6 +21,7 @@ type Washroom @model {
   building: Building @relation (name:"Building")
   listOfPhotos: [File!]! @relation (name:"Photos")
   listOfReviews: [Review!]! @relation (name:"Review")
+  toiletSeater: Boolean
   instruction: String
 }
 
