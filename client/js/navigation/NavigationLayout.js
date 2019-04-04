@@ -6,10 +6,12 @@ import React from "react";
 import HomeScreen from "../screens/Home";
 import RewardScreen from "../screens/Reward";
 import AccountScreen from "../screens/Account";
+import WashroomScreen from "../screens/Washroom";
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen
+    Home: HomeScreen,
+    Washroom: WashroomScreen
   },
   {
     headerMode: "none"
