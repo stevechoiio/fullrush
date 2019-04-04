@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import styles from "./styles";
 import { Container, 
@@ -63,6 +64,20 @@ const Home = ({data}) => {
         </List>
       </Content>
     </Container>
+=======
+import React from "react";
+import { Text, View, TouchableOpacity } from "react-native";
+import styles from "./styles";
+import Login from "../Login";
+export default props => {
+  return (
+    <View style={styles.container}>
+      <Text>Home Screen!</Text>
+      <TouchableOpacity onPress={() => props.nav.navigate("Washroom")}>
+        <Text>Washroom Card</Text>
+      </TouchableOpacity>
+    </View>
+>>>>>>> e43f7adece27193f304dd57518ee682ea551fd03
   );
 };
 

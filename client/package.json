@@ -15,8 +15,15 @@
     "react-apollo": "^2.5.3",
     "react-final-form": "^4.1.0",
     "react-native": "0.59.2",
+    "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.1.0",
+<<<<<<< HEAD
     "react-native-pagination": "^1.5.5",
+=======
+    "react-native-star-rating": "^1.1.0",
+    "react-native-typography": "^1.4.0",
+    "react-native-vector-icons": "^6.4.2",
+>>>>>>> e43f7adece27193f304dd57518ee682ea551fd03
     "react-navigation": "^3.6.0"
   },
   "devDependencies": {
