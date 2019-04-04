@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
+import { TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { Container, 
   Header, 
@@ -34,50 +34,57 @@ let sampleWashroom2 = {
   instruction: "Dyson is awesome"
 };
 
-const Home = ({data}) => {
+const Home = ({data, nav}) => {
   return(
-    <Container>
+    <Container borderColor = "#000000">
       <Header />
       <Content>
         <List>
-          <ListItem thumbnail>
+        <ListItem thumbnail TouchableOpacity onPress={() => nav.navigate("Washroom")}>
             <Left>
               <Thumbnail square source={{uri: 'Image URL'}}/>
             </Left>
             <Body>
               <Text>
                 {/* Show Washroom Name HERE*/}
-                Washroom Name
+                {sampleWashroom.name}
               </Text>
               <Text note numberOfLines={1}>
                 {/* Show Address or major detail here */}
-                Major Detail!
+                {sampleWashroom.instruction}
               </Text>
             </Body>
             <Right>
               <Text>
                 {/* Washroom Rating goes here! */}
-                4
+                {sampleWashroom.overallRating}
               </Text>
             </Right>
+          </ListItem>
+          <ListItem thumbnail TouchableOpacity onPress={() => nav.navigate("Washroom")}>
+            <Left>
+              <Thumbnail square source={{uri: 'Image URL'}}/>
+            </Left>
+            <Body>
+              <Text>
+                {/* Show Washroom Name HERE*/}
+                {sampleWashroom2.name}
+              </Text>
+              <Text note numberOfLines={1}>
+                {/* Show Address or major detail here */}
+                {sampleWashroom2.instruction}
+              </Text>
+            </Body>
+            <Right>
+              <Text>
+                {/* Washroom Rating goes here! */}
+                {sampleWashroom2.overallRating}
+              </Text>
+            </Right>            
           </ListItem>
         </List>
       </Content>
     </Container>
-=======
-import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import styles from "./styles";
-import Login from "../Login";
-export default props => {
-  return (
-    <View style={styles.container}>
-      <Text>Home Screen!</Text>
-      <TouchableOpacity onPress={() => props.nav.navigate("Washroom")}>
-        <Text>Washroom Card</Text>
-      </TouchableOpacity>
-    </View>
->>>>>>> e43f7adece27193f304dd57518ee682ea551fd03
   );
 };
 
