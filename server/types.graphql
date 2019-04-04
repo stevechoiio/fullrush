@@ -10,7 +10,6 @@ type User @model {
   password: String!
   facebookUserId: String @isUnique
   userReviews: [Review!]! @relation (name:"User")
-  handicap: Boolean
   gender: String
 }
 
@@ -21,6 +20,8 @@ type Washroom @model {
   building: Building @relation (name:"Building")
   listOfPhotos: [File!]! @relation (name:"Photos")
   listOfReviews: [Review!]! @relation (name:"Review")
+  toiletSeater: Boolean
+  overallRating: Int
   instruction: String
 }
 
@@ -28,9 +29,7 @@ type Review @model {
   id: ID! @isUnique
   user: User @relation (name: "User")
   washroom: Washroom @relation (name: "Review")
-  rating0: Int!
-  rating1: Int!
-  raiting2: Int!
+  rating: Int!
   time: DateTime!
   comment: String
 }
