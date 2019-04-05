@@ -43,24 +43,29 @@ export default class HomeConatiner extends Component {
        }
       >
       {({ loading, error, data})=>{ 
-        if (loading) {
-          console.log("catch loading");
-          return <View><Text>Loading...</Text></View>
-        }
-        if (error) {
-          console.log("catch error");
-          return <View><Text>Error...</Text></View>
-        }
-        if (!data.allWashrooms[0]) {
-          console.log("Catch Empty Data");
-          return <View><Text>Empty Data Error...</Text></View>
+        if (loading)
+          return (
+            <View>
+              <Text>asdfasdfa</Text>
+            </View>
+          );
+        if (error)
+          return (
+            <View>
+              <Text>Error...</Text>
+            </View>
+          );
+        
+          if(!data.allWashrooms[0]) {
+          return <View>
+            <Text>Hello...</Text>
+          </View>
         } else {
-          console.log("Successful " + data);
-          return <Home nav={this.props.navigation} data={[sampleWashroom2]}/>;
+          console.log(data.allWashrooms);
+          return <Home nav={this.props.navigation} data={data.allWashrooms} />;
         }
-      }}
+        }}
       </Query>
       );
-    // return <Home nav={this.props.navigation} />;
   }
 }
