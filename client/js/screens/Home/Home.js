@@ -14,6 +14,7 @@ import { Container,
   Body
 } from "native-base";
 
+// Dummy Data
 let sampleWashroom = {
   id: "01010101",
   name: "Sample Washroom",
@@ -36,7 +37,19 @@ let sampleWashroom2 = {
   instruction: "Dyson is awesome"
 };
 
-let sampleWashrooms = [sampleWashroom, sampleWashroom2];
+let sampleWashroom3 = {
+  id: "1612",
+  name: "Sample Washroom3",
+  stall: 1,
+  building: "UBC",
+  listOfReviews: [],
+  listOfPhotos: ["https://dummyimage.com/600x400/000/fff"],
+  overallRating: 5,
+  instruction: "Try Dyson guys"
+};
+
+// Dummy List of Dummy Data
+let sampleWashrooms = [sampleWashroom, sampleWashroom2, sampleWashroom3];
 
 const Home = ({data, nav}) => {
   return(
@@ -44,15 +57,16 @@ const Home = ({data, nav}) => {
       <Header />
       <Content>
         <List>
-          {sampleWashrooms.map((item, key) => (
-            <ListItem  
+          {data.map((item, key) => (
+            <ListItem
               key={key}
-              washroom={item} 
+              washroom={item}
               TouchableOpacity onPress={() => nav.navigate("Washroom")}
-              thumbnail>
+              >
+              {/* thumbnail> */}
               <Left>
                 {/* Map ListOfPhotos here as Thumbnail */}
-                <Thumbnail square source={{uri: item.listOfPhotos[0]}}/>
+                {/* <Thumbnail square source={{uri: item.listOfPhotos[0]}}/> */}
               </Left>
               <Body>
                 <Text>
