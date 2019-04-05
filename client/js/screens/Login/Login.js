@@ -24,7 +24,7 @@ const AUTHENTICATE_USER = gql`
 class LogIn extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: "", loading: false };
+    this.state = { text: "", loading: false, login: true };
   }
   static navigationOptions = {
     title: "Please sign in"
@@ -110,6 +110,38 @@ class LogIn extends Component {
                   </View>
                 )}
               </Field>
+              {!this.state.login ? (
+                <Field name="confirmpassword">
+                  {({ input, meta }) => (
+                    <View>
+                      <TextInput
+                        style={styles.form}
+                        editable={true}
+                        {...input}
+                        placeholder="Confirm Password"
+                        secureTextEntry={true}
+                        onChangeText={text => this.setState({ text })}
+                      />
+                      <Text style={styles.error}>
+                        {meta.error && meta.touched && meta.error}
+                      </Text>
+                    </View>
+                  )}
+                </Field>
+              ) : null}
+              <TouchableOpacity
+                onPress={() => {
+                  console.log("pressed");
+                  this.setState({ login: !this.state.login });
+                }}
+              >
+                {this.state.login ? (
+                  <Text>new user?</Text>
+                ) : (
+                  <Text>already have an account?</Text>
+                )}
+              </TouchableOpacity>
+
               {!pristine && !invalid ? (
                 <TouchableOpacity
                   onPress={handleSubmit}

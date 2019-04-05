@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { TouchableOpacity } from "react-native";
 import styles from "./styles";
-import { Container, 
-  Header, 
-  Content, 
-  List, 
-  ListItem, 
-  Thumbnail, 
-  Text, 
-  Left, 
+import {
+  Container,
+  Header,
+  Content,
+  List,
+  ListItem,
+  Thumbnail,
+  Text,
+  Left,
   Right,
   Button,
   Body
