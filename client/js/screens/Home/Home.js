@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { TouchableOpacity } from "react-native";
 import styles from "./styles";
-import { Container, 
-  Header, 
-  Content, 
-  List, 
-  ListItem, 
-  Thumbnail, 
-  Text, 
-  Left, 
+import {
+  Container,
+  Header,
+  Content,
+  List,
+  ListItem,
+  Thumbnail,
+  Text,
+  Left,
   Right,
   Button,
   Body
@@ -34,15 +35,19 @@ let sampleWashroom2 = {
   instruction: "Dyson is awesome"
 };
 
-const Home = ({data, nav}) => {
-  return(
-    <Container borderColor = "#000000">
+const Home = ({ data, nav }) => {
+  return (
+    <Container borderColor="#000000">
       <Header />
       <Content>
         <List>
-        <ListItem thumbnail TouchableOpacity onPress={() => nav.navigate("Washroom")}>
+          <ListItem
+            thumbnail
+            TouchableOpacity
+            onPress={() => nav.navigate("Washroom")}
+          >
             <Left>
-              <Thumbnail square source={{uri: 'Image URL'}}/>
+              <Thumbnail square source={{ uri: "Image URL" }} />
             </Left>
             <Body>
               <Text>
@@ -61,9 +66,13 @@ const Home = ({data, nav}) => {
               </Text>
             </Right>
           </ListItem>
-          <ListItem thumbnail TouchableOpacity onPress={() => nav.navigate("Washroom")}>
+          <ListItem
+            thumbnail
+            TouchableOpacity
+            onPress={() => nav.navigate("Washroom")}
+          >
             <Left>
-              <Thumbnail square source={{uri: 'Image URL'}}/>
+              <Thumbnail square source={{ uri: "Image URL" }} />
             </Left>
             <Body>
               <Text>
@@ -80,7 +89,7 @@ const Home = ({data, nav}) => {
                 {/* Washroom Rating goes here! */}
                 {sampleWashroom2.overallRating}
               </Text>
-            </Right>            
+            </Right>
           </ListItem>
         </List>
       </Content>
