@@ -27,7 +27,7 @@ let sampleWashroom3 = {
   instruction: "Try Dyson guys"
 };
 
-export default class HomeConatiner extends Component {
+export default class HomeContainer extends Component {
   render() {
     return (
       <Query
