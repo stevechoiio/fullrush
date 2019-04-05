@@ -32,7 +32,14 @@ export default class Review extends Component {
           selectedStar={rating => this.onStarRatingPress(rating)}
           fullStarColor={"black"}
         />
-        <Button title="Done" />
+
+        <Text>were there 2 stalls?)</Text>
+        <Button title="👍" />
+        <Button title="👎" />
+        <Text>were there toilet seaters?</Text>
+        <Button title="👍" />
+        <Button title="👎" />
+        <Button onPress={() => this.props.nav.goBack()} title="Done" />
       </View>
     );
   }
