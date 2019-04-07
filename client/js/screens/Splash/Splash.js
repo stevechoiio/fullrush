@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 
-export default () => {
+const Splash = () => {
       return(
         <View styles={styles.styles}>
             <Text>
@@ -9,3 +9,5 @@ export default () => {
             </Text>
         </View>);
 }
+
+export default Splash;
