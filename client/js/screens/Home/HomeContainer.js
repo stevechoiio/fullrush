@@ -4,6 +4,8 @@ import Home from "./Home";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { View } from "native-base";
+import Splash from "../Splash/Splash";
+import SplashScreen from "react-native-splash-screen";
 
 // Dummy Data
 let sampleWashroom = {
@@ -27,7 +29,12 @@ let sampleWashroom3 = {
   instruction: "Try Dyson guys"
 };
 
-export default class HomeConatiner extends Component {
+export default class HomeContainer extends Component {
+  
+  componentDidMount() {
+    SplashScreen.hide();
+  }
+
   render() {
     return (
       <Query
@@ -46,7 +53,7 @@ export default class HomeConatiner extends Component {
         if (loading)
           return (
             <View>
-              <Text>asdfasdfa</Text>
+              <Text>Loading...</Text>
             </View>
           );
         if (error)
