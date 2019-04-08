@@ -5,34 +5,8 @@ import { Form, Field } from "react-final-form";
 import { Button } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
-import gql from "graphql-tag";
-const ADD_WASHROOM = gql`
-  mutation AddWashroom(
-    $name: String!
-    $stall: Int!
-    $overallRating: Float!
-    $toiletSeater: Boolean!
-  ) {
-    createWashroom(
-      name: $name
-      stall: $stall
-      overallRating: $overallRating
-      toiletSeater: $toiletSeater
-    ) {
-      id
-      name
-      stall
-    }
-  }
-`;
-const ADD_REVIEW = gql`
-  mutation AddReview($washroomId: ID!, $rating: Int!) {
-    createReview(washroomId: $washroomId, rating: $rating) {
-      id
-      rating
-    }
-  }
-`;
+import { ADD_REVIEW, ADD_WASHROOM } from "../../config/queries";
+
 class AddWashroom extends Component {
   constructor(props) {
     super(props);

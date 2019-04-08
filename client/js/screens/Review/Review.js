@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Text, View } from "react-native";
 import { Button } from "react-native-elements";
 import StarRating from "react-native-star-rating";
-
-export default class Review extends Component {
+import { graphql, compose } from "react-apollo";
+import { ADD_REVIEW } from "../../config/queries";
+class Review extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +19,7 @@ export default class Review extends Component {
   }
 
   render() {
+    let { add_review } = this.props;
     return (
       <View style={styles.container}>
         <Text>How Clean was it?</Text>
@@ -39,8 +41,19 @@ export default class Review extends Component {
         <Text>were there toilet seaters?</Text>
         <Button title="👍" />
         <Button title="👎" />
-        <Button onPress={() => this.props.nav.goBack()} title="Done" />
+        <Button
+          onPress={async () => {
+            let reviewID = await add_review({
+              variables: { washroomId: "cju8xfvi910b10118n56eguin", rating: 5 }
+            });
+            console.log(reviewID);
+            this.props.nav.goBack();
+          }}
+          title="Done"
+        />
       </View>
     );
   }
 }
+
+export default compose(graphql(ADD_REVIEW, { name: "add_review" }))(Review);

@@ -1,0 +1,28 @@
+import gql from "graphql-tag";
+export const ADD_WASHROOM = gql`
+  mutation AddWashroom(
+    $name: String!
+    $stall: Int!
+    $overallRating: Float!
+    $toiletSeater: Boolean!
+  ) {
+    createWashroom(
+      name: $name
+      stall: $stall
+      overallRating: $overallRating
+      toiletSeater: $toiletSeater
+    ) {
+      id
+      name
+      stall
+    }
+  }
+`;
+export const ADD_REVIEW = gql`
+  mutation AddReview($washroomId: ID!, $rating: Int!) {
+    createReview(washroomId: $washroomId, rating: $rating) {
+      id
+      rating
+    }
+  }
+`;
