@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import com.facebook.react.ReactApplication;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
-//import com.cboy.rn.splashscreen.SplashScreenReactPackage;
 
 import com.horcrux.svg.SvgPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
