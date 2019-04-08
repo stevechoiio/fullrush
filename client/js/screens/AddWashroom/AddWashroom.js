@@ -25,6 +25,14 @@ const ADD_WASHROOM = gql`
     }
   }
 `;
+const ADD_REVIEW = gql`
+  mutation AddReview($washroomId: ID!, $rating: Int!) {
+    createReview(washroomId: $washroomId, rating: $rating) {
+      id
+      rating
+    }
+  }
+`;
 class AddWashroom extends Component {
   constructor(props) {
     super(props);
@@ -37,8 +45,8 @@ class AddWashroom extends Component {
   }
 
   render() {
-    let { add_washroom } = this.props;
-    console.log(add_washroom);
+    let { add_washroom, add_review } = this.props;
+    console.log(add_review);
     return (
       <View style={styles.container}>
         <Form
@@ -99,9 +107,9 @@ class AddWashroom extends Component {
               <Button title="👍" />
               <Button title="👎" />
               <TouchableOpacity
-                onPress={() => {
+                onPress={async () => {
                   console.log("washroom submitted");
-                  add_washroom({
+                  let washroomId = await add_washroom({
                     variables: {
                       name: "Thompson River University",
                       stall: 5,
@@ -109,6 +117,11 @@ class AddWashroom extends Component {
                       toiletSeater: true
                     }
                   });
+                  washroomId = washroomId.data.createWashroom.id;
+                  let reviewID = await add_review({
+                    variables: { washroomId, rating: 5 }
+                  });
+                  console.log(reviewID);
                 }}
               >
                 <Text style={styles.buttonText}>Submit!</Text>
@@ -121,6 +134,7 @@ class AddWashroom extends Component {
   }
 }
 
-export default compose(graphql(ADD_WASHROOM, { name: "add_washroom" }))(
-  AddWashroom
-);
+export default compose(
+  graphql(ADD_WASHROOM, { name: "add_washroom" }),
+  graphql(ADD_REVIEW, { name: "add_review" })
+)(AddWashroom);
