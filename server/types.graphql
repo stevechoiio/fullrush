@@ -17,12 +17,16 @@ type Washroom @model {
   id: ID! @isUnique
   name: String
   stall: Int
-  building: Building @relation (name:"Building")
-  listOfPhotos: [File!]! @relation (name:"Photos")
+  listOfPhotos: [Photo!]! @relation (name:"Photos")
   listOfReviews: [Review!]! @relation (name:"Review")
   toiletSeater: Boolean
-  overallRating: Int
+  overallRating: Float
   instruction: String
+  address: String
+  locationLat: Float
+  locationLong: Float
+  hoursFrom: DateTime
+  hoursTo: DateTime
 }
 
 type Review @model {
@@ -34,21 +38,9 @@ type Review @model {
   comment: String
 }
 
-type Building @model {
+type Photo @model {
   id: ID! @isUnique
-  name: String
-  address: String
-  locationLat: Float
-  locationLong: Float
-  hoursFrom: DateTime
-  hoursTo: DateTime
-  type: String
-  listOfWashrooms: [Washroom!]! @relation (name:"Building")
-}
-
-type File @model {
-  id: ID! @isUnique
-  contentType: String
+  contentType: String! @defaultValue(value:"image/png")
   name: String!
   url: String!
   washroom: Washroom! @relation (name: "Photos")

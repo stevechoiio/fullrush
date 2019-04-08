@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>fullrush</name>
+	<comment>Project android created by Buildship.</comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
+	</natures>
+	<div>
+		Icons made by 
+	<a href="https://www.flaticon.com/authors/darius-dan" title="Darius Dan">Darius Dan</a> 
+		from 
+	<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> 
+		is licensed by 
+	<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+	</div>
+</projectDescription>

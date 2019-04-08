@@ -8,6 +8,7 @@ import RewardScreen from "../screens/Reward";
 import AccountScreen from "../screens/Account";
 import WashroomScreen from "../screens/Washroom";
 import ReviewScreen from "../screens/Review";
+
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,

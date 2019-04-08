@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { TouchableOpacity } from "react-native";
 import styles from "./styles";
+import SplashScreen from "react-native-splash-screen";
 import {
   Container,
   Header,
