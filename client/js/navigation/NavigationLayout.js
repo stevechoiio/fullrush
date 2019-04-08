@@ -4,7 +4,7 @@ import {
 } from "react-navigation";
 import React from "react";
 import HomeScreen from "../screens/Home";
-import RewardScreen from "../screens/Reward";
+import AddWashroomScreen from "../screens/AddWashroom";
 import AccountScreen from "../screens/Account";
 import WashroomScreen from "../screens/Washroom";
 import ReviewScreen from "../screens/Review";
@@ -27,9 +27,9 @@ const AccountStack = createStackNavigator(
   }
 );
 
-const RewardStack = createStackNavigator(
+const AddWashroomStack = createStackNavigator(
   {
-    Reward: RewardScreen
+    AddWashroom: AddWashroomScreen
   },
   {
     headerMode: "none"
@@ -38,7 +38,7 @@ const RewardStack = createStackNavigator(
 
 export default createBottomTabNavigator(
   {
-    Reward: RewardStack,
+    AddWashroom: AddWashroomStack,
     Home: HomeStack,
     Account: AccountStack
   },
