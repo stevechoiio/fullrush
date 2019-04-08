@@ -18,7 +18,9 @@ const HomeStack = createStackNavigator(
     Washroom: WashroomScreen,
     Review: ReviewScreen
   },
-  { headerMode: "none" }
+  { 
+    headerMode: "none" 
+  }
 );
 
 const AccountStack = createSwitchNavigator(
@@ -43,12 +45,8 @@ const AddWashroomStack = createStackNavigator(
 
 export default createBottomTabNavigator(
   {
-<<<<<<< HEAD
-=======
-    AddWashroom: AddWashroomStack,
->>>>>>> 1b9b47c658ab7a360ff7aa8aaf8ded704c265c7c
     Home: HomeStack,
-    Reward: RewardStack,
+    AddWashroom: AddWashroomStack,
     Account: AccountStack
   },
   {
