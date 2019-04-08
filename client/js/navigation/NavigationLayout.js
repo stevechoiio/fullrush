@@ -1,6 +1,7 @@
 import {
   createStackNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createSwitchNavigator
 } from "react-navigation";
 import React from "react";
 import HomeScreen from "../screens/Home";
@@ -8,6 +9,8 @@ import RewardScreen from "../screens/Reward";
 import AccountScreen from "../screens/Account";
 import WashroomScreen from "../screens/Washroom";
 import ReviewScreen from "../screens/Review";
+import LogInScreen from "../screens/Login";
+import AuthLoadingScreen from "../components/AuthLoading/AuthLoading";
 
 const HomeStack = createStackNavigator(
   {
@@ -18,14 +21,16 @@ const HomeStack = createStackNavigator(
   { headerMode: "none" }
 );
 
-const AccountStack = createStackNavigator(
-  {
-    Account: AccountScreen
-  },
-  {
-    headerMode: "none"
-  }
-);
+const AccountStack = createSwitchNavigator(
+    {
+      AuthLoading: AuthLoadingScreen,
+      Account: AccountScreen,
+      LogIn: LogInScreen
+    },
+    {
+      initialRouteName: "AuthLoading"
+    }
+  );
 
 const RewardStack = createStackNavigator(
   {
@@ -38,8 +43,8 @@ const RewardStack = createStackNavigator(
 
 export default createBottomTabNavigator(
   {
-    Reward: RewardStack,
     Home: HomeStack,
+    Reward: RewardStack,
     Account: AccountStack
   },
   {
