@@ -4,7 +4,28 @@ import styles from "./styles";
 import { Form, Field } from "react-final-form";
 import { Button } from "react-native-elements";
 import StarRating from "react-native-star-rating";
-export default class AddWashroom extends Component {
+import { graphql, compose } from "react-apollo";
+import gql from "graphql-tag";
+const ADD_WASHROOM = gql`
+  mutation AddWashroom(
+    $name: String!
+    $stall: Int!
+    $overallRating: Float!
+    $toiletSeater: Boolean!
+  ) {
+    createWashroom(
+      name: $name
+      stall: $stall
+      overallRating: $overallRating
+      toiletSeater: $toiletSeater
+    ) {
+      id
+      name
+      stall
+    }
+  }
+`;
+class AddWashroom extends Component {
   constructor(props) {
     super(props);
     this.state = { text: "", loading: false, login: true, starCount: 3 };
@@ -16,11 +37,21 @@ export default class AddWashroom extends Component {
   }
 
   render() {
+    let { add_washroom } = this.props;
+    console.log(add_washroom);
     return (
       <View style={styles.container}>
         <Form
           onSubmit={() => {
             console.log("washroom submitted");
+            add_washroom({
+              variables: {
+                name: "Thompson River University",
+                stall: 5,
+                overallRating: 5,
+                toiletSeater: true
+              }
+            });
           }}
           validate={() => {}}
           render={({
@@ -68,9 +99,17 @@ export default class AddWashroom extends Component {
               <Button title="👍" />
               <Button title="👎" />
               <TouchableOpacity
-                onPress={() => {}}
-                disabled={pristine || invalid}
-                style={styles.disabled}
+                onPress={() => {
+                  console.log("washroom submitted");
+                  add_washroom({
+                    variables: {
+                      name: "Thompson River University",
+                      stall: 5,
+                      overallRating: 5,
+                      toiletSeater: true
+                    }
+                  });
+                }}
               >
                 <Text style={styles.buttonText}>Submit!</Text>
               </TouchableOpacity>
@@ -81,3 +120,7 @@ export default class AddWashroom extends Component {
     );
   }
 }
+
+export default compose(graphql(ADD_WASHROOM, { name: "add_washroom" }))(
+  AddWashroom
+);
