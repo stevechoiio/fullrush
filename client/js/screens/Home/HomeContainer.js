@@ -30,10 +30,6 @@ let sampleWashroom3 = {
 };
 
 export default class HomeContainer extends Component {
-  
-  // componentDidMount() {
-  //   SplashScreen.hide();
-  // }
 
   render() {
     return (

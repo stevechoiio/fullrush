@@ -9,10 +9,13 @@ import SplashScreen from "react-native-splash-screen";
 const SideBar = () => {
   return <Text>hey</Text>;
 };
+
 export default class App extends Component {
+
   componentDidMount() {
     SplashScreen.hide();
   }
+  
   closeDrawer = () => {
     this.drawer._root.close();
   };

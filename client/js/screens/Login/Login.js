@@ -61,7 +61,7 @@ class LogIn extends Component {
 
               console.log("In Login - Before navigate to Activities");
 
-              this.props.navigation.navigate("Home");
+              this.props.navigation.navigate("Account");
             } catch (e) {
               console.log(e);
             }
