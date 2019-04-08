@@ -34,7 +34,6 @@ type Review @model {
   user: User @relation (name: "User")
   washroom: Washroom @relation (name: "Review")
   rating: Int!
-  time: DateTime!
   comment: String
 }
 
