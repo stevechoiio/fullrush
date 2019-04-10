@@ -17,7 +17,7 @@ type Washroom @model {
   id: ID! @isUnique
   name: String
   stall: Int
-  listOfPhotos: [Photo!]! @relation (name:"Photos")
+  listOfPhotos: [File!]! @relation (name:"WashroomPhotos")
   listOfReviews: [Review!]! @relation (name:"Review")
   toiletSeater: Boolean
   overallRating: Float
@@ -37,11 +37,11 @@ type Review @model {
   comment: String
 }
 
-type Photo @model {
+type File @model {
   id: ID! @isUnique
-  contentType: String! @defaultValue(value:"image/png")
+  contentType: String!
   name: String!
   url: String!
-  washroom: Washroom! @relation (name: "Photos")
+  washroom: Washroom! @relation (name: "WashroomPhotos")
   date: DateTime
 }
