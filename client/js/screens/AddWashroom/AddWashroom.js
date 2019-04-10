@@ -16,7 +16,7 @@ class AddWashroom extends Component {
       login: true,
       starCount: 3,
       language: null,
-      num: 0
+      num: 5
     };
   }
   onStarRatingPress(rating) {
@@ -84,12 +84,12 @@ class AddWashroom extends Component {
               <Text>How many stalls were there?</Text>
               <Spinner
                 max={10}
-                min={2}
-                default={this.state.num}
+                min={0}
                 color="#f60"
+                value={this.state.num}
                 numColor="black"
                 onNumChange={num => {
-                  console.log(num);
+                  this.setState({ num });
                 }}
               />
               <Text>were there toilet seaters?</Text>
