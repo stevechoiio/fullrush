@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { TouchableOpacity } from "react-native";
-import styles from "./styles";
-import SplashScreen from "react-native-splash-screen";
 import {
   Container,
   Header,
@@ -64,8 +61,8 @@ const Home = ({data, nav}) => {
               key={key}
               washroom={item}
               TouchableOpacity onPress={() => nav.navigate("Washroom")}
+              /* thumbnail> */
               >
-              {/* thumbnail> */}
               <Left>
                 {/* Map ListOfPhotos here as Thumbnail */}
                 {/* <Thumbnail square source={{uri: item.listOfPhotos[0]}}/> */}
