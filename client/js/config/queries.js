@@ -1,11 +1,14 @@
 import gql from "graphql-tag";
 
+
+// Queries
 export const GET_ALL_WASHROOMS = gql`
   query Washroom {
     allWashrooms {
       name
       instruction
       overallRating
+      listOfPhotos
     }
   }
 `;
