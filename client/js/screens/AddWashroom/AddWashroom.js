@@ -6,11 +6,18 @@ import { Button } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import { ADD_REVIEW, ADD_WASHROOM } from "../../config/queries";
-
+import Spinner from "react-native-number-spinner";
 class AddWashroom extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: "", loading: false, login: true, starCount: 3 };
+    this.state = {
+      text: "",
+      loading: false,
+      login: true,
+      starCount: 3,
+      language: null,
+      num: 5
+    };
   }
   onStarRatingPress(rating) {
     this.setState({
@@ -74,9 +81,17 @@ class AddWashroom extends Component {
                 selectedStar={rating => this.onStarRatingPress(rating)}
                 fullStarColor={"black"}
               />
-              <Text>were there 2 stalls?)</Text>
-              <Button title="👍" />
-              <Button title="👎" />
+              <Text>How many stalls were there?</Text>
+              <Spinner
+                max={10}
+                min={0}
+                color="#f60"
+                value={this.state.num}
+                numColor="black"
+                onNumChange={num => {
+                  this.setState({ num });
+                }}
+              />
               <Text>were there toilet seaters?</Text>
               <Button title="👍" />
               <Button title="👎" />
