@@ -10,16 +10,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { Form, Field } from "react-final-form";
 import styles from "./styles";
 import { graphql, compose } from "react-apollo";
-import gql from "graphql-tag";
-
-const AUTHENTICATE_USER = gql`
-  mutation Authenticate($email: String!, $password: String!) {
-    authenticateUser(email: $email, password: $password) {
-      id
-      token
-    }
-  }
-`;
+import { AUTHENTICATE_USER } from "../../config/queries"
 
 class LogIn extends Component {
   constructor(props) {

@@ -1,6 +1,16 @@
 import gql from "graphql-tag";
 
-// Queries
+export const GET_ALL_WASHROOMS = gql`
+  query Washroom {
+    allWashrooms {
+      name
+      instruction
+      overallRating
+    }
+  }
+`;
+        
+// Mutations
 export const ADD_WASHROOM = gql`
   mutation AddWashroom(
     $name: String!
@@ -28,10 +38,17 @@ export const ADD_REVIEW = gql`
     }
   }
 `;
+export const AUTHENTICATE_USER = gql`
+  mutation Authenticate($email: String!, $password: String!) {
+    authenticateUser(email: $email, password: $password) {
+      id
+      token
+    }
+  }
+`;
 
-// Mutations 
 export const UPDATE_WASHROOM_IMAGE = gql`
-  mutation($userId: ID!, $url: String!, $contentType: String!, $name: String!) {
+  mutation($id: ID!, $url: String!, $contentType: String!, $name: String!) {
     createFile(
       userId: $userId
       url: $url
