@@ -16,7 +16,8 @@ class AddWashroom extends Component {
       login: true,
       starCount: 3,
       language: null,
-      num: 5
+      num: 5,
+      hasSeater: false
     };
   }
   onStarRatingPress(rating) {
@@ -74,7 +75,6 @@ class AddWashroom extends Component {
                 disabled={false}
                 emptyStar={"ios-star-outline"}
                 fullStar={"ios-star"}
-                halfStar={"ios-star-half"}
                 iconSet={"Ionicons"}
                 maxStars={5}
                 rating={this.state.starCount}
@@ -93,8 +93,44 @@ class AddWashroom extends Component {
                 }}
               />
               <Text>were there toilet seaters?</Text>
-              <Button title="👍" />
-              <Button title="👎" />
+              {this.state.hasSeater ? (
+                <View>
+                  <Button
+                    title="👍"
+                    onPress={() => {
+                      this.setState({ hasSeater: true });
+                    }}
+                  />
+                  <Button
+                    title="👎"
+                    type="clear"
+                    onPress={() => {
+                      this.setState({ hasSeater: false });
+                    }}
+                  />
+                </View>
+              ) : (
+                <View>
+                  <Button
+                    title="👍"
+                    type="clear"
+                    onPress={() => {
+                      this.setState({ hasSeater: true });
+                    }}
+                  />
+                  <Button
+                    title="👎"
+                    onPress={() => {
+                      this.setState({ hasSeater: false });
+                    }}
+                  />
+                </View>
+              )}
+              <Button
+                title="Take a photo of the washroom!"
+                type="clear"
+                onPress={() => {}}
+              />
               <TouchableOpacity
                 onPress={async () => {
                   console.log("washroom submitted");
