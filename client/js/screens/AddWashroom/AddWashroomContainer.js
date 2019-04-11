@@ -5,7 +5,7 @@ import AddWashroom from "./AddWashroom";
 // const SideBar = () => {
 //   return <Text>hey</Text>;
 // };
-export default class AddWashromContainer extends Component {
+export default class AddWashroomContainer extends Component {
   // closeDrawer = () => {
   //   this.drawer._root.close();
   // };
