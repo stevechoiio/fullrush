@@ -35,7 +35,11 @@ const Home = ({data, nav}) => {
             <ListItem
               key={key}
               washroom={item}
-              TouchableOpacity onPress={() => nav.navigate("Washroom")}
+              TouchableOpacity onPress={() => nav.navigate("Washroom", 
+                {data:
+                  item
+                } 
+              )}
               thumbnail>
               <Left>
                 {/* Map ListOfPhotos here as Thumbnail */}
