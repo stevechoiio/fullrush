@@ -7,6 +7,7 @@ import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import { ADD_REVIEW, ADD_WASHROOM } from "../../config/queries";
 import Spinner from "react-native-number-spinner";
+
 class AddWashroom extends Component {
   constructor(props) {
     super(props);
@@ -138,7 +139,7 @@ class AddWashroom extends Component {
                 <Button
                   title="Take a photo of the washroom!"
                   type="clear"
-                  onPress={() => {}}
+                  onPress={() => {this.props.nav.navigate("Camera")}}
                 />
                 <TouchableOpacity
                   onPress={async () => {

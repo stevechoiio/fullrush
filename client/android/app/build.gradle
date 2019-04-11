@@ -105,6 +105,7 @@ android {
         applicationId "com.fullrush"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        missingDimensionStrategy 'react-native-camera', 'general'
         versionCode 1
         versionName "1.0"
     }
@@ -138,6 +139,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-camera')
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-svg')
     implementation project(':react-native-vector-icons')

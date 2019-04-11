@@ -12,6 +12,8 @@ export default class AddWashroomContainer extends Component {
   // openDrawer = () => {
   //   this.drawer._root.open();
   // };
+
+  
   render() {
     return (
       // <Drawer
@@ -21,7 +23,7 @@ export default class AddWashroomContainer extends Component {
       //   content={<SideBar navigator={this.navigator} />}
       //   onClose={() => this.closeDrawer()}
       // >
-        <AddWashroom />
+        <AddWashroom nav={this.props.navigation}/>
       // </Drawer>
     );
   }
