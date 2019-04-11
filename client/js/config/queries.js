@@ -9,7 +9,7 @@ export const GET_ALL_WASHROOMS = gql`
     }
   }
 `;
-        
+
 // Mutations
 export const ADD_WASHROOM = gql`
   mutation AddWashroom(
@@ -43,6 +43,24 @@ export const AUTHENTICATE_USER = gql`
     authenticateUser(email: $email, password: $password) {
       id
       token
+    }
+  }
+`;
+export const SIGNUP_USER = gql`
+  mutation signup($email: String!, $password: String!) {
+    signupUser(email: $email, password: $password) {
+      id
+      token
+    }
+  }
+`;
+export const UPDATE_SIGNEDUPUSER = gql`
+  mutation updateSignedupUser($id: ID!, $name: String!, $gender: String!) {
+    updateUser(id: $id, name: $name, gender: $gender) {
+      id
+      name
+      email
+      gender
     }
   }
 `;
