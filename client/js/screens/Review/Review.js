@@ -13,11 +13,13 @@ class Review extends Component {
     this.state = {
       starCount: 3,
       stallCorrect: true,
-      num: 5,
+      num: null,
       hasSeater: false
     };
   }
-
+  componentDidMount() {
+    this.setState({ num: 3 });
+  }
   onStarRatingPress(rating) {
     this.setState({
       starCount: rating
@@ -75,7 +77,6 @@ class Review extends Component {
             max={10}
             min={0}
             color="#f60"
-            default={2}
             value={this.state.num}
             numColor="black"
             onNumChange={num => {
