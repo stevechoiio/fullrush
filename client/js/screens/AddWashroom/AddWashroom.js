@@ -16,10 +16,13 @@ class AddWashroom extends Component {
       login: true,
       starCount: 3,
       language: null,
-      num: 5,
+      num: null,
       hasSeater: false,
       locationName: null
     };
+  }
+  componentDidMount() {
+    this.setState({ num: 3 });
   }
   onStarRatingPress(rating) {
     this.setState({
