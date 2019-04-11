@@ -19,11 +19,8 @@ export default ({ navigation }) => {
           tintColor="#00e0ff"
           backgroundColor="#3d5875"
         >
-          {() => <Text> 10 more reviews to reach Sephora</Text>}
+          {() => <Text> you have 200 points</Text>}
         </CircularProgress>
-        <Text>Prize of the Month</Text>
-        <Text> Channel gift card 100$</Text>
-        <Text> draw in : (counter)</Text>
       </View>
       <TouchableOpacity onPress={_signOutAsync}>
         <Text>Log Out</Text>
