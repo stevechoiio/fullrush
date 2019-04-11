@@ -4,11 +4,15 @@ import { Button } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import { ADD_REVIEW } from "../../config/queries";
+import Spinner from "react-native-number-spinner";
 class Review extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      starCount: 2.5
+      starCount: 3,
+      stallCorrect: true,
+      num: 5,
+      hasSeater: false
     };
   }
 
@@ -36,11 +40,48 @@ class Review extends Component {
         />
 
         <Text>were there 2 stalls?)</Text>
-        <Button title="👍" />
-        <Button title="👎" />
+        <Button
+          title={"👍"}
+          type={!this.state.stallCorrect ? "clear" : "solid"}
+          onPress={() => {
+            this.setState({ stallCorrect: true });
+          }}
+        />
+        <Button
+          title="👎"
+          type={this.state.stallCorrect ? "clear" : "solid"}
+          onPress={() => {
+            this.setState({ stallCorrect: false });
+          }}
+        />
+        {!this.state.stallCorrect ? (
+          <Spinner
+            max={10}
+            min={0}
+            color="#f60"
+            default={2}
+            value={this.state.num}
+            numColor="black"
+            onNumChange={num => {
+              this.setState({ num });
+            }}
+          />
+        ) : null}
         <Text>were there toilet seaters?</Text>
-        <Button title="👍" />
-        <Button title="👎" />
+        <Button
+          title="👍"
+          onPress={() => {
+            this.setState({ hasSeater: true });
+          }}
+          type={!this.state.hasSeater ? "clear" : "solid"}
+        />
+        <Button
+          onPress={() => {
+            this.setState({ hasSeater: false });
+          }}
+          title="👎"
+          type={this.state.hasSeater ? "clear" : "solid"}
+        />
         <Button
           onPress={async () => {
             let reviewID = await add_review({
