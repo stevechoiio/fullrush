@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   Container,
-  Header,
   Content,
   List,
   ListItem,
@@ -11,12 +10,13 @@ import {
   Right,
   Body
 } from "native-base";
+import { Header } from "react-native-elements";
 
 let defaultImage = "https://dummyimage.com/600x400/000/fff";
-  // This is the default placeholder image
+// This is the default placeholder image
 
 // Let a Default Placeholder be on Thumbnail when url || Photos is empty
-let foo = (item) => {
+let foo = item => {
   if (item == null) {
     return defaultImage;
   } else {
@@ -24,36 +24,39 @@ let foo = (item) => {
   }
 };
 
-const Home = ({data, nav}) => {
-  return(
+const Home = ({ data, nav }) => {
+  return (
     <Container>
-      <Header />
+      <Header
+        centerComponent={{
+          text: "Washrooms Nearby",
+          style: { color: "#fff", fontSize: 20 }
+        }}
+      />
       <Content>
         <List>
           {data.map((item, key) => (
             <ListItem
               key={key}
               washroom={item}
-              TouchableOpacity onPress={() => nav.navigate("Washroom", 
-                {data:
-                  item
-                } 
-              )}
-              thumbnail>
+              TouchableOpacity
+              onPress={() => nav.navigate("Washroom", { data: item })}
+              thumbnail
+            >
               <Left>
                 {/* Map ListOfPhotos here as Thumbnail */}
-                <Thumbnail square source={{uri: foo(item.listOfPhotos)}}/>
-                  {/* //item.listOfPhotos.url}}/> */}
+                <Thumbnail square source={{ uri: foo(item.listOfPhotos) }} />
+                {/* //item.listOfPhotos.url}}/> */}
                 {/* //source={{uri: item.listOfPhotos[0]}}/> */}
               </Left>
               <Body>
                 <Text>
                   {/* Here comes the Washroom name */}
-                {item.name}
+                  {item.name}
                 </Text>
                 <Text note numberOfLines={1}>
-                {/* Here comes the instruction of the washroom */}
-                {item.instruction}
+                  {/* Here comes the instruction of the washroom */}
+                  {item.instruction}
                 </Text>
               </Body>
               <Right>
@@ -62,7 +65,7 @@ const Home = ({data, nav}) => {
                   {item.overallRating}
                 </Text>
               </Right>
-              </ListItem>
+            </ListItem>
           ))}
         </List>
       </Content>

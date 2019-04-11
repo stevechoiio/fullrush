@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
-import { Button } from "react-native-elements";
+import { Text, View, TouchableOpacity } from "react-native";
+import { Button, Header } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import { ADD_REVIEW } from "../../config/queries";
 import Spinner from "react-native-number-spinner";
+import Icon from "react-native-vector-icons/FontAwesome";
+import BackButton from "../../components/BackButton";
 class Review extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,21 @@ class Review extends Component {
   render() {
     let { add_review } = this.props;
     return (
-      <View style={styles.container}>
+      <View>
+        <Header
+          leftComponent={<BackButton />}
+          centerComponent={{
+            text: "Leave a Review!",
+            style: { color: "#fff", fontSize: 20 }
+          }}
+          rightComponent={() => {
+            return (
+              <TouchableOpacity>
+                <Text style={{ color: "#fff" }}>Submit</Text>
+              </TouchableOpacity>
+            );
+          }}
+        />
         <Text>How Clean was it?</Text>
         <StarRating
           disabled={false}
@@ -90,7 +106,7 @@ class Review extends Component {
             console.log(reviewID);
             this.props.nav.goBack();
           }}
-          title="Done"
+          title="Submit"
         />
       </View>
     );

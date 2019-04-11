@@ -15,7 +15,7 @@ import {
   SIGNUP_USER,
   UPDATE_SIGNEDUPUSER
 } from "../../config/queries";
-import { Input, Button } from "react-native-elements";
+import { Input, Button, Header } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 class Login extends Component {
@@ -42,7 +42,7 @@ class Login extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <Form
           onSubmit={async value => {
             try {
@@ -95,8 +95,23 @@ class Login extends Component {
             submitError,
             form
           }) => (
-            <View style={styles.flexContent}>
-              <Text style={styles.text}>Log In</Text>
+            <View>
+              {this.state.login ? (
+                <Header
+                  centerComponent={{
+                    text: "Login",
+                    style: { color: "#fff", fontSize: 20 }
+                  }}
+                />
+              ) : (
+                <Header
+                  centerComponent={{
+                    text: "Sign Up",
+                    style: { color: "#fff", fontSize: 20 }
+                  }}
+                />
+              )}
+
               <Field name="email">
                 {({ input, meta }) => (
                   <Input
@@ -118,7 +133,6 @@ class Login extends Component {
                   )}
                 </Field>
               ) : null}
-
               <Field name="password">
                 {({ input, meta }) => (
                   <Input
@@ -179,7 +193,6 @@ class Login extends Component {
                   <Text>already have an account?</Text>
                 )}
               </TouchableOpacity>
-
               {!pristine && !invalid ? (
                 <TouchableOpacity
                   onPress={handleSubmit}
