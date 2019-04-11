@@ -1,6 +1,5 @@
 import gql from "graphql-tag";
 
-
 // Queries
 export const GET_ALL_WASHROOMS = gql`
   query GetAllWashrooms {
@@ -12,6 +11,15 @@ export const GET_ALL_WASHROOMS = gql`
         id
         url
       }
+    }
+  }
+`;
+export const GET_USER_INFO = gql`
+  query USER($id: ID!) {
+    allUsers(filter: { id: $id }) {
+      id
+      name
+      email
     }
   }
 `;
