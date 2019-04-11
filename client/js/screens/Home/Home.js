@@ -12,8 +12,6 @@ import {
   Button,
   Body
 } from "native-base";
-import { Query } from "react-apollo";
-import { GET_ALL_WASHROOMS } from "../../config/queries";
 
 let defaultImage = "https://dummyimage.com/600x400/000/fff";
   // This is the default placeholder image
