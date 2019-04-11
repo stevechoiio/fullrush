@@ -7,7 +7,8 @@ import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import { ADD_REVIEW, ADD_WASHROOM } from "../../config/queries";
 import Spinner from "react-native-number-spinner";
-
+import { material } from "react-native-typography";
+import { withNavigation } from "react-navigation";
 class AddWashroom extends Component {
   constructor(props) {
     super(props);
@@ -17,10 +18,13 @@ class AddWashroom extends Component {
       login: true,
       starCount: 3,
       language: null,
-      num: 5,
+      num: null,
       hasSeater: false,
       locationName: null
     };
+  }
+  componentDidMount() {
+    this.setState({ num: 3 });
   }
   onStarRatingPress(rating) {
     this.setState({
@@ -29,16 +33,17 @@ class AddWashroom extends Component {
   }
 
   render() {
-    let { add_washroom, add_review } = this.props;
+    let { add_washroom, add_review, name, vicinity } = this.props;
 
     return (
       <View>
         <Header
           centerComponent={{
-            text: "Add New Washrooms",
+            text: "Add New Washrooms for ",
             style: { color: "#fff", fontSize: 20 }
           }}
         />
+
         <View>
           <Form
             onSubmit={() => {
@@ -62,24 +67,8 @@ class AddWashroom extends Component {
               form
             }) => (
               <View style={styles.flexContent}>
-                <Field name="email">
-                  {({ input, meta }) => (
-                    <View>
-                      <TextInput
-                        style={styles.form}
-                        editable={true}
-                        {...input}
-                        placeholder="Search the location"
-                        onChangeText={text =>
-                          this.setState({ locationName: text })
-                        }
-                      />
-                      <Text style={styles.error}>
-                        {meta.error && meta.touched && meta.error}
-                      </Text>
-                    </View>
-                  )}
-                </Field>
+                <Text style={material.body1}>{name}</Text>
+                <Text style={material.body1}>{vicinity}</Text>
                 <Text>How Clean was it?</Text>
                 <StarRating
                   disabled={false}
@@ -91,6 +80,7 @@ class AddWashroom extends Component {
                   selectedStar={rating => this.onStarRatingPress(rating)}
                   fullStarColor={"black"}
                 />
+
                 <Text>How many stalls were there?</Text>
                 <Spinner
                   max={10}
@@ -139,13 +129,15 @@ class AddWashroom extends Component {
                 <Button
                   title="Take a photo of the washroom!"
                   type="clear"
-                  onPress={() => {this.props.nav.navigate("Camera")}}
+                  onPress={() => {
+                    this.props.nav.navigate("Camera");
+                  }}
                 />
                 <TouchableOpacity
                   onPress={async () => {
                     let washroomId = await add_washroom({
                       variables: {
-                        name: this.state.locationName,
+                        name,
                         stall: this.state.num,
                         overallRating: this.state.starCount,
                         toiletSeater: this.state.hasSeater
@@ -158,6 +150,7 @@ class AddWashroom extends Component {
                       variables: { washroomId, rating: this.state.starCount }
                     });
                     console.log(reviewID);
+                    this.props.navigation.navigate("Home");
                   }}
                 >
                   <Text style={styles.buttonText}>Submit!</Text>
@@ -171,7 +164,9 @@ class AddWashroom extends Component {
   }
 }
 
-export default compose(
-  graphql(ADD_WASHROOM, { name: "add_washroom" }),
-  graphql(ADD_REVIEW, { name: "add_review" })
-)(AddWashroom);
+export default withNavigation(
+  compose(
+    graphql(ADD_WASHROOM, { name: "add_washroom" }),
+    graphql(ADD_REVIEW, { name: "add_review" })
+  )(AddWashroom)
+);

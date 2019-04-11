@@ -118,7 +118,7 @@ class Login extends Component {
                     placeholder="e-mail"
                     {...input}
                     onChangeText={text => this.setState({ text })}
-                    leftIcon={{ type: "font-awesome", name: "chevron-left" }}
+                    leftIcon={{ type: "font-awesome", name: "at" }}
                   />
                 )}
               </Field>
@@ -129,6 +129,7 @@ class Login extends Component {
                       placeholder="full name"
                       {...input}
                       onChangeText={text => this.setState({ text })}
+                      leftIcon={{ type: "font-awesome", name: "user" }}
                     />
                   )}
                 </Field>
@@ -140,6 +141,7 @@ class Login extends Component {
                     {...input}
                     placeholder="password"
                     secureTextEntry={true}
+                    leftIcon={{ type: "font-awesome", name: "unlock-alt" }}
                     onChangeText={text => {
                       console.log(text);
                       this.setState({ originalPassword: text });
@@ -155,6 +157,7 @@ class Login extends Component {
                       {...input}
                       placeholder="confirm password"
                       secureTextEntry={true}
+                      leftIcon={{ type: "font-awesome", name: "unlock-alt" }}
                       onChangeText={text => {
                         console.log(text);
                         this.setState({ confirmpassword: text });
