@@ -60,6 +60,9 @@ class Login extends Component {
                 console.log("In Login - Before navigate to Activities");
               } else {
                 console.log(value);
+                if (value.password !== value.confirmpassword) {
+                  throw new Error("password not correct");
+                }
                 const result = await this.props.signupMutation({
                   variables: { email: value.email, password: value.password }
                 });
@@ -121,9 +124,11 @@ class Login extends Component {
                     {...input}
                     placeholder="password"
                     secureTextEntry={true}
-                    onChangeText={text =>
-                      this.setState({ originalPassword: text })
-                    }
+                    onChangeText={text => {
+                      console.log(text);
+                      this.setState({ originalPassword: text });
+                      console.log(this.state);
+                    }}
                   />
                 )}
               </Field>
@@ -131,8 +136,13 @@ class Login extends Component {
                 <Field name="confirmpassword">
                   {({ input, meta }) => (
                     <Input
+                      {...input}
                       placeholder="confirm password"
                       secureTextEntry={true}
+                      onChangeText={text => {
+                        console.log(text);
+                        this.setState({ confirmpassword: text });
+                      }}
                     />
                   )}
                 </Field>
@@ -177,7 +187,9 @@ class Login extends Component {
                   {this.state.loading ? (
                     <ActivityIndicator />
                   ) : (
-                    <Text style={styles.buttonText}>Log In</Text>
+                    <Text style={styles.buttonText}>
+                      {this.state.login ? "Log In" : "Sign Up"}
+                    </Text>
                   )}
                 </TouchableOpacity>
               ) : (
