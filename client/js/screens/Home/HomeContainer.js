@@ -23,6 +23,7 @@ export default class HomeContainer extends Component {
             return (
               <View>
                 <Text>Error...</Text>
+                <Text>{error.message}</Text>
               </View>
             );
         
