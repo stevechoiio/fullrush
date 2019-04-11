@@ -10,12 +10,14 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { Form, Field } from "react-final-form";
 import styles from "./styles";
 import { graphql, compose } from "react-apollo";
-import { AUTHENTICATE_USER } from "../../config/queries"
-
+import { AUTHENTICATE_USER } from "../../config/queries";
+import { Input, Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
+<Input placeholder="BASIC INPUT" />;
 class LogIn extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: "", loading: false, login: true };
+    this.state = { text: "", loading: false, login: true, gender: null };
   }
   static navigationOptions = {
     title: "Please sign in"
@@ -71,6 +73,26 @@ class LogIn extends Component {
               <Field name="email">
                 {({ input, meta }) => (
                   <View>
+                    {/* <Input
+                      placeholder="INPUT WITH ICON"
+                      leftIcon={{ type: "font-awesome", name: "chevron-left" }}
+                    />
+
+                    <Input
+                      placeholder="INPUT WITH CUSTOM ICON"
+                      leftIcon={<Icon name="user" size={24} color="black" />}
+                    />
+
+                    <Input
+                      placeholder="INPUT WITH SHAKING EFFECT"
+                      shake={true}
+                    />
+
+                    <Input
+                      placeholder="INPUT WITH ERROR MESSAGE"
+                      errorStyle={{ color: "red" }}
+                      errorMessage="ENTER A VALID ERROR HERE"
+                    /> */}
                     <TextInput
                       style={styles.form}
                       editable={true}
@@ -84,6 +106,29 @@ class LogIn extends Component {
                   </View>
                 )}
               </Field>
+
+              <Input
+                placeholder="e-mail"
+                leftIcon={{ type: "font-awesome", name: "chevron-left" }}
+              />
+              <Input placeholder="full name" />
+              <Input placeholder="password" secureTextEntry={true} />
+              <Input placeholder="confirm password" secureTextEntry={true} />
+              <Button
+                onPress={() => {
+                  this.setState({ gender: "male" });
+                }}
+                type={this.state.gender === "male" ? "solid" : "clear"}
+                icon={<Icon name="male" size={30} />}
+              />
+              <Button
+                onPress={() => {
+                  this.setState({ gender: "female" });
+                }}
+                type={this.state.gender === "female" ? "solid" : "clear"}
+                icon={<Icon name="female" size={30} />}
+              />
+
               <Field name="password">
                 {({ input, meta }) => (
                   <View>

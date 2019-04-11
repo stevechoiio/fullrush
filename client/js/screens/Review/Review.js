@@ -39,7 +39,7 @@ class Review extends Component {
           fullStarColor={"black"}
         />
 
-        <Text>were there 2 stalls?)</Text>
+        <Text>were there 2 stalls?</Text>
         <Button
           title={"👍"}
           type={!this.state.stallCorrect ? "clear" : "solid"}
