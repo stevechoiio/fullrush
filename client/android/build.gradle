@@ -7,6 +7,8 @@ buildscript {
         compileSdkVersion = 28
         targetSdkVersion = 28
         supportLibVersion = "28.0.0"
+        googlePlayServicesVersion   = "12.0.1"
+        googlePlayServicesVisionVersion = "15.0.2"
     }
     repositories {
         google()
@@ -23,6 +25,8 @@ buildscript {
 allprojects {
     repositories {
         mavenLocal()
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.google.com" }
         google()
         jcenter()
         maven {
