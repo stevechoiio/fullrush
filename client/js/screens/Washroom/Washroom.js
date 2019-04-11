@@ -5,7 +5,7 @@ import { material } from "react-native-typography";
 import StarRating from "react-native-star-rating";
 // <Text style={material.display1}>Hello Typography!</Text>;
 import Icon from "react-native-vector-icons/FontAwesome";
-import { Button } from "react-native-elements";
+import { Button, Header } from "react-native-elements";
 import { Image } from "react-native";
 
 export default props => {

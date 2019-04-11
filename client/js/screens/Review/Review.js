@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
-import { Button } from "react-native-elements";
+import { Button, Header } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import { ADD_REVIEW } from "../../config/queries";
@@ -25,7 +25,13 @@ class Review extends Component {
   render() {
     let { add_review } = this.props;
     return (
-      <View style={styles.container}>
+      <View>
+        <Header
+          centerComponent={{
+            text: "Leave a Review!",
+            style: { color: "#fff", fontSize: 20 }
+          }}
+        />
         <Text>How Clean was it?</Text>
         <StarRating
           disabled={false}
