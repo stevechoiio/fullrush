@@ -22,7 +22,7 @@ const handleGetDirections = () => {
     params: [
       {
         key: "travelmode",
-        value: "driving" // may be "walking", "bicycling" or "transit" as well
+        value: "walking" // may be "walking", "bicycling" or "transit" as well
       },
       {
         key: "dir_action",
