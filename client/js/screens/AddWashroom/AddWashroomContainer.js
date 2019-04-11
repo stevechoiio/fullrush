@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AddWashroom from "./AddWashroom";
 
 export default class AddWashroomContainer extends Component {
+  
   render() {
     const { navigation } = this.props;
     const name = navigation.getParam("name");
