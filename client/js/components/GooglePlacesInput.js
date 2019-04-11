@@ -2,8 +2,8 @@ import React from "react";
 import { Image, Text, View, Dimensions } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Button, Header } from "react-native-elements";
-
-export const GooglePlacesInput = () => {
+import { withNavigation } from "react-navigation";
+const GooglePlacesInput = props => {
   return (
     <View
       style={{
@@ -25,10 +25,16 @@ export const GooglePlacesInput = () => {
         autoFocus={true}
         listViewDisplayed="auto" // true/false/undefined
         fetchDetails={true}
-        renderDescription={row => row.description} // custom description render
+        renderDescription={row => {
+          console.log(row);
+          return [row.description, row.name];
+        }} // custom description render
         onPress={(data, details = null) => {
           // 'details' is provided when fetchDetails = true
+
           console.log(data, details);
+
+          props.navigation.navigate("AddWashroom", { ...data, ...details });
         }}
         getDefaultValue={() => ""}
         query={{
@@ -80,8 +86,10 @@ export const GooglePlacesInput = () => {
           "locality",
           "administrative_area_level_3"
         ]} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-        debounce={400} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+        debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
       />
     </View>
   );
 };
+
+export default withNavigation(GooglePlacesInput);

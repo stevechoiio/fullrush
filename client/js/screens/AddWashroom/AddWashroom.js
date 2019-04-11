@@ -7,7 +7,8 @@ import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import { ADD_REVIEW, ADD_WASHROOM } from "../../config/queries";
 import Spinner from "react-native-number-spinner";
-import { GooglePlacesInput } from "../../components/GooglePlacesInput";
+import { material } from "react-native-typography";
+import { withNavigation } from "react-navigation";
 class AddWashroom extends Component {
   constructor(props) {
     super(props);
@@ -32,13 +33,13 @@ class AddWashroom extends Component {
   }
 
   render() {
-    let { add_washroom, add_review } = this.props;
+    let { add_washroom, add_review, name, vicinity } = this.props;
 
     return (
       <View>
         <Header
           centerComponent={{
-            text: "Add New Washrooms",
+            text: "Add New Washrooms for ",
             style: { color: "#fff", fontSize: 20 }
           }}
         />
@@ -66,6 +67,8 @@ class AddWashroom extends Component {
               form
             }) => (
               <View style={styles.flexContent}>
+                <Text style={material.body1}>{name}</Text>
+                <Text style={material.body1}>{vicinity}</Text>
                 <Text>How Clean was it?</Text>
                 <StarRating
                   disabled={false}
@@ -134,7 +137,7 @@ class AddWashroom extends Component {
                   onPress={async () => {
                     let washroomId = await add_washroom({
                       variables: {
-                        name: this.state.locationName,
+                        name,
                         stall: this.state.num,
                         overallRating: this.state.starCount,
                         toiletSeater: this.state.hasSeater
@@ -147,6 +150,7 @@ class AddWashroom extends Component {
                       variables: { washroomId, rating: this.state.starCount }
                     });
                     console.log(reviewID);
+                    this.props.navigation.navigate("Home");
                   }}
                 >
                   <Text style={styles.buttonText}>Submit!</Text>
@@ -160,7 +164,9 @@ class AddWashroom extends Component {
   }
 }
 
-export default compose(
-  graphql(ADD_WASHROOM, { name: "add_washroom" }),
-  graphql(ADD_REVIEW, { name: "add_review" })
-)(AddWashroom);
+export default withNavigation(
+  compose(
+    graphql(ADD_WASHROOM, { name: "add_washroom" }),
+    graphql(ADD_REVIEW, { name: "add_review" })
+  )(AddWashroom)
+);
