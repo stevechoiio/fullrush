@@ -9,7 +9,7 @@ import AddWashroomScreen from "../screens/AddWashroom";
 import AccountScreen from "../screens/Account";
 import WashroomScreen from "../screens/Washroom";
 import ReviewScreen from "../screens/Review";
-import LogInScreen from "../screens/Login";
+import LoginScreen from "../screens/Login";
 import AuthLoadingScreen from "../components/AuthLoading/AuthLoading";
 import CameraScreen from "../screens/Camera";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -29,7 +29,7 @@ const AccountStack = createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     Account: AccountScreen,
-    LogIn: LogInScreen
+    Login: LoginScreen
   },
   {
     initialRouteName: "AuthLoading"
