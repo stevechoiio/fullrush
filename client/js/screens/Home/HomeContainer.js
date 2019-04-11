@@ -8,7 +8,7 @@ export default class HomeContainer extends Component {
   render() {
     return (
       <Query query={GET_ALL_WASHROOMS}>
-        {({ loading, error, data }) => {
+        {({ loading, error, data, refetch }) => {
           if (loading)
             return (
               <View>
@@ -32,7 +32,11 @@ export default class HomeContainer extends Component {
           } else {
             console.log(data.allWashrooms);
             return (
-              <Home nav={this.props.navigation} data={data.allWashrooms} />
+              <Home
+                nav={this.props.navigation}
+                refetch={refetch}
+                data={data.allWashrooms}
+              />
             );
           }
         }}
