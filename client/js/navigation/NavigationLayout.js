@@ -12,6 +12,7 @@ import ReviewScreen from "../screens/Review";
 import LoginScreen from "../screens/Login";
 import AuthLoadingScreen from "../components/AuthLoading/AuthLoading";
 import CameraScreen from "../screens/Camera";
+import CheckPhotoScreen from "../screens/CheckPhoto";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 const HomeStack = createStackNavigator(
@@ -39,7 +40,8 @@ const AccountStack = createSwitchNavigator(
 const AddWashroomStack = createStackNavigator(
   {
     AddWashroom: AddWashroomScreen,
-    Camera: CameraScreen
+    Camera: CameraScreen,
+    CheckPhoto: CheckPhotoScreen
   },
   {
     headerMode: "none"
