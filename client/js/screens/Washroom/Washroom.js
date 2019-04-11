@@ -9,14 +9,16 @@ import { Button } from "react-native-elements";
 import { Image } from "react-native";
 
 export default props => {
+  let data = props.data;
+
   return (
     <View style={styles.container}>
-      <Image source={{uri: ""}}></Image>
-      <Text style={material.title}>Name of the Building</Text>
+      {/* <Image source={{uri: data.listOfPhotos.url}}></Image> */}
+      <Text style={material.title}>{data.name}</Text>
       <Text style={material.caption}>Address</Text>
       <Text style={material.body1}>Hours of Operation</Text>
       <Text style={material.body1}>11AM ~ 9PM</Text>
-      <StarRating disabled={true} maxStars={5} rating={4} />
+      <StarRating disabled={true} maxStars={5} rating={data.overallRating} />
 
       <View style={{ flex: 0, flexDirection: "row" }}>
         <Text>Toilet Seat covers</Text>

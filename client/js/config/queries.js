@@ -3,19 +3,28 @@ import gql from "graphql-tag";
 
 // Queries
 export const GET_ALL_WASHROOMS = gql`
-  query Washroom {
+  query GetAllWashrooms {
     allWashrooms {
       name
       instruction
       overallRating
-      # listOfPhotos {
-      #   id
-      #   url
-      # }
+      listOfPhotos {
+        id
+        url
+      }
     }
   }
 `;
 
+export const GET_ONE_WASHROOM = gql`
+  query GetOneWashroom(
+    $name: String!
+  ) {
+    oneWashroom {
+      name
+    }
+  }
+`
 // Mutations
 export const ADD_WASHROOM = gql`
   mutation AddWashroom(
