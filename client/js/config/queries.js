@@ -8,7 +8,10 @@ export const GET_ALL_WASHROOMS = gql`
       name
       instruction
       overallRating
-      listOfPhotos
+      # listOfPhotos {
+      #   id
+      #   url
+      # }
     }
   }
 `;

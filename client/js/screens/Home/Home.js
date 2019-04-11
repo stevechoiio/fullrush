@@ -15,6 +15,18 @@ import {
 import { Query } from "react-apollo";
 import { GET_ALL_WASHROOMS } from "../../config/queries";
 
+let defaultImage = "https://dummyimage.com/600x400/000/fff";
+  // This is the default placeholder image
+
+// Let a Default Placeholder be on Thumbnail when url || Photos is empty
+let foo = (item) => {
+  if (item == null) {
+    return defaultImage;
+  } else {
+    return item.url;
+  }
+};
+
 const Home = ({data, nav}) => {
   return(
     <Container>
@@ -29,7 +41,9 @@ const Home = ({data, nav}) => {
               thumbnail>
               <Left>
                 {/* Map ListOfPhotos here as Thumbnail */}
-                <Thumbnail square source={{uri: item.listOfPhotos[0]}}/>
+                <Thumbnail square source={{uri: foo(item.listOfPhotos)}}/>
+                  {/* //item.listOfPhotos.url}}/> */}
+                {/* //source={{uri: item.listOfPhotos[0]}}/> */}
               </Left>
               <Body>
                 <Text>
