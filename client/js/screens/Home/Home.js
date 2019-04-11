@@ -12,43 +12,20 @@ import {
   Button,
   Body
 } from "native-base";
+import { Query } from "react-apollo";
+import { GET_ALL_WASHROOMS } from "../../config/queries";
 
-// Dummy Data
-let sampleWashroom = {
-  id: "01010101",
-  name: "Sample Washroom",
-  stall: 3,
-  building: "BCIT",
-  listofReviews: [],
-  listOfPhotos: ["https://dummyimage.com/600x400/000/fff"],
-  overallRating: 3,
-  instruction: "Try using dyson"
+let defaultImage = "https://dummyimage.com/600x400/000/fff";
+  // This is the default placeholder image
+
+// Let a Default Placeholder be on Thumbnail when url || Photos is empty
+let foo = (item) => {
+  if (item == null) {
+    return defaultImage;
+  } else {
+    return item.url;
+  }
 };
-
-let sampleWashroom2 = {
-  id: "1425",
-  name: "Sample Washroom2",
-  stall: 5,
-  building: "SFU",
-  listOfReviews: [],
-  listOfPhotos: ["https://dummyimage.com/600x400/000/fff"],
-  overallRating: 4,
-  instruction: "Dyson is awesome"
-};
-
-let sampleWashroom3 = {
-  id: "1612",
-  name: "Sample Washroom3",
-  stall: 1,
-  building: "UBC",
-  listOfReviews: [],
-  listOfPhotos: ["https://dummyimage.com/600x400/000/fff"],
-  overallRating: 5,
-  instruction: "Try Dyson guys"
-};
-
-// Dummy List of Dummy Data
-let sampleWashrooms = [sampleWashroom, sampleWashroom2, sampleWashroom3];
 
 const Home = ({data, nav}) => {
   return(
@@ -61,11 +38,12 @@ const Home = ({data, nav}) => {
               key={key}
               washroom={item}
               TouchableOpacity onPress={() => nav.navigate("Washroom")}
-              /* thumbnail> */
-              >
+              thumbnail>
               <Left>
                 {/* Map ListOfPhotos here as Thumbnail */}
-                {/* <Thumbnail square source={{uri: item.listOfPhotos[0]}}/> */}
+                <Thumbnail square source={{uri: foo(item.listOfPhotos)}}/>
+                  {/* //item.listOfPhotos.url}}/> */}
+                {/* //source={{uri: item.listOfPhotos[0]}}/> */}
               </Left>
               <Body>
                 <Text>
