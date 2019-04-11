@@ -6,9 +6,12 @@ import StarRating from "react-native-star-rating";
 // <Text style={material.display1}>Hello Typography!</Text>;
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Button } from "react-native-elements";
+import { Image } from "react-native";
+
 export default props => {
   return (
     <View style={styles.container}>
+      <Image source={{uri: ""}}></Image>
       <Text style={material.title}>Name of the Building</Text>
       <Text style={material.caption}>Address</Text>
       <Text style={material.body1}>Hours of Operation</Text>

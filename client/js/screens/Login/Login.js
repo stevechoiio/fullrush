@@ -18,7 +18,7 @@ import {
 import { Input, Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-class LogIn extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { text: "", loading: false, login: true, gender: null };
@@ -206,4 +206,4 @@ export default compose(
   graphql(AUTHENTICATE_USER, { name: "loginMutation" }),
   graphql(SIGNUP_USER, { name: "signupMutation" }),
   graphql(UPDATE_SIGNEDUPUSER, { name: "updateSignedupUserMutation" })
-)(LogIn);
+)(Login);
