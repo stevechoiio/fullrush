@@ -9,7 +9,6 @@ import {
   Text,
   Left,
   Right,
-  Button,
   Body
 } from "native-base";
 

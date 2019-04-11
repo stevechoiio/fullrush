@@ -6,7 +6,7 @@ import styles from "./styles";
 export default ({ navigation, user }) => {
   _signOutAsync = async () => {
     await AsyncStorage.clear();
-    navigation.navigate("LogIn");
+    navigation.navigate("Login");
   };
   return (
     <View style={styles.container}>

@@ -22,7 +22,7 @@ export default class HomeContainer extends Component {
                 <Text>{error.message}</Text>
               </View>
             );
-
+            
           if (!data.allWashrooms[0]) {
             return (
               <View>

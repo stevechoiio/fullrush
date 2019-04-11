@@ -11,6 +11,7 @@ import WashroomScreen from "../screens/Washroom";
 import ReviewScreen from "../screens/Review";
 import LogInScreen from "../screens/Login";
 import AuthLoadingScreen from "../components/AuthLoading/AuthLoading";
+import CameraScreen from "../screens/Camera";
 
 const HomeStack = createStackNavigator(
   {
@@ -36,7 +37,8 @@ const AccountStack = createSwitchNavigator(
 
 const AddWashroomStack = createStackNavigator(
   {
-    AddWashroom: AddWashroomScreen
+    AddWashroom: AddWashroomScreen,
+    Camera: CameraScreen
   },
   {
     headerMode: "none"
