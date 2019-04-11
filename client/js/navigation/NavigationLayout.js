@@ -11,28 +11,28 @@ import WashroomScreen from "../screens/Washroom";
 import ReviewScreen from "../screens/Review";
 import LogInScreen from "../screens/Login";
 import AuthLoadingScreen from "../components/AuthLoading/AuthLoading";
-
+import Icon from "react-native-vector-icons/FontAwesome5";
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     Washroom: WashroomScreen,
     Review: ReviewScreen
   },
-  { 
-    headerMode: "none" 
+  {
+    headerMode: "none"
   }
 );
 
 const AccountStack = createSwitchNavigator(
-    {
-      AuthLoading: AuthLoadingScreen,
-      Account: AccountScreen,
-      LogIn: LogInScreen
-    },
-    {
-      initialRouteName: "AuthLoading"
-    }
-  );
+  {
+    AuthLoading: AuthLoadingScreen,
+    Account: AccountScreen,
+    LogIn: LogInScreen
+  },
+  {
+    initialRouteName: "AuthLoading"
+  }
+);
 
 const AddWashroomStack = createStackNavigator(
   {
@@ -51,6 +51,32 @@ export default createBottomTabNavigator(
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused }) => {
+        const { routeName } = navigation.state;
+
+        let icon, color, backgroundcolor;
+
+        if (routeName === "Home") {
+          icon = "toilet";
+          color = focused ? "blue" : "black";
+        }
+        if (routeName === "Account") {
+          icon = "user";
+          color = focused ? "blue" : "black";
+        }
+        if (routeName === "AddWashroom") {
+          icon = "plus";
+          color = focused ? "blue" : "black";
+        }
+        return (
+          <Icon
+            name={icon}
+            size={20}
+            color={color}
+            backgroundColor={backgroundcolor}
+          />
+        );
+      },
       tabBarOptions: {
         activeTintColor: "#000000",
         inactiveTintColor: "#000000",

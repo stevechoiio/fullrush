@@ -17,7 +17,8 @@ class AddWashroom extends Component {
       starCount: 3,
       language: null,
       num: 5,
-      hasSeater: false
+      hasSeater: false,
+      locationName: null
     };
   }
   onStarRatingPress(rating) {
@@ -28,7 +29,7 @@ class AddWashroom extends Component {
 
   render() {
     let { add_washroom, add_review } = this.props;
-    console.log(add_review);
+
     return (
       <View>
         <Header
@@ -60,7 +61,6 @@ class AddWashroom extends Component {
               form
             }) => (
               <View style={styles.flexContent}>
-                <Text style={styles.text}>Add a Washroom</Text>
                 <Field name="email">
                   {({ input, meta }) => (
                     <View>
@@ -69,7 +69,9 @@ class AddWashroom extends Component {
                         editable={true}
                         {...input}
                         placeholder="Search the location"
-                        onChangeText={text => this.setState({ text })}
+                        onChangeText={text =>
+                          this.setState({ locationName: text })
+                        }
                       />
                       <Text style={styles.error}>
                         {meta.error && meta.touched && meta.error}
@@ -140,18 +142,19 @@ class AddWashroom extends Component {
                 />
                 <TouchableOpacity
                   onPress={async () => {
-                    console.log("washroom submitted");
                     let washroomId = await add_washroom({
                       variables: {
-                        name: "Thompson River University",
-                        stall: 5,
-                        overallRating: 5,
-                        toiletSeater: true
+                        name: this.state.locationName,
+                        stall: this.state.num,
+                        overallRating: this.state.starCount,
+                        toiletSeater: this.state.hasSeater
                       }
                     });
+                    console.log("washroom submitted");
+                    console.log(washroomId);
                     washroomId = washroomId.data.createWashroom.id;
                     let reviewID = await add_review({
-                      variables: { washroomId, rating: 5 }
+                      variables: { washroomId, rating: this.state.starCount }
                     });
                     console.log(reviewID);
                   }}
