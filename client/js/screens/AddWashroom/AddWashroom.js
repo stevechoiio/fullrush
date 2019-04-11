@@ -7,7 +7,7 @@ import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import { ADD_REVIEW, ADD_WASHROOM } from "../../config/queries";
 import Spinner from "react-native-number-spinner";
-
+import { GooglePlacesInput } from "../../components/GooglePlacesInput";
 class AddWashroom extends Component {
   constructor(props) {
     super(props);
@@ -42,6 +42,7 @@ class AddWashroom extends Component {
             style: { color: "#fff", fontSize: 20 }
           }}
         />
+
         <View>
           <Form
             onSubmit={() => {
@@ -65,24 +66,6 @@ class AddWashroom extends Component {
               form
             }) => (
               <View style={styles.flexContent}>
-                <Field name="email">
-                  {({ input, meta }) => (
-                    <View>
-                      <TextInput
-                        style={styles.form}
-                        editable={true}
-                        {...input}
-                        placeholder="Search the location"
-                        onChangeText={text =>
-                          this.setState({ locationName: text })
-                        }
-                      />
-                      <Text style={styles.error}>
-                        {meta.error && meta.touched && meta.error}
-                      </Text>
-                    </View>
-                  )}
-                </Field>
                 <Text>How Clean was it?</Text>
                 <StarRating
                   disabled={false}
@@ -94,6 +77,7 @@ class AddWashroom extends Component {
                   selectedStar={rating => this.onStarRatingPress(rating)}
                   fullStarColor={"black"}
                 />
+
                 <Text>How many stalls were there?</Text>
                 <Spinner
                   max={10}
@@ -142,7 +126,9 @@ class AddWashroom extends Component {
                 <Button
                   title="Take a photo of the washroom!"
                   type="clear"
-                  onPress={() => {this.props.nav.navigate("Camera")}}
+                  onPress={() => {
+                    this.props.nav.navigate("Camera");
+                  }}
                 />
                 <TouchableOpacity
                   onPress={async () => {
