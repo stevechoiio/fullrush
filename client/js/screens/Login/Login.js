@@ -59,12 +59,19 @@ class LogIn extends Component {
 
                 console.log("In Login - Before navigate to Activities");
               } else {
+                console.log(value);
                 const result = await this.props.signupMutation({
                   variables: { email: value.email, password: value.password }
                 });
                 const user = result.data.signupUser;
                 const updatedUser = await this.props.updateSignedupUserMutation(
-                  { variables: { id: user.id, name: "Steve", gender: "male" } }
+                  {
+                    variables: {
+                      id: user.id,
+                      name: value.name,
+                      gender: this.state.gender
+                    }
+                  }
                 );
                 console.log(updatedUser);
               }
@@ -114,7 +121,9 @@ class LogIn extends Component {
                     {...input}
                     placeholder="password"
                     secureTextEntry={true}
-                    onChangeText={text => this.setState({ text })}
+                    onChangeText={text =>
+                      this.setState({ originalPassword: text })
+                    }
                   />
                 )}
               </Field>
