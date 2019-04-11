@@ -77,6 +77,8 @@ class Login extends Component {
                   }
                 );
                 console.log(updatedUser);
+                await AsyncStorage.setItem("userToken", user.token);
+                await AsyncStorage.setItem("id", user.id);
               }
 
               this.props.navigation.navigate("Account");

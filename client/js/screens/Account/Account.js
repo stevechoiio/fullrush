@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { CircularProgress } from "react-native-circular-progress";
 import styles from "./styles";
-export default ({ navigation }) => {
+export default ({ navigation, user }) => {
   _signOutAsync = async () => {
     await AsyncStorage.clear();
     navigation.navigate("LogIn");
@@ -12,6 +12,7 @@ export default ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.container}>
         <Text>Reward Screen!</Text>
+        <Text>Hello, {user.name}!</Text>
         <CircularProgress
           size={300}
           width={20}
