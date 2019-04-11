@@ -28,7 +28,7 @@ class AddWashroom extends Component {
 
   render() {
     let { add_washroom, add_review } = this.props;
-    console.log(add_review);
+
     return (
       <View>
         <Header
@@ -60,7 +60,6 @@ class AddWashroom extends Component {
               form
             }) => (
               <View style={styles.flexContent}>
-                <Text style={styles.text}>Add a Washroom</Text>
                 <Field name="email">
                   {({ input, meta }) => (
                     <View>
