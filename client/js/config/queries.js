@@ -21,6 +21,38 @@ export const GET_ALL_WASHROOMS = gql`
     }
   }
 `;
+export const GET_ALL_WASHROOM_BY_DISTANCE = gql`
+  query GetAllReviewsByDistance(
+    $latmin: Float!
+    $latmax: Float!
+    $longmin: Float!
+    $longmax: Float!
+  ) {
+    allWashrooms(
+      filter: {
+        locationLat_gt: $latmin
+        locationLat_lt: $latmax
+        locationLong_gt: $longmin
+        locationLong_lt: $longmax
+      }
+    ) {
+      id
+      name
+      instruction
+      overallRating
+      numberOfReviews
+      address
+      placeId
+      locationLat
+      locationLong
+      toiletSeater
+      listOfPhotos {
+        id
+        url
+      }
+    }
+  }
+`;
 export const GET_REVIEWS_FOR_WASHROOM = gql`
   query GetAllReviews($placeId: String!) {
     allReviews(filter: { placeId: $placeId }) {
@@ -29,6 +61,7 @@ export const GET_REVIEWS_FOR_WASHROOM = gql`
     }
   }
 `;
+
 export const GET_USER_INFO = gql`
   query USER($id: ID!) {
     allUsers(filter: { id: $id }) {
