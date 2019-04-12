@@ -3,6 +3,13 @@ import Review from "./Review";
 export default class ReviewContainer extends Component {
   render() {
     const washroomData = this.props.navigation.getParam("data");
-    return <Review nav={this.props.navigation} washroomData={washroomData} />;
+    const refetch = this.props.navigation.getParam("refetch");
+    return (
+      <Review
+        refetch={refetch}
+        nav={this.props.navigation}
+        washroomData={washroomData}
+      />
+    );
   }
 }

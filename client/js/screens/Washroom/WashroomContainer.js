@@ -35,11 +35,13 @@ export default class WashroomContainer extends Component {
             );
           } else {
             console.log(data);
+
             return (
               <Washroom
                 data={washroomData}
                 reviews={data}
                 nav={this.props.navigation}
+                refetch={refetch}
               />
             );
           }

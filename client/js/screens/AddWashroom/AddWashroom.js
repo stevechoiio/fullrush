@@ -5,7 +5,11 @@ import { Form, Field } from "react-final-form";
 import { Button, Header } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
-import { ADD_REVIEW, ADD_WASHROOM } from "../../config/queries";
+import {
+  ADD_REVIEW,
+  ADD_WASHROOM,
+  GET_ALL_WASHROOMS
+} from "../../config/queries";
 import Spinner from "react-native-number-spinner";
 import { material } from "react-native-typography";
 import { withNavigation } from "react-navigation";
@@ -144,10 +148,16 @@ class AddWashroom extends Component {
                           address: vicinity,
                           stall: this.state.num,
                           overallRating: this.state.starCount,
+                          numberOfReviews: 1,
                           toiletSeater: this.state.hasSeater,
                           lat: location.lat,
                           long: location.lng
-                        }
+                        },
+                        refetchQueries: [
+                          {
+                            query: GET_ALL_WASHROOMS
+                          }
+                        ]
                       });
                       console.log("washroom submitted");
                       console.log(washroomId);
@@ -158,7 +168,8 @@ class AddWashroom extends Component {
                       });
                       console.log(reviewID);
                       this.props.navigation.navigate("Home");
-                    } catch {
+                    } catch (e) {
+                      console.log(e);
                       let reviewID = await add_review({
                         variables: { placeId: id, rating: this.state.starCount }
                       });

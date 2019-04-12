@@ -47,8 +47,7 @@ const handleGetDirections = async (lat, long) => {
   });
 };
 export default props => {
-  let { data } = props;
-  let { reviews } = props;
+  let { reviews, refetch, data } = props;
   console.log(reviews);
   return (
     <View>
@@ -101,7 +100,7 @@ export default props => {
       />
       <Button
         onPress={() => {
-          props.nav.navigate("Review", { data });
+          props.nav.navigate("Review", { refetch, data });
         }}
         title="review"
       />

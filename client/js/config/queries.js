@@ -4,9 +4,11 @@ import gql from "graphql-tag";
 export const GET_ALL_WASHROOMS = gql`
   query GetAllWashrooms {
     allWashrooms {
+      id
       name
       instruction
       overallRating
+      numberOfReviews
       address
       placeId
       locationLat
@@ -51,6 +53,7 @@ export const ADD_WASHROOM = gql`
     $name: String!
     $stall: Int!
     $overallRating: Float!
+    $numberOfReviews: Int!
     $toiletSeater: Boolean!
     $address: String!
     $lat: Float!
@@ -61,6 +64,7 @@ export const ADD_WASHROOM = gql`
       name: $name
       stall: $stall
       overallRating: $overallRating
+      numberOfReviews: $numberOfReviews
       toiletSeater: $toiletSeater
       address: $address
       locationLat: $lat
@@ -103,6 +107,21 @@ export const UPDATE_SIGNEDUPUSER = gql`
       name
       email
       gender
+    }
+  }
+`;
+export const UPDATE_WASHROOM_RATING = gql`
+  mutation updateWashroomRating(
+    $id: ID!
+    $overallRating: Float!
+    $numberOfReviews: Int!
+  ) {
+    updateWashroom(
+      id: $id
+      numberOfReviews: $numberOfReviews
+      overallRating: $overallRating
+    ) {
+      id
     }
   }
 `;
