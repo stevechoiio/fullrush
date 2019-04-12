@@ -35,7 +35,7 @@ class AddWashroom extends Component {
   }
 
   render() {
-    let { add_washroom, add_review, name, vicinity } = this.props;
+    let { add_washroom, add_review, name, vicinity, location, id } = this.props;
 
     return (
       <View>
@@ -137,23 +137,35 @@ class AddWashroom extends Component {
                 />
                 <TouchableOpacity
                   onPress={async () => {
-                    let washroomId = await add_washroom({
-                      variables: {
-                        name,
-                        stall: this.state.num,
-                        overallRating: this.state.starCount,
-                        toiletSeater: this.state.hasSeater,
-                        listOfPhotos: this.state.photo
-                      }
-                    });
-                    console.log("washroom submitted");
-                    console.log(washroomId);
-                    washroomId = washroomId.data.createWashroom.id;
-                    let reviewID = await add_review({
-                      variables: { washroomId, rating: this.state.starCount }
-                    });
-                    console.log(reviewID);
-                    this.props.navigation.navigate("Home");
+                    console.log(location);
+                    try {
+                      let washroomId = await add_washroom({
+                        variables: {
+                          placeId: id,
+                          name,
+                          address: vicinity,
+                          stall: this.state.num,
+                          overallRating: this.state.starCount,
+                          toiletSeater: this.state.hasSeater,
+                          lat: location.lat,
+                          long: location.lng
+                        }
+                      });
+                      console.log("washroom submitted");
+                      console.log(washroomId);
+
+                      washroomId = washroomId.data.createWashroom.id;
+                      let reviewID = await add_review({
+                        variables: { placeId: id, rating: this.state.starCount }
+                      });
+                      console.log(reviewID);
+                      this.props.navigation.navigate("Home");
+                    } catch {
+                      let reviewID = await add_review({
+                        variables: { placeId: id, rating: this.state.starCount }
+                      });
+                      this.props.navigation.navigate("Home");
+                    }
                   }}
                 >
                   <Text style={styles.buttonText}>Submit!</Text>

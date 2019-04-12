@@ -27,6 +27,7 @@ type Washroom @model {
   locationLong: Float
   hoursFrom: DateTime
   hoursTo: DateTime
+  placeId:String @isUnique
 }
 
 type Review @model {
@@ -35,6 +36,7 @@ type Review @model {
   washroom: Washroom @relation (name: "Review")
   rating: Int!
   comment: String
+  placeId: String! @migrationValue(value: "42")
 }
 
 type File @model {

@@ -5,7 +5,6 @@ import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import { ADD_REVIEW } from "../../config/queries";
 import Spinner from "react-native-number-spinner";
-import Icon from "react-native-vector-icons/FontAwesome";
 import BackButton from "../../components/BackButton";
 class Review extends Component {
   constructor(props) {

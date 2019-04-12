@@ -47,8 +47,7 @@ const GooglePlacesInput = props => {
           container: {
             backgroundColor: "#fff",
             width: Dimensions.get("window").width,
-
-            marginBottom: 0,
+            marginTop: 0,
             opacity: 0.9,
             borderRadius: 8
           },
@@ -80,7 +79,7 @@ const GooglePlacesInput = props => {
         }}
         GooglePlacesDetailsQuery={{
           // available options for GooglePlacesDetails API : https://developers.google.com/places/web-service/details
-          fields: "formatted_address"
+          fields: ["formatted_address", "opening_hours"]
         }}
         filterReverseGeocodingByTypes={[
           "locality",

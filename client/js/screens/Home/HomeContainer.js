@@ -30,7 +30,6 @@ export default class HomeContainer extends Component {
               </View>
             );
           } else {
-            console.log(data.allWashrooms);
             return (
               <Home
                 nav={this.props.navigation}
