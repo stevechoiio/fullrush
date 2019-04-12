@@ -10,13 +10,14 @@ import {
   Right,
   Body
 } from "native-base";
-import { RefreshControl } from "react-native";
+import { RefreshControl, TouchableOpacity } from "react-native";
 import { Header } from "react-native-elements";
 
-let defaultImage = "https://dummyimage.com/600x400/000/fff";
-// This is the default placeholder image
+import StarRating from "react-native-star-rating";
 
-// Let a Default Placeholder be on Thumbnail when url || Photos is empty
+import Icon from "react-native-vector-icons/FontAwesome5";
+let defaultImage = "https://dummyimage.com/600x400/000/fff";
+
 let foo = item => {
   if (item == null) {
     return defaultImage;
@@ -44,10 +45,20 @@ class Home extends Component {
     return (
       <Container>
         <Header
+          rightComponent={
+            <TouchableOpacity>
+              <Icon name={"map-marker-alt"} size={25} color={"white"} />
+            </TouchableOpacity>
+          }
           centerComponent={{
             text: "Washrooms Nearby",
             style: { color: "#fff", fontSize: 20 }
           }}
+          leftComponent={
+            <TouchableOpacity>
+              <Icon name={"sliders-h"} size={25} color={"white"} />
+            </TouchableOpacity>
+          }
         />
         <Content
           refreshControl={
@@ -85,10 +96,13 @@ class Home extends Component {
                   </Text>
                 </Body>
                 <Right>
-                  <Text>
-                    {/* Here comes the OverallRating */}
-                    {item.overallRating}
-                  </Text>
+                  {/* Here comes the OverallRating */}
+                  <StarRating
+                    disabled={true}
+                    maxStars={5}
+                    rating={item.overallRating}
+                    starSize={10}
+                  />
                 </Right>
               </ListItem>
             ))}
