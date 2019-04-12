@@ -27,6 +27,7 @@ class Review extends Component {
 
   render() {
     let { add_review } = this.props;
+    console.log(this.props.washroomData);
     return (
       <View>
         <Header
@@ -101,7 +102,11 @@ class Review extends Component {
         <Button
           onPress={async () => {
             let reviewID = await add_review({
-              variables: { washroomId: "cju8xfvi910b10118n56eguin", rating: 5 }
+              variables: {
+                washroomId: this.props.washroomData.id,
+                rating: this.state.starCount,
+                placeId: this.props.washroomData.placeId
+              }
             });
             console.log(reviewID);
             this.props.nav.goBack();

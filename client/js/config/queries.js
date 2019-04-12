@@ -8,6 +8,7 @@ export const GET_ALL_WASHROOMS = gql`
       instruction
       overallRating
       address
+      placeId
       locationLat
       locationLong
       toiletSeater
@@ -15,6 +16,14 @@ export const GET_ALL_WASHROOMS = gql`
         id
         url
       }
+    }
+  }
+`;
+export const GET_REVIEWS_FOR_WASHROOM = gql`
+  query GetAllReviews($placeId: String!) {
+    allReviews(filter: { placeId: $placeId }) {
+      rating
+      placeId
     }
   }
 `;
