@@ -40,12 +40,14 @@ export const ADD_WASHROOM = gql`
     $stall: Int!
     $overallRating: Float!
     $toiletSeater: Boolean!
+    $listOfPhotos: File!
   ) {
     createWashroom(
       name: $name
       stall: $stall
       overallRating: $overallRating
       toiletSeater: $toiletSeater
+      listOfPhotos: $listOfPhotos
     ) {
       id
       name
@@ -89,21 +91,12 @@ export const UPDATE_SIGNEDUPUSER = gql`
 `;
 
 export const UPDATE_WASHROOM_IMAGE = gql`
-  mutation($id: ID!, $url: String!, $contentType: String!, $name: String!) {
-    createFile(
-      userId: $userId
+  mutation updateWashroomImage($url: String!) {
+    updateWashroomImage(
       url: $url
-      contentType: $contentType
-      name: $name
     ) {
       id
-      name
       url
-      contentType
-      user {
-        id
-        email
-      }
     }
   }
 `;

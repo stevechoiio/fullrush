@@ -9,6 +9,7 @@ import { ADD_REVIEW, ADD_WASHROOM } from "../../config/queries";
 import Spinner from "react-native-number-spinner";
 import { material } from "react-native-typography";
 import { withNavigation } from "react-navigation";
+
 class AddWashroom extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +21,8 @@ class AddWashroom extends Component {
       language: null,
       num: null,
       hasSeater: false,
-      locationName: null
+      locationName: null,
+      photo: null
     };
   }
   componentDidMount() {
@@ -140,7 +142,8 @@ class AddWashroom extends Component {
                         name,
                         stall: this.state.num,
                         overallRating: this.state.starCount,
-                        toiletSeater: this.state.hasSeater
+                        toiletSeater: this.state.hasSeater,
+                        listOfPhotos: this.state.photo
                       }
                     });
                     console.log("washroom submitted");

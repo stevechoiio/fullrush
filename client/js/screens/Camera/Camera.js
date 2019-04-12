@@ -7,6 +7,9 @@ export default class Camera extends Component {
 
     constructor(props) {
         super(props);
+        // this.state = {
+        //     photo: {}
+        // }
     }
 
     render() {
@@ -29,12 +32,13 @@ export default class Camera extends Component {
                             <TouchableOpacity 
                                 onPress={() => this.takePicture(camera).then(
                                     (photo) => {
+                                        // this.props.nav.navigate("CheckPhoto", {data: photo})
                                         this.props.nav.navigate("CheckPhoto", {data: photo})
                                     }).catch((error)=>
                                         console.log(error)
                                     )
                                 }
-                            style={styles.capture}>
+                                style={styles.capture}>
                                 <Text style={{ fontSize: 14 }}> SNAP </Text>
                             </TouchableOpacity>
                         </View>
@@ -46,7 +50,7 @@ export default class Camera extends Component {
     }
 
     takePicture = async function(camera) {
-        const options = { width: 150, orientation: "portrait", quality: 1, base64: true };
+        const options = { width: 480, orientation: "portrait", quality: 1, base64: true, fixOrientation: true, forceUpOrientation: true };
         let data = await camera.takePictureAsync(options);
         return data;
     };

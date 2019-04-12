@@ -39,8 +39,8 @@ type Review @model {
 
 type File @model {
   id: ID! @isUnique
-  contentType: String!
-  name: String!
+  contentType: String
+  name: String
   url: String!
   washroom: Washroom @relation (name: "WashroomPhotos")
   date: DateTime
