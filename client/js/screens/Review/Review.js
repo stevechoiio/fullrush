@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { Button, Header } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
+import AsyncStorage from "@react-native-community/async-storage";
 import {
   ADD_REVIEW,
   UPDATE_WASHROOM_RATING,
@@ -18,12 +19,16 @@ class Review extends Component {
       starCount: 3,
       stallCorrect: true,
       num: null,
-      hasSeater: false
+      hasSeater: false,
+      userId: null
     };
   }
-  componentDidMount() {
+  componentDidMount = async () => {
     this.setState({ num: 3 });
-  }
+    AsyncStorage.getItem("id").then(userId => {
+      this.setState({ userId });
+    });
+  };
   onStarRatingPress(rating) {
     this.setState({
       starCount: rating
@@ -35,7 +40,6 @@ class Review extends Component {
 
     let { overallRating, numberOfReviews } = this.props.washroomData;
 
-    console.log(this.props.refetch);
     return (
       <View>
         <Header
@@ -111,6 +115,7 @@ class Review extends Component {
           onPress={async () => {
             let reviewID = await add_review({
               variables: {
+                userId: this.state.userId,
                 washroomId: this.props.washroomData.id,
                 rating: this.state.starCount,
                 placeId: this.props.washroomData.placeId

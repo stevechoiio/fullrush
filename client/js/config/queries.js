@@ -112,8 +112,8 @@ export const ADD_WASHROOM = gql`
   }
 `;
 export const ADD_REVIEW = gql`
-  mutation AddReview($placeId: String!, $rating: Int!) {
-    createReview(placeId: $placeId, rating: $rating) {
+  mutation AddReview($placeId: String!, $rating: Int!, $userId: ID!) {
+    createReview(placeId: $placeId, rating: $rating, userId: $userId) {
       id
       rating
     }
