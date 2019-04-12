@@ -8,13 +8,15 @@ export default class AddWashroomContainer extends Component {
 
     const vicinity = navigation.getParam("vicinity");
     let { location } = navigation.getParam("geometry");
-
+    const id = navigation.getParam("place_id");
+    console.log(id);
     return (
       <AddWashroom
         nav={this.props.navigation}
         name={name}
         vicinity={vicinity}
         location={location}
+        id={id}
       />
     );
   }

@@ -47,8 +47,7 @@ const GooglePlacesInput = props => {
           container: {
             backgroundColor: "#fff",
             width: Dimensions.get("window").width,
-
-            marginBottom: 0,
+            marginTop: 0,
             opacity: 0.9,
             borderRadius: 8
           },
