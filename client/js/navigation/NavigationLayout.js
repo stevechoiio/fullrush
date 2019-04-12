@@ -12,9 +12,9 @@ import ReviewScreen from "../screens/Review";
 import LoginScreen from "../screens/Login";
 import AuthLoadingScreen from "../components/AuthLoading/AuthLoading";
 import CameraScreen from "../screens/Camera";
-import CheckPhotoScreen from "../screens/CheckPhoto";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import GooglePlacesInput from "../components//GooglePlacesInput";
+
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
@@ -41,8 +41,7 @@ const AddWashroomStack = createStackNavigator(
   {
     GoogleSearch: GooglePlacesInput,
     AddWashroom: AddWashroomScreen,
-    Camera: CameraScreen,
-    CheckPhoto: CheckPhotoScreen
+    Camera: CameraScreen
   },
   {
     headerMode: "none"
