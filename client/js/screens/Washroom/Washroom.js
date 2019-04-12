@@ -1,17 +1,14 @@
 import React from "react";
 import { Text, View } from "react-native";
-import styles from "./styles";
 import { material } from "react-native-typography";
 import StarRating from "react-native-star-rating";
-// <Text style={material.display1}>Hello Typography!</Text>;
 import getDirections from "react-native-google-maps-directions";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Button, Header } from "react-native-elements";
-import { Image } from "react-native";
+
 import BackButton from "../../components/BackButton";
 const handleGetDirections = async (lat, long) => {
-  let currentLat, currentLong;
-  let location = await navigator.geolocation.getCurrentPosition(pos => {
+  await navigator.geolocation.getCurrentPosition(pos => {
     var crd = pos.coords;
 
     const data = {
@@ -26,11 +23,11 @@ const handleGetDirections = async (lat, long) => {
       params: [
         {
           key: "travelmode",
-          value: "walking" // may be "walking", "bicycling" or "transit" as well
+          value: "walking"
         },
         {
           key: "dir_action",
-          value: "navigate" // this instantly initializes navigation using the given travel mode
+          value: "navigate"
         }
       ]
     };

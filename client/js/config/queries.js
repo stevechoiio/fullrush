@@ -10,6 +10,7 @@ export const GET_ALL_WASHROOMS = gql`
       address
       locationLat
       locationLong
+      toiletSeater
       listOfPhotos {
         id
         url
@@ -37,6 +38,7 @@ export const GET_ONE_WASHROOM = gql`
 // Mutations
 export const ADD_WASHROOM = gql`
   mutation AddWashroom(
+    $placeId: String!
     $name: String!
     $stall: Int!
     $overallRating: Float!
@@ -46,6 +48,7 @@ export const ADD_WASHROOM = gql`
     $long: Float!
   ) {
     createWashroom(
+      placeId: $placeId
       name: $name
       stall: $stall
       overallRating: $overallRating
@@ -61,8 +64,8 @@ export const ADD_WASHROOM = gql`
   }
 `;
 export const ADD_REVIEW = gql`
-  mutation AddReview($washroomId: ID!, $rating: Int!) {
-    createReview(washroomId: $washroomId, rating: $rating) {
+  mutation AddReview($placeId: String!, $rating: Int!) {
+    createReview(placeId: $placeId, rating: $rating) {
       id
       rating
     }

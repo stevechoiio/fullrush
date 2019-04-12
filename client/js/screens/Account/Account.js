@@ -20,7 +20,7 @@ export default ({ navigation, user }) => {
         rightComponent={() => {
           return (
             <TouchableOpacity>
-              <Icon name="cog" size={20} color="white" />
+              <Icon name="cog" size={25} color="white" />
             </TouchableOpacity>
           );
         }}

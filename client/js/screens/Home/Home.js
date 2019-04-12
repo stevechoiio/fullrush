@@ -96,13 +96,15 @@ class Home extends Component {
                   </Text>
                 </Body>
                 <Right>
-                  {/* Here comes the OverallRating */}
                   <StarRating
                     disabled={true}
                     maxStars={5}
                     rating={item.overallRating}
                     starSize={10}
                   />
+                  {item.toiletSeater ? (
+                    <Icon name={"toilet"} size={15} color={"black"} />
+                  ) : null}
                 </Right>
               </ListItem>
             ))}
