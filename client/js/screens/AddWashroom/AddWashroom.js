@@ -5,6 +5,7 @@ import { Form, Field } from "react-final-form";
 import { Button, Header } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
+import AsyncStorage from "@react-native-community/async-storage";
 import {
   ADD_REVIEW,
   ADD_WASHROOM,
@@ -27,7 +28,7 @@ class AddWashroom extends Component {
       num: null,
       hasSeater: false,
       locationName: null,
-      userId,
+      userId: null,
       photo: null
     };
   }
