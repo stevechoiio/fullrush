@@ -40,7 +40,7 @@ class Home extends Component {
   };
   render() {
     let { nav, data } = this.props;
-    console.log(this.props.refetch);
+    console.log(data);
     return (
       <Container>
         <Header

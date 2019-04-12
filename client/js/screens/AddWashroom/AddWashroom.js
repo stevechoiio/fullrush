@@ -33,7 +33,7 @@ class AddWashroom extends Component {
   }
 
   render() {
-    let { add_washroom, add_review, name, vicinity } = this.props;
+    let { add_washroom, add_review, name, vicinity, location } = this.props;
 
     return (
       <View>
@@ -135,16 +135,21 @@ class AddWashroom extends Component {
                 />
                 <TouchableOpacity
                   onPress={async () => {
+                    console.log(location);
                     let washroomId = await add_washroom({
                       variables: {
                         name,
+                        address: vicinity,
                         stall: this.state.num,
                         overallRating: this.state.starCount,
-                        toiletSeater: this.state.hasSeater
+                        toiletSeater: this.state.hasSeater,
+                        lat: location.lat,
+                        long: location.lng
                       }
                     });
                     console.log("washroom submitted");
                     console.log(washroomId);
+
                     washroomId = washroomId.data.createWashroom.id;
                     let reviewID = await add_review({
                       variables: { washroomId, rating: this.state.starCount }

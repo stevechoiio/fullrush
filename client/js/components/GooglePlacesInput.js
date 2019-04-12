@@ -80,7 +80,7 @@ const GooglePlacesInput = props => {
         }}
         GooglePlacesDetailsQuery={{
           // available options for GooglePlacesDetails API : https://developers.google.com/places/web-service/details
-          fields: "formatted_address"
+          fields: ["formatted_address", "opening_hours"]
         }}
         filterReverseGeocodingByTypes={[
           "locality",
