@@ -3,7 +3,12 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { Button, Header } from "react-native-elements";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
-import { ADD_REVIEW } from "../../config/queries";
+import {
+  ADD_REVIEW,
+  UPDATE_WASHROOM_RATING,
+  GET_ALL_WASHROOMS,
+  GET_REVIEWS_FOR_WASHROOM
+} from "../../config/queries";
 import Spinner from "react-native-number-spinner";
 import BackButton from "../../components/BackButton";
 class Review extends Component {
@@ -26,7 +31,11 @@ class Review extends Component {
   }
 
   render() {
-    let { add_review } = this.props;
+    let { add_review, update_washroom_rating } = this.props;
+
+    let { overallRating, numberOfReviews } = this.props.washroomData;
+
+    console.log(this.props.refetch);
     return (
       <View>
         <Header
@@ -101,10 +110,34 @@ class Review extends Component {
         <Button
           onPress={async () => {
             let reviewID = await add_review({
-              variables: { washroomId: "cju8xfvi910b10118n56eguin", rating: 5 }
+              variables: {
+                washroomId: this.props.washroomData.id,
+                rating: this.state.starCount,
+                placeId: this.props.washroomData.placeId
+              }
             });
-            console.log(reviewID);
-            this.props.nav.goBack();
+            let newOverall =
+              (overallRating * numberOfReviews + this.state.starCount) /
+              (numberOfReviews + 1);
+
+            let updateID = await update_washroom_rating({
+              variables: {
+                id: this.props.washroomData.id,
+                overallRating: newOverall,
+                numberOfReviews: numberOfReviews + 1
+              },
+              refetchQueries: [
+                {
+                  query: GET_ALL_WASHROOMS
+                },
+                {
+                  query: GET_REVIEWS_FOR_WASHROOM,
+                  variables: { placeId: this.props.washroomData.placeId }
+                }
+              ]
+            });
+
+            this.props.nav.navigate("Home");
           }}
           title="Submit"
         />
@@ -113,4 +146,7 @@ class Review extends Component {
   }
 }
 
-export default compose(graphql(ADD_REVIEW, { name: "add_review" }))(Review);
+export default compose(
+  graphql(ADD_REVIEW, { name: "add_review" }),
+  graphql(UPDATE_WASHROOM_RATING, { name: "update_washroom_rating" })
+)(Review);

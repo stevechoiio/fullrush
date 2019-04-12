@@ -5,7 +5,11 @@ import { Form, Field } from 'react-final-form';
 import { Button, Header } from 'react-native-elements';
 import StarRating from 'react-native-star-rating';
 import { graphql, compose } from 'react-apollo';
-import { ADD_REVIEW, ADD_WASHROOM } from '../../config/queries';
+import { 
+	ADD_REVIEW, 
+	ADD_WASHROOM,
+	GET_ALL_WASHROOMS
+} from '../../config/queries';
 import { Thumbnail } from "native-base";
 import Spinner from 'react-native-number-spinner';
 import { material } from 'react-native-typography';
@@ -122,60 +126,67 @@ class AddWashroom extends Component {
 										/>
 									</View>
                 )}
-					{photo ? 
-					<Thumbnail square source={{ uri: photo.uri }}></Thumbnail>
-					:
-					<Text>no photo</Text>}
-							<Button
-									title="Take a photo of the washroom!"
-									type="clear"
-									onPress={() => {
-										this.props.nav.navigate('Camera');
-									}}
-								/>
 
-								<TouchableOpacity
-									onPress={async () => {
-										console.log(location);
-										try {
-											let washroomId = await add_washroom({
-												variables: {
-													placeId: id,
-													name,
-													address: vicinity,
-													stall: this.state.num,
-													overallRating: this.state.starCount,
-													toiletSeater: this.state.hasSeater,
-													lat: location.lat,
-													long: location.lng,
-												},
-											});
-											console.log('washroom submitted');
-											console.log(washroomId);
+{photo ? 
+	<Thumbnail square source={{ uri: photo.uri }}></Thumbnail>
+	:
+	<Text>no photo</Text>}
+				<Button
+                  title="Take a photo of the washroom!"
+                  type="clear"
+                  onPress={() => {
+                    this.props.nav.navigate("Camera");
+                  }}
+                />
+                <TouchableOpacity
+                  onPress={async () => {
+                    console.log(location);
+                    try {
+                      let washroomId = await add_washroom({
+                        variables: {
+                          placeId: id,
+                          name,
+                          address: vicinity,
+                          stall: this.state.num,
+                          overallRating: this.state.starCount,
+                          numberOfReviews: 1,
+                          toiletSeater: this.state.hasSeater,
+                          lat: location.lat,
+                          long: location.lng
+                        },
+                        refetchQueries: [
+                          {
+                            query: GET_ALL_WASHROOMS
+                          }
+                        ]
+                      });
+                      console.log("washroom submitted");
+                      console.log(washroomId);
 
-											washroomId = washroomId.data.createWashroom.id;
-											let reviewID = await add_review({
-												variables: { placeId: id, rating: this.state.starCount },
-											});
-											console.log(reviewID);
-											this.props.navigation.navigate('Home');
-										} catch {
-											let reviewID = await add_review({
-												variables: { placeId: id, rating: this.state.starCount },
-											});
-											this.props.navigation.navigate('Home');
-										}
-									}}
-								>
-									<Text style={styles.buttonText}>Submit!</Text>
-								</TouchableOpacity>
-							</View>
-						)}
-					/>
-				</View>
-			</View>
-		);
-	}
+                      washroomId = washroomId.data.createWashroom.id;
+                      let reviewID = await add_review({
+                        variables: { placeId: id, rating: this.state.starCount }
+                      });
+                      console.log(reviewID);
+                      this.props.navigation.navigate("Home");
+                    } catch (e) {
+                      console.log(e);
+                      let reviewID = await add_review({
+                        variables: { placeId: id, rating: this.state.starCount }
+                      });
+                      this.props.navigation.navigate("Home");
+                    }
+                  }}
+                >
+                  <Text style={styles.buttonText}>Submit!</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          />
+        </View>
+      </View>
+    );
+  }
 }
 
 export default withNavigation(

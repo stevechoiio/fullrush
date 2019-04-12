@@ -5,8 +5,19 @@ import StarRating from "react-native-star-rating";
 import getDirections from "react-native-google-maps-directions";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Button, Header } from "react-native-elements";
-
+import ReviewList from "../../components/ReviewList";
 import BackButton from "../../components/BackButton";
+import {
+  Accordion,
+  Container,
+  Content,
+  List,
+  ListItem,
+  Thumbnail,
+  Left,
+  Right,
+  Body
+} from "native-base";
 const handleGetDirections = async (lat, long) => {
   await navigator.geolocation.getCurrentPosition(pos => {
     var crd = pos.coords;
@@ -36,8 +47,8 @@ const handleGetDirections = async (lat, long) => {
   });
 };
 export default props => {
-  let { data } = props;
-  console.log(data);
+  let { reviews, refetch, data } = props;
+  console.log(reviews);
   return (
     <View>
       <Header
@@ -56,7 +67,32 @@ export default props => {
         <Icon name="check" size={15} color="black" />
       </View>
       <Text style={material.title}>Most Recent Review:</Text>
-      <Text>see more reviews</Text>
+
+      <Accordion
+        renderHeader={() => {
+          return <Text>see more reviews ({reviews.allReviews.length})</Text>;
+        }}
+        renderContent={() => {
+          return (
+            <List>
+              {reviews.allReviews.map((review, index) => {
+                return (
+                  <ListItem key={index}>
+                    <StarRating
+                      disabled={true}
+                      starSize={5}
+                      maxStars={5}
+                      rating={review.rating}
+                    />
+                  </ListItem>
+                );
+              })}
+            </List>
+          );
+        }}
+        dataArray={[{ title: 0, content: 0 }]}
+        expanded={-1}
+      />
 
       <Button
         onPress={() => handleGetDirections(data.locationLat, data.locationLong)}
@@ -64,7 +100,7 @@ export default props => {
       />
       <Button
         onPress={() => {
-          props.nav.navigate("Review");
+          props.nav.navigate("Review", { refetch, data });
         }}
         title="review"
       />
