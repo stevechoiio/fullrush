@@ -24,12 +24,17 @@ class AddWashroom extends Component {
       language: null,
       num: null,
       hasSeater: false,
-      locationName: null
+      locationName: null,
+      userId
     };
   }
-  componentDidMount() {
+  componentDidMount = async () => {
     this.setState({ num: 3 });
-  }
+
+    AsyncStorage.getItem("id").then(userId => {
+      this.setState({ userId });
+    });
+  };
   onStarRatingPress(rating) {
     this.setState({
       starCount: rating
@@ -164,14 +169,22 @@ class AddWashroom extends Component {
 
                       washroomId = washroomId.data.createWashroom.id;
                       let reviewID = await add_review({
-                        variables: { placeId: id, rating: this.state.starCount }
+                        variables: {
+                          userId: this.state.userId,
+                          placeId: id,
+                          rating: this.state.starCount
+                        }
                       });
                       console.log(reviewID);
                       this.props.navigation.navigate("Home");
                     } catch (e) {
                       console.log(e);
                       let reviewID = await add_review({
-                        variables: { placeId: id, rating: this.state.starCount }
+                        variables: {
+                          userId: this.state.userId,
+                          placeId: id,
+                          rating: this.state.starCount
+                        }
                       });
                       this.props.navigation.navigate("Home");
                     }
