@@ -4,10 +4,13 @@ import gql from "graphql-tag";
 export const GET_ALL_WASHROOMS = gql`
   query GetAllWashrooms {
     allWashrooms {
+      id
       name
       instruction
       overallRating
+      numberOfReviews
       address
+      placeId
       locationLat
       locationLong
       toiletSeater
@@ -18,6 +21,47 @@ export const GET_ALL_WASHROOMS = gql`
     }
   }
 `;
+export const GET_ALL_WASHROOM_BY_DISTANCE = gql`
+  query GetAllReviewsByDistance(
+    $latmin: Float!
+    $latmax: Float!
+    $longmin: Float!
+    $longmax: Float!
+  ) {
+    allWashrooms(
+      filter: {
+        locationLat_gt: $latmin
+        locationLat_lt: $latmax
+        locationLong_gt: $longmin
+        locationLong_lt: $longmax
+      }
+    ) {
+      id
+      name
+      instruction
+      overallRating
+      numberOfReviews
+      address
+      placeId
+      locationLat
+      locationLong
+      toiletSeater
+      listOfPhotos {
+        id
+        url
+      }
+    }
+  }
+`;
+export const GET_REVIEWS_FOR_WASHROOM = gql`
+  query GetAllReviews($placeId: String!) {
+    allReviews(filter: { placeId: $placeId }) {
+      rating
+      placeId
+    }
+  }
+`;
+
 export const GET_USER_INFO = gql`
   query USER($id: ID!) {
     allUsers(filter: { id: $id }) {
@@ -42,6 +86,7 @@ export const ADD_WASHROOM = gql`
     $name: String!
     $stall: Int!
     $overallRating: Float!
+    $numberOfReviews: Int!
     $toiletSeater: Boolean!
     $address: String!
     $lat: Float!
@@ -52,6 +97,7 @@ export const ADD_WASHROOM = gql`
       name: $name
       stall: $stall
       overallRating: $overallRating
+      numberOfReviews: $numberOfReviews
       toiletSeater: $toiletSeater
       address: $address
       locationLat: $lat
@@ -94,6 +140,21 @@ export const UPDATE_SIGNEDUPUSER = gql`
       name
       email
       gender
+    }
+  }
+`;
+export const UPDATE_WASHROOM_RATING = gql`
+  mutation updateWashroomRating(
+    $id: ID!
+    $overallRating: Float!
+    $numberOfReviews: Int!
+  ) {
+    updateWashroom(
+      id: $id
+      numberOfReviews: $numberOfReviews
+      overallRating: $overallRating
+    ) {
+      id
     }
   }
 `;
