@@ -10,9 +10,11 @@ import {
   ADD_WASHROOM,
   GET_ALL_WASHROOMS
 } from "../../config/queries";
+import { Thumbnail } from "native-base";
 import Spinner from "react-native-number-spinner";
 import { material } from "react-native-typography";
 import { withNavigation } from "react-navigation";
+
 class AddWashroom extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,8 @@ class AddWashroom extends Component {
       num: null,
       hasSeater: false,
       locationName: null,
-      userId
+      userId,
+      photo: null
     };
   }
   componentDidMount = async () => {
@@ -42,7 +45,15 @@ class AddWashroom extends Component {
   }
 
   render() {
-    let { add_washroom, add_review, name, vicinity, location, id } = this.props;
+    let {
+      add_washroom,
+      add_review,
+      name,
+      vicinity,
+      location,
+      id,
+      photo
+    } = this.props;
 
     return (
       <View>
@@ -134,6 +145,12 @@ class AddWashroom extends Component {
                       }}
                     />
                   </View>
+                )}
+
+                {photo ? (
+                  <Thumbnail square source={{ uri: photo.uri }} />
+                ) : (
+                  <Text>no photo</Text>
                 )}
                 <Button
                   title="Take a photo of the washroom!"

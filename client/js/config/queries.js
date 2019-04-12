@@ -88,6 +88,7 @@ export const ADD_WASHROOM = gql`
     $overallRating: Float!
     $numberOfReviews: Int!
     $toiletSeater: Boolean!
+    $listOfPhotos: File
     $address: String!
     $lat: Float!
     $long: Float!
@@ -99,6 +100,7 @@ export const ADD_WASHROOM = gql`
       overallRating: $overallRating
       numberOfReviews: $numberOfReviews
       toiletSeater: $toiletSeater
+      listOfPhotos: $listOfPhotos
       address: $address
       locationLat: $lat
       locationLong: $long
@@ -160,21 +162,12 @@ export const UPDATE_WASHROOM_RATING = gql`
 `;
 
 export const UPDATE_WASHROOM_IMAGE = gql`
-  mutation($id: ID!, $url: String!, $contentType: String!, $name: String!) {
-    createFile(
-      userId: $userId
+  mutation updateWashroomImage($url: String!) {
+    updateWashroomImage(
       url: $url
-      contentType: $contentType
-      name: $name
     ) {
       id
-      name
       url
-      contentType
-      user {
-        id
-        email
-      }
     }
   }
 `;
