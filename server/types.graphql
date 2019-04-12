@@ -21,6 +21,7 @@ type Washroom @model {
   listOfReviews: [Review!]! @relation (name:"Review")
   toiletSeater: Boolean
   overallRating: Float
+  numberOfReviews:Int
   instruction: String
   address: String
   locationLat: Float

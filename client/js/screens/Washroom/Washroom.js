@@ -71,7 +71,7 @@ export default props => {
 
       <Accordion
         renderHeader={() => {
-          return <Text>see more reviews</Text>;
+          return <Text>see more reviews ({reviews.allReviews.length})</Text>;
         }}
         renderContent={() => {
           return (
