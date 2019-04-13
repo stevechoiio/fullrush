@@ -81,13 +81,11 @@ export const GET_USER_INFO = gql`
   }
 `;
 
-export const GET_ONE_WASHROOM = gql`
-  query GetOneWashroom($name: String!) {
-    oneWashroom {
-      name
-    }
+export const GET_WASHROOM_FROM_PHOTO = gql`
+  query GetWashroomFromPhoto($id: ID!) {
+    getWashroom
   }
-`;
+`
 // Mutations
 export const ADD_WASHROOM = gql`
   mutation AddWashroom(

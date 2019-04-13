@@ -174,6 +174,7 @@ class AddWashroom extends Component {
                         }
                       });
                       //{washroomPhoto 	? console.log(washroomPhoto.data.createFile.washroom.id) : console.log("Photo is empty")}
+                      console.log("tEST MARK");
                       console.log(typeof washroomPhoto.data.createFile.id);
 
                       let washroomId = await add_washroom({
