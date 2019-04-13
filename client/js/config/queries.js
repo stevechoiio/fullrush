@@ -23,13 +23,13 @@ export const GET_ALL_WASHROOMS = gql`
 `;
 
 export const GET_ALL_PHOTOS = gql`
-query GetAllPhotos {
-  allFiles {
-    id
-    url
+  query GetAllPhotos {
+    allFiles {
+      id
+      url
+    }
   }
-}
-`
+`;
 export const GET_ALL_WASHROOM_BY_DISTANCE = gql`
   query GetAllReviewsByDistance(
     $latmin: Float!
@@ -97,7 +97,7 @@ export const ADD_WASHROOM = gql`
     $overallRating: Float!
     $numberOfReviews: Int!
     $toiletSeater: Boolean!
-    $listOfPhotos: File
+    $listOfPhotosId: ID
     $address: String!
     $lat: Float!
     $long: Float!
@@ -109,7 +109,7 @@ export const ADD_WASHROOM = gql`
       overallRating: $overallRating
       numberOfReviews: $numberOfReviews
       toiletSeater: $toiletSeater
-      listOfPhotos: $listOfPhotos
+      listOfPhotosId: $listOfPhotosId
       address: $address
       locationLat: $lat
       locationLong: $long
@@ -130,7 +130,11 @@ export const ADD_REVIEW = gql`
 `;
 
 export const ADD_WASHROOM_PHOTO = gql`
-  mutation AddWashroomPhoto($url: String!, $name: String!, $contentType: String!) {
+  mutation AddWashroomPhoto(
+    $url: String!
+    $name: String!
+    $contentType: String!
+  ) {
     createFile(url: $url, name: $name, contentType: $contentType) {
       id
       url
@@ -138,7 +142,7 @@ export const ADD_WASHROOM_PHOTO = gql`
       contentType
     }
   }
-`
+`;
 export const AUTHENTICATE_USER = gql`
   mutation Authenticate($email: String!, $password: String!) {
     authenticateUser(email: $email, password: $password) {
