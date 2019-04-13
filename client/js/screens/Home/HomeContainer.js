@@ -61,6 +61,7 @@ export default class HomeContainer extends Component {
                 nav={this.props.navigation}
                 refetch={refetch}
                 data={data.allWashrooms}
+                location={this.state}
               />
             );
           }
