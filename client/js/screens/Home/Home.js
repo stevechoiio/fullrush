@@ -18,7 +18,7 @@ import { material } from "react-native-typography";
 import Icon from "react-native-vector-icons/FontAwesome5";
 let defaultImage = "https://dummyimage.com/600x400/000/fff";
 
-let foo = item => {
+let checkForPhoto = item => {
   if (item == null) {
     return defaultImage;
   } else {
@@ -81,7 +81,7 @@ class Home extends Component {
               >
                 <Left>
                   {/* Map ListOfPhotos here as Thumbnail */}
-                  <Thumbnail square source={{ uri: foo(item.listOfPhotos) }} />
+                  <Thumbnail square source={{ uri: checkForPhoto(item.listOfPhotos) }} />
                   {/* //item.listOfPhotos.url}}/> */}
                   {/* //source={{uri: item.listOfPhotos[0]}}/> */}
                 </Left>

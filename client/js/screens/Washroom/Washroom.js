@@ -15,7 +15,8 @@ import {
   Thumbnail,
   Left,
   Right,
-  Body
+  Body,
+  Image
 } from "native-base";
 const handleGetDirections = async (lat, long) => {
   await navigator.geolocation.getCurrentPosition(pos => {
@@ -45,9 +46,20 @@ const handleGetDirections = async (lat, long) => {
     getDirections(data);
   });
 };
+
+let defaultImage = "https://dummyimage.com/600x400/000/fff";
+let checkForPhoto = item => {
+  if (item == null) {
+    return defaultImage;
+  } else {
+    return item.url;
+  }
+};
+
 export default props => {
   let { reviews, refetch, data } = props;
   console.log(reviews);
+  console.log(data.listOfPhotos);
   return (
     <View>
       <Header
@@ -57,7 +69,11 @@ export default props => {
           style: { color: "#fff", fontSize: 15 }
         }}
       />
-      {/* <Image source={{uri: data.listOfPhotos.url}}></Image> */}
+
+      {/* <Thumbnail square source={{ uri: foo(item.listOfPhotos) }} /> */}
+      {/* <Image source={{uri: checkForPhoto(data.listOfPhotos)}}></Image> */}
+      <Thumbnail square 
+      source={{ uri: checkForPhoto(data.listOfPhotos) }}></Thumbnail>
       <Text style={material.caption}>{data.address}</Text>
 
       <StarRating disabled={true} maxStars={5} rating={data.overallRating} />
