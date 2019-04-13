@@ -186,7 +186,7 @@ class AddWashroom extends Component {
                           overallRating: this.state.starCount,
                           numberOfReviews: 1,
 						  toiletSeater: this.state.hasSeater,
-						  listOfPhotosId: washroomPhoto.data.createFile.id,
+						  listOfPhotosId: washroomPhoto.data.createFile,
                           lat: location.lat,
                           long: location.lng
                         },

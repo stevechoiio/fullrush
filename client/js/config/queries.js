@@ -97,7 +97,7 @@ export const ADD_WASHROOM = gql`
     $overallRating: Float!
     $numberOfReviews: Int!
     $toiletSeater: Boolean!
-    $listOfPhotos: ID!
+    $listOfPhotos: File
     $address: String!
     $lat: Float!
     $long: Float!
