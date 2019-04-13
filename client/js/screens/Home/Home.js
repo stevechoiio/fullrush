@@ -14,7 +14,7 @@ import { RefreshControl, TouchableOpacity } from "react-native";
 import { Header } from "react-native-elements";
 import geolib from "geolib";
 import StarRating from "react-native-star-rating";
-
+import { material } from "react-native-typography";
 import Icon from "react-native-vector-icons/FontAwesome5";
 let defaultImage = "https://dummyimage.com/600x400/000/fff";
 
@@ -79,12 +79,6 @@ class Home extends Component {
                 onPress={() => nav.navigate("Washroom", { data: item })}
                 thumbnail
               >
-                {console.log(
-                  geolib.getDistance(
-                    { latitude: 51.5103, longitude: 7.49347 },
-                    { latitude: 51.5103, longitude: 7.0 }
-                  )
-                )}
                 <Left>
                   {/* Map ListOfPhotos here as Thumbnail */}
                   <Thumbnail square source={{ uri: foo(item.listOfPhotos) }} />
@@ -102,7 +96,16 @@ class Home extends Component {
                   </Text>
                 </Body>
                 <Right>
-                  <Text>
+                  {item.toiletSeater ? (
+                    <Icon name={"toilet"} size={12} color={"black"} />
+                  ) : null}
+                  <StarRating
+                    disabled={true}
+                    maxStars={5}
+                    rating={item.overallRating}
+                    starSize={12}
+                  />
+                  <Text style={material.caption}>
                     {geolib.getDistance(
                       { latitude: location.lat, longitude: location.long },
                       {
@@ -112,15 +115,6 @@ class Home extends Component {
                     )}
                     M
                   </Text>
-                  <StarRating
-                    disabled={true}
-                    maxStars={5}
-                    rating={item.overallRating}
-                    starSize={10}
-                  />
-                  {item.toiletSeater ? (
-                    <Icon name={"toilet"} size={15} color={"black"} />
-                  ) : null}
                 </Right>
               </ListItem>
             ))}
