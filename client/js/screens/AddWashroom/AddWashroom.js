@@ -9,6 +9,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import {
   ADD_REVIEW,
   ADD_WASHROOM,
+  ADD_WASHROOM_PHOTO,
   GET_ALL_WASHROOMS
 } from "../../config/queries";
 import { Thumbnail } from "native-base";
@@ -49,6 +50,7 @@ class AddWashroom extends Component {
     let {
       add_washroom,
       add_review,
+      add_washroom_photo,
       name,
       vicinity,
       location,
@@ -164,6 +166,16 @@ class AddWashroom extends Component {
                   onPress={async () => {
                     console.log(location);
                     try {
+                      let washroomPhoto = await add_washroom_photo({
+                        variables: {
+                          url: photo ? photo.uri : null,
+                          name: "Sample Image",
+                          contentType: "image/png"
+                        }
+                      });
+                      //{washroomPhoto 	? console.log(washroomPhoto.data.createFile.washroom.id) : console.log("Photo is empty")}
+                      console.log(typeof washroomPhoto.data.createFile.id);
+
                       let washroomId = await add_washroom({
                         variables: {
                           placeId: id,
@@ -173,6 +185,7 @@ class AddWashroom extends Component {
                           overallRating: this.state.starCount,
                           numberOfReviews: 1,
                           toiletSeater: this.state.hasSeater,
+                          listOfPhotosId: washroomPhoto.data.createFile.id,
                           lat: location.lat,
                           long: location.lng
                         },
@@ -222,6 +235,7 @@ class AddWashroom extends Component {
 export default withNavigation(
   compose(
     graphql(ADD_WASHROOM, { name: "add_washroom" }),
-    graphql(ADD_REVIEW, { name: "add_review" })
+    graphql(ADD_REVIEW, { name: "add_review" }),
+    graphql(ADD_WASHROOM_PHOTO, { name: "add_washroom_photo" })
   )(AddWashroom)
 );
