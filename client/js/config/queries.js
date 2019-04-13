@@ -21,6 +21,15 @@ export const GET_ALL_WASHROOMS = gql`
     }
   }
 `;
+
+export const GET_ALL_PHOTOS = gql`
+query GetAllPhotos {
+  allFiles {
+    id
+    url
+  }
+}
+`
 export const GET_ALL_WASHROOM_BY_DISTANCE = gql`
   query GetAllReviewsByDistance(
     $latmin: Float!
@@ -88,7 +97,7 @@ export const ADD_WASHROOM = gql`
     $overallRating: Float!
     $numberOfReviews: Int!
     $toiletSeater: Boolean!
-    $listOfPhotos: File
+    $listOfPhotos: ID!
     $address: String!
     $lat: Float!
     $long: Float!
@@ -119,6 +128,17 @@ export const ADD_REVIEW = gql`
     }
   }
 `;
+
+export const ADD_WASHROOM_PHOTO = gql`
+  mutation AddWashroomPhoto($url: String!, $name: String!, $contentType: String!) {
+    createFile(url: $url, name: $name, contentType: $contentType) {
+      id
+      url
+      name
+      contentType
+    }
+  }
+`
 export const AUTHENTICATE_USER = gql`
   mutation Authenticate($email: String!, $password: String!) {
     authenticateUser(email: $email, password: $password) {
@@ -161,13 +181,13 @@ export const UPDATE_WASHROOM_RATING = gql`
   }
 `;
 
-export const UPDATE_WASHROOM_IMAGE = gql`
-  mutation updateWashroomImage($url: String!) {
-    updateWashroomImage(
-      url: $url
-    ) {
-      id
-      url
-    }
-  }
-`;
+// export const UPDATE_WASHROOM_IMAGE = gql`
+//   mutation updateWashroomImage($url: String!) {
+//     updateWashroomImage(
+//       url: $url
+//     ) {
+//       id
+//       url
+//     }
+//   }
+// `;
