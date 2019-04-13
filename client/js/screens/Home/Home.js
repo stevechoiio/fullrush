@@ -12,9 +12,9 @@ import {
 } from "native-base";
 import { RefreshControl, TouchableOpacity } from "react-native";
 import { Header } from "react-native-elements";
-
+import geolib from "geolib";
 import StarRating from "react-native-star-rating";
-
+import { material } from "react-native-typography";
 import Icon from "react-native-vector-icons/FontAwesome5";
 let defaultImage = "https://dummyimage.com/600x400/000/fff";
 
@@ -40,7 +40,7 @@ class Home extends Component {
     });
   };
   render() {
-    let { nav, data } = this.props;
+    let { nav, data, location } = this.props;
     console.log(data);
     return (
       <Container>
@@ -96,15 +96,25 @@ class Home extends Component {
                   </Text>
                 </Body>
                 <Right>
+                  {item.toiletSeater ? (
+                    <Icon name={"toilet"} size={12} color={"black"} />
+                  ) : null}
                   <StarRating
                     disabled={true}
                     maxStars={5}
                     rating={item.overallRating}
-                    starSize={10}
+                    starSize={12}
                   />
-                  {item.toiletSeater ? (
-                    <Icon name={"toilet"} size={15} color={"black"} />
-                  ) : null}
+                  <Text style={material.caption}>
+                    {geolib.getDistance(
+                      { latitude: location.lat, longitude: location.long },
+                      {
+                        latitude: item.locationLat,
+                        longitude: item.locationLong
+                      }
+                    )}
+                    M
+                  </Text>
                 </Right>
               </ListItem>
             ))}

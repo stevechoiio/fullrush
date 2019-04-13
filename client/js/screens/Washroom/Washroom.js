@@ -5,7 +5,6 @@ import StarRating from "react-native-star-rating";
 import getDirections from "react-native-google-maps-directions";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Button, Header } from "react-native-elements";
-import ReviewList from "../../components/ReviewList";
 import BackButton from "../../components/BackButton";
 import {
   Accordion,
@@ -83,10 +82,36 @@ export default props => {
         <Icon name="check" size={15} color="black" />
       </View>
       <Text style={material.title}>Most Recent Review:</Text>
+      <ListItem>
+        <Left>
+          {reviews.allReviews[0].user ? (
+            <Text style={material.caption}>
+              {reviews.allReviews[0].user.name}
+            </Text>
+          ) : (
+            <Text style={material.caption}>Bob</Text>
+          )}
+        </Left>
+        <Body>
+          <Text>not bad</Text>
+        </Body>
+        <Right>
+          <StarRating
+            disabled={true}
+            starSize={5}
+            maxStars={5}
+            rating={reviews.allReviews[0].rating}
+          />
+        </Right>
+      </ListItem>
 
       <Accordion
         renderHeader={() => {
-          return <Text>see more reviews ({reviews.allReviews.length})</Text>;
+          return (
+            <Text style={material.subheading}>
+              see more reviews ({reviews.allReviews.length})
+            </Text>
+          );
         }}
         renderContent={() => {
           return (
@@ -94,12 +119,22 @@ export default props => {
               {reviews.allReviews.map((review, index) => {
                 return (
                   <ListItem key={index}>
-                    <StarRating
-                      disabled={true}
-                      starSize={5}
-                      maxStars={5}
-                      rating={review.rating}
-                    />
+                    <Left>
+                      {review.user ? (
+                        <Text style={material.caption}>{review.user.name}</Text>
+                      ) : null}
+                    </Left>
+                    <Body>
+                      <Text>cleaner than a virgin's dick</Text>
+                    </Body>
+                    <Right>
+                      <StarRating
+                        disabled={true}
+                        starSize={5}
+                        maxStars={5}
+                        rating={review.rating}
+                      />
+                    </Right>
                   </ListItem>
                 );
               })}

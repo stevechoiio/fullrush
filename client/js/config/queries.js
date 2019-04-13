@@ -67,6 +67,9 @@ export const GET_REVIEWS_FOR_WASHROOM = gql`
     allReviews(filter: { placeId: $placeId }) {
       rating
       placeId
+      user {
+        name
+      }
     }
   }
 `;
@@ -77,6 +80,9 @@ export const GET_USER_INFO = gql`
       id
       name
       email
+      userReviews {
+        id
+      }
     }
   }
 `;
@@ -85,7 +91,7 @@ export const GET_WASHROOM_FROM_PHOTO = gql`
   query GetWashroomFromPhoto($id: ID!) {
     getWashroom
   }
-`
+`;
 // Mutations
 export const ADD_WASHROOM = gql`
   mutation AddWashroom(
@@ -182,14 +188,3 @@ export const UPDATE_WASHROOM_RATING = gql`
     }
   }
 `;
-
-// export const UPDATE_WASHROOM_IMAGE = gql`
-//   mutation updateWashroomImage($url: String!) {
-//     updateWashroomImage(
-//       url: $url
-//     ) {
-//       id
-//       url
-//     }
-//   }
-// `;

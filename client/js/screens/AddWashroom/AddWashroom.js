@@ -12,7 +12,7 @@ import {
   ADD_WASHROOM_PHOTO,
   GET_ALL_WASHROOMS
 } from "../../config/queries";
-import { Thumbnail } from "native-base";
+import { Thumbnail, Item, Input, Label } from "native-base";
 import Spinner from "react-native-number-spinner";
 import { material } from "react-native-typography";
 import { withNavigation } from "react-navigation";
@@ -162,9 +162,12 @@ class AddWashroom extends Component {
                     this.props.nav.navigate("Camera");
                   }}
                 />
+                <Item floatingLabel>
+                  <Label>Access Instructions?</Label>
+                  <Input maxLength={50} />
+                </Item>
                 <TouchableOpacity
                   onPress={async () => {
-                    console.log(location);
                     try {
                       let washroomPhoto = await add_washroom_photo({
                         variables: {
@@ -196,8 +199,6 @@ class AddWashroom extends Component {
                           }
                         ]
                       });
-                      console.log("washroom submitted");
-                      console.log(washroomId);
 
                       washroomId = washroomId.data.createWashroom.id;
                       let reviewID = await add_review({
@@ -218,7 +219,7 @@ class AddWashroom extends Component {
                           rating: this.state.starCount
                         }
                       });
-                      this.props.navigation.navigate("Home");
+                      this.props.navigation.n디avigate("Home");
                     }
                   }}
                 >

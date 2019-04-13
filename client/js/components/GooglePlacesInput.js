@@ -40,8 +40,10 @@ const GooglePlacesInput = props => {
         query={{
           // available options: https://developers.google.com/places/web-service/autocomplete
           key: "AIzaSyAr_W5HFV59akkn9SOTu5PJr0SWz_38_NE",
-          language: "en", // language of the results
-          types: "establishment" // default: 'geocode'
+          language: "en",
+          radius: 1000,
+          location: "49,-122",
+          types: "establishment"
         }}
         styles={{
           container: {
@@ -74,8 +76,8 @@ const GooglePlacesInput = props => {
         nearbyPlacesAPI="GooglePlacesSearch" // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
         GooglePlacesSearchQuery={{
           // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
-          rankby: "distance",
-          type: "establishment"
+          type: "establishment",
+          radius: 10000
         }}
         GooglePlacesDetailsQuery={{
           // available options for GooglePlacesDetails API : https://developers.google.com/places/web-service/details

@@ -26,7 +26,6 @@ export default ({ navigation, user }) => {
         }}
       />
       <View style={styles.container}>
-        <Text>Reward Screen!</Text>
         <Text>Hello, {user.name}!</Text>
         <CircularProgress
           size={300}
@@ -35,7 +34,7 @@ export default ({ navigation, user }) => {
           tintColor="#00e0ff"
           backgroundColor="#3d5875"
         >
-          {() => <Text> you have 200 points</Text>}
+          {() => <Text> you have wrote {user.userReviews.length} reviews</Text>}
         </CircularProgress>
       </View>
       <TouchableOpacity onPress={_signOutAsync}>
