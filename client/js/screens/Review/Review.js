@@ -16,29 +16,30 @@ class Review extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      starCount: 3,
-      stallCorrect: true,
-      num: null,
-      hasSeater: false,
       userId: null
     };
   }
   componentDidMount = async () => {
-    this.setState({ num: 3 });
     AsyncStorage.getItem("id").then(userId => {
       this.setState({ userId });
     });
   };
-  onStarRatingPress(rating) {
+  onStarRatingPress(rating, criteria) {
     this.setState({
-      starCount: rating
+      [criteria]: rating
     });
   }
 
   render() {
     let { add_review, update_washroom_rating } = this.props;
-
-    let { overallRating, numberOfReviews } = this.props.washroomData;
+    let overallRating, numberOfReviews;
+    if (this.props.washroomData) {
+      overallRating = this.props.washroomData.overallRating;
+      numberOfReviews = this.props.washroomData.numberOfReviews;
+    } else {
+      overallRating = 0;
+      numberOfReviews = 0;
+    }
 
     return (
       <View>
@@ -56,7 +57,8 @@ class Review extends Component {
             );
           }}
         />
-        <Text>How Clean was it?</Text>
+        <Text>How did you like the washroom's...</Text>
+        <Text>Lighting?</Text>
         <StarRating
           disabled={false}
           emptyStar={"ios-star-outline"}
@@ -64,66 +66,81 @@ class Review extends Component {
           halfStar={"ios-star-half"}
           iconSet={"Ionicons"}
           maxStars={5}
-          rating={this.state.starCount}
-          selectedStar={rating => this.onStarRatingPress(rating)}
+          rating={this.state.light}
+          selectedStar={rating => this.onStarRatingPress(rating, "light")}
+          fullStarColor={"black"}
+        />
+        <Text>Ease of access?</Text>
+        <StarRating
+          disabled={false}
+          emptyStar={"ios-star-outline"}
+          fullStar={"ios-star"}
+          halfStar={"ios-star-half"}
+          iconSet={"Ionicons"}
+          maxStars={5}
+          rating={this.state.ease}
+          selectedStar={rating => this.onStarRatingPress(rating, "ease")}
+          fullStarColor={"black"}
+        />
+        <Text>Toilet?</Text>
+        <StarRating
+          disabled={false}
+          emptyStar={"ios-star-outline"}
+          fullStar={"ios-star"}
+          halfStar={"ios-star-half"}
+          iconSet={"Ionicons"}
+          maxStars={5}
+          rating={this.state.toilet}
+          selectedStar={rating => this.onStarRatingPress(rating, "toilet")}
+          fullStarColor={"black"}
+        />
+        <Text>Drying method?</Text>
+        <StarRating
+          disabled={false}
+          emptyStar={"ios-star-outline"}
+          fullStar={"ios-star"}
+          halfStar={"ios-star-half"}
+          iconSet={"Ionicons"}
+          maxStars={5}
+          rating={this.state.drying}
+          selectedStar={rating => this.onStarRatingPress(rating, "drying")}
+          fullStarColor={"black"}
+        />
+        <Text>Sink?</Text>
+        <StarRating
+          disabled={false}
+          emptyStar={"ios-star-outline"}
+          fullStar={"ios-star"}
+          halfStar={"ios-star-half"}
+          iconSet={"Ionicons"}
+          maxStars={5}
+          rating={this.state.sink}
+          selectedStar={rating => this.onStarRatingPress(rating, "sink")}
           fullStarColor={"black"}
         />
 
-        <Text>were there 2 stalls?</Text>
-        <Button
-          title={"👍"}
-          type={!this.state.stallCorrect ? "clear" : "solid"}
-          onPress={() => {
-            this.setState({ stallCorrect: true });
-          }}
-        />
-        <Button
-          title="👎"
-          type={this.state.stallCorrect ? "clear" : "solid"}
-          onPress={() => {
-            this.setState({ stallCorrect: false });
-          }}
-        />
-        {!this.state.stallCorrect ? (
-          <Spinner
-            max={10}
-            min={0}
-            color="#f60"
-            value={this.state.num}
-            numColor="black"
-            onNumChange={num => {
-              this.setState({ num });
-            }}
-          />
-        ) : null}
-        <Text>were there toilet seaters?</Text>
-        <Button
-          title="👍"
-          onPress={() => {
-            this.setState({ hasSeater: true });
-          }}
-          type={!this.state.hasSeater ? "clear" : "solid"}
-        />
-        <Button
-          onPress={() => {
-            this.setState({ hasSeater: false });
-          }}
-          title="👎"
-          type={this.state.hasSeater ? "clear" : "solid"}
-        />
         <Button
           onPress={async () => {
+            let stateCopy = { ...this.state };
+            delete stateCopy.userId;
+            let total = Object.values(stateCopy).reduce((a, b) => a + b) / 5;
+
             let reviewID = await add_review({
               variables: {
                 userId: this.state.userId,
                 washroomId: this.props.washroomData.id,
-                rating: this.state.starCount,
+                rating: total,
+                lightRating: this.state.light,
+                dryingRating: this.state.drying,
+                toiletRating: this.state.toilet,
+                sinkRating: this.state.sink,
+                easeRating: this.state.ease,
+                comment: "none",
                 placeId: this.props.washroomData.placeId
               }
             });
             let newOverall =
-              (overallRating * numberOfReviews + this.state.starCount) /
-              (numberOfReviews + 1);
+              (overallRating * numberOfReviews + total) / (numberOfReviews + 1);
 
             let updateID = await update_washroom_rating({
               variables: {

@@ -92,17 +92,6 @@ class AddWashroom extends Component {
               <View style={styles.flexContent}>
                 <Text style={material.body1}>{name}</Text>
                 <Text style={material.body1}>{vicinity}</Text>
-                <Text>How Clean was it?</Text>
-                <StarRating
-                  disabled={false}
-                  emptyStar={"ios-star-outline"}
-                  fullStar={"ios-star"}
-                  iconSet={"Ionicons"}
-                  maxStars={5}
-                  rating={this.state.starCount}
-                  selectedStar={rating => this.onStarRatingPress(rating)}
-                  fullStarColor={"black"}
-                />
 
                 <Text>How many stalls were there?</Text>
                 <Spinner
@@ -149,7 +138,10 @@ class AddWashroom extends Component {
                     />
                   </View>
                 )}
-
+                <Item floatingLabel>
+                  <Label>Access Instructions?</Label>
+                  <Input maxLength={50} />
+                </Item>
                 {photo ? (
                   <Thumbnail square source={{ uri: photo.uri }} />
                 ) : (
@@ -162,10 +154,7 @@ class AddWashroom extends Component {
                     this.props.nav.navigate("Camera");
                   }}
                 />
-                <Item floatingLabel>
-                  <Label>Access Instructions?</Label>
-                  <Input maxLength={50} />
-                </Item>
+
                 <TouchableOpacity
                   onPress={async () => {
                     try {
@@ -186,7 +175,7 @@ class AddWashroom extends Component {
                           name,
                           address: vicinity,
                           stall: this.state.num,
-                          overallRating: this.state.starCount,
+                          overallRating: 5,
                           numberOfReviews: 1,
                           toiletSeater: this.state.hasSeater,
                           listOfPhotosId: washroomPhoto.data.createFile.id,
@@ -201,15 +190,8 @@ class AddWashroom extends Component {
                       });
 
                       washroomId = washroomId.data.createWashroom.id;
-                      let reviewID = await add_review({
-                        variables: {
-                          userId: this.state.userId,
-                          placeId: id,
-                          rating: this.state.starCount
-                        }
-                      });
-                      console.log(reviewID);
-                      this.props.navigation.navigate("Home");
+
+                      this.props.navigation.navigate("Review");
                     } catch (e) {
                       console.log(e);
                       let reviewID = await add_review({
@@ -219,7 +201,7 @@ class AddWashroom extends Component {
                           rating: this.state.starCount
                         }
                       });
-                      this.props.navigation.n디avigate("Home");
+                      this.props.navigation.navigate("Review");
                     }
                   }}
                 >

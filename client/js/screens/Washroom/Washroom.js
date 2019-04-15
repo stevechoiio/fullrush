@@ -72,8 +72,7 @@ export default props => {
 
       {/* <Thumbnail square source={{ uri: foo(item.listOfPhotos) }} /> */}
       {/* <Image source={{uri: checkForPhoto(data.listOfPhotos)}}></Image> */}
-      <Thumbnail square 
-      source={{ uri: checkForPhoto(data.listOfPhotos) }}></Thumbnail>
+      <Thumbnail square source={{ uri: checkForPhoto(data.listOfPhotos) }} />
       <Text style={material.caption}>{data.address}</Text>
 
       <StarRating disabled={true} maxStars={5} rating={data.overallRating} />
@@ -125,7 +124,7 @@ export default props => {
                       ) : null}
                     </Left>
                     <Body>
-                      <Text>cleaner than a virgin's dick</Text>
+                      <Text>Jesus's love is here</Text>
                     </Body>
                     <Right>
                       <StarRating

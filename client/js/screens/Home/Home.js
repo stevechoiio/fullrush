@@ -81,7 +81,10 @@ class Home extends Component {
               >
                 <Left>
                   {/* Map ListOfPhotos here as Thumbnail */}
-                  <Thumbnail square source={{ uri: checkForPhoto(item.listOfPhotos) }} />
+                  <Thumbnail
+                    square
+                    source={{ uri: checkForPhoto(item.listOfPhotos) }}
+                  />
                   {/* //item.listOfPhotos.url}}/> */}
                   {/* //source={{uri: item.listOfPhotos[0]}}/> */}
                 </Left>

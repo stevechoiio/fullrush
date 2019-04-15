@@ -125,8 +125,28 @@ export const ADD_WASHROOM = gql`
   }
 `;
 export const ADD_REVIEW = gql`
-  mutation AddReview($placeId: String!, $rating: Int!, $userId: ID!) {
-    createReview(placeId: $placeId, rating: $rating, userId: $userId) {
+  mutation AddReview(
+    $placeId: String!
+    $rating: Int!
+    $userId: ID!
+    $lightRating: Int!
+    $easeRating: Int!
+    $dryingRating: Int!
+    $sinkRating: Int!
+    $toiletRating: Int!
+    $comment: String!
+  ) {
+    createReview(
+      placeId: $placeId
+      rating: $rating
+      userId: $userId
+      lightRating: $lightRating
+      easeRating: $easeRating
+      dryingRating: $dryingRating
+      sinkRating: $sinkRating
+      toiletRating: $toiletRating
+      comment: $comment
+    ) {
       id
       rating
     }
