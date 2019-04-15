@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.Bundle;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
 import org.reactnative.camera.RNCameraPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new MapsPackage(),
             new RNCameraPackage(),
             new SplashScreenReactPackage(),
             new SvgPackage(),

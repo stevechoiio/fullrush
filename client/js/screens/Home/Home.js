@@ -13,11 +13,14 @@ import {
 import { RefreshControl, TouchableOpacity } from "react-native";
 import { Header } from "react-native-elements";
 import geolib from "geolib";
+import { ActionSheet } from "native-base";
 import StarRating from "react-native-star-rating";
 import { material } from "react-native-typography";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import Map from "../../components/Map";
 let defaultImage = "https://dummyimage.com/600x400/000/fff";
-
+var BUTTONS = ["Distance", "Rating", "Cancel"];
+var DESTRUCTIVE_INDEX = 2;
 let checkForPhoto = item => {
   if (item == null) {
     return defaultImage;
@@ -30,7 +33,8 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      refreshing: false
+      refreshing: false,
+      filterDistance: true
     };
   }
   _onRefresh = () => {
@@ -55,11 +59,29 @@ class Home extends Component {
             style: { color: "#fff", fontSize: 20 }
           }}
           leftComponent={
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                console.log("pressed");
+                ActionSheet.show(
+                  {
+                    options: BUTTONS,
+                    destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                    title: "Sort by:"
+                  },
+                  () => {
+                    this.setState({
+                      filterDistance: !this.state.filterDistance
+                    });
+                    console.log(this.state.filterDistance);
+                  }
+                );
+              }}
+            >
               <Icon name={"sliders-h"} size={25} color={"white"} />
             </TouchableOpacity>
           }
         />
+        <Map location={location} washrooms={data} />
         <Content
           refreshControl={
             <RefreshControl
@@ -81,7 +103,10 @@ class Home extends Component {
               >
                 <Left>
                   {/* Map ListOfPhotos here as Thumbnail */}
-                  <Thumbnail square source={{ uri: checkForPhoto(item.listOfPhotos) }} />
+                  <Thumbnail
+                    square
+                    source={{ uri: checkForPhoto(item.listOfPhotos) }}
+                  />
                   {/* //item.listOfPhotos.url}}/> */}
                   {/* //source={{uri: item.listOfPhotos[0]}}/> */}
                 </Left>

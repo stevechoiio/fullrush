@@ -5,17 +5,16 @@ import { ApolloProvider } from "react-apollo";
 import client from "./config/api";
 import { Drawer } from "native-base";
 import SplashScreen from "react-native-splash-screen";
-
+import { Root } from "native-base";
 const SideBar = () => {
   return <Text>hey</Text>;
 };
 
 export default class App extends Component {
-
   componentDidMount() {
     SplashScreen.hide();
   }
-  
+
   closeDrawer = () => {
     this.drawer._root.close();
   };
@@ -31,9 +30,11 @@ export default class App extends Component {
         content={<SideBar navigator={this.navigator} />}
         onClose={() => this.closeDrawer()}
       >
-        <ApolloProvider client={client}>
-          <RootStackNavigator />
-        </ApolloProvider>
+        <Root>
+          <ApolloProvider client={client}>
+            <RootStackNavigator />
+          </ApolloProvider>
+        </Root>
       </Drawer>
     );
   }

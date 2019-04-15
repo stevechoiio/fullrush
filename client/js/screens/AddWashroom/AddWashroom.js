@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity, TextInput } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import styles from "./styles";
-import { Form, Field } from "react-final-form";
+import { Form } from "react-final-form";
 import { Button, Header } from "react-native-elements";
-import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import AsyncStorage from "@react-native-community/async-storage";
 import {
@@ -92,17 +91,6 @@ class AddWashroom extends Component {
               <View style={styles.flexContent}>
                 <Text style={material.body1}>{name}</Text>
                 <Text style={material.body1}>{vicinity}</Text>
-                <Text>How Clean was it?</Text>
-                <StarRating
-                  disabled={false}
-                  emptyStar={"ios-star-outline"}
-                  fullStar={"ios-star"}
-                  iconSet={"Ionicons"}
-                  maxStars={5}
-                  rating={this.state.starCount}
-                  selectedStar={rating => this.onStarRatingPress(rating)}
-                  fullStarColor={"black"}
-                />
 
                 <Text>How many stalls were there?</Text>
                 <Spinner
@@ -149,7 +137,10 @@ class AddWashroom extends Component {
                     />
                   </View>
                 )}
-
+                <Item floatingLabel>
+                  <Label>Access Instructions?</Label>
+                  <Input maxLength={50} />
+                </Item>
                 {photo ? (
                   <Thumbnail square source={{ uri: photo.uri }} />
                 ) : (
@@ -162,23 +153,20 @@ class AddWashroom extends Component {
                     this.props.nav.navigate("Camera");
                   }}
                 />
-                <Item floatingLabel>
-                  <Label>Access Instructions?</Label>
-                  <Input maxLength={50} />
-                </Item>
+
                 <TouchableOpacity
                   onPress={async () => {
                     try {
-                      let washroomPhoto = await add_washroom_photo({
-                        variables: {
-                          url: photo ? photo.uri : null,
-                          name: "Sample Image",
-                          contentType: "image/png"
-                        }
-                      });
+                      // let washroomPhoto = await add_washroom_photo({
+                      //   variables: {
+                      //     url: photo ? photo.uri : null,
+                      //     name: "Sample Image",
+                      //     contentType: "image/png"
+                      //   }
+                      // });
                       //{washroomPhoto 	? console.log(washroomPhoto.data.createFile.washroom.id) : console.log("Photo is empty")}
-                      console.log("tEST MARK");
-                      console.log(typeof washroomPhoto.data.createFile.id);
+                      // console.log("tEST MARK");
+                      // console.log(typeof washroomPhoto.data.createFile.id);
 
                       let washroomId = await add_washroom({
                         variables: {
@@ -186,10 +174,10 @@ class AddWashroom extends Component {
                           name,
                           address: vicinity,
                           stall: this.state.num,
-                          overallRating: this.state.starCount,
+                          overallRating: 5,
                           numberOfReviews: 1,
                           toiletSeater: this.state.hasSeater,
-                          listOfPhotosId: washroomPhoto.data.createFile.id,
+                          // listOfPhotosId: washroomPhoto.data.createFile.id,
                           lat: location.lat,
                           long: location.lng
                         },
@@ -199,27 +187,21 @@ class AddWashroom extends Component {
                           }
                         ]
                       });
+                      console.log(washroomId);
 
-                      washroomId = washroomId.data.createWashroom.id;
-                      let reviewID = await add_review({
-                        variables: {
-                          userId: this.state.userId,
-                          placeId: id,
-                          rating: this.state.starCount
-                        }
+                      this.props.navigation.navigate("Review", {
+                        data: washroomId.data.createWashroom
                       });
-                      console.log(reviewID);
-                      this.props.navigation.navigate("Home");
                     } catch (e) {
-                      console.log(e);
-                      let reviewID = await add_review({
-                        variables: {
-                          userId: this.state.userId,
-                          placeId: id,
-                          rating: this.state.starCount
-                        }
-                      });
-                      this.props.navigation.n디avigate("Home");
+                      // console.log(e);
+                      // let reviewID = await add_review({
+                      //   variables: {
+                      //     userId: this.state.userId,
+                      //     placeId: id,
+                      //     rating: this.state.starCount
+                      //   }
+                      // });
+                      this.props.navigation.navigate("Review");
                     }
                   }}
                 >

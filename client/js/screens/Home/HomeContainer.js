@@ -20,6 +20,7 @@ export default class HomeContainer extends Component {
       var crd = pos.coords;
 
       this.setState({ lat: crd.latitude, long: crd.longitude });
+      console.log(this.state);
     });
   }
   render() {
@@ -27,10 +28,10 @@ export default class HomeContainer extends Component {
       <Query
         query={GET_ALL_WASHROOM_BY_DISTANCE}
         variables={{
-          latmin: this.state.lat - 1,
-          latmax: this.state.lat + 1,
-          longmin: this.state.long - 1,
-          longmax: this.state.long + 1
+          latmin: this.state.lat - 0.1,
+          latmax: this.state.lat + 0.1,
+          longmin: this.state.long - 0.1,
+          longmax: this.state.long + 0.1
         }}
       >
         {({ loading, error, data, refetch }) => {

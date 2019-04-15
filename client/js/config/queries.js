@@ -21,6 +21,26 @@ export const GET_ALL_WASHROOMS = gql`
     }
   }
 `;
+export const CHECK_DUPLICATE_WASHROOM = gql`
+  query GetAllWashrooms($placeId: String!) {
+    allWashrooms(filter: { placeId: $placeId }) {
+      id
+      name
+      instruction
+      overallRating
+      numberOfReviews
+      address
+      placeId
+      locationLat
+      locationLong
+      toiletSeater
+      listOfPhotos {
+        id
+        url
+      }
+    }
+  }
+`;
 
 export const GET_ALL_PHOTOS = gql`
   query GetAllPhotos {
@@ -121,12 +141,33 @@ export const ADD_WASHROOM = gql`
       id
       name
       stall
+      placeId
     }
   }
 `;
 export const ADD_REVIEW = gql`
-  mutation AddReview($placeId: String!, $rating: Int!, $userId: ID!) {
-    createReview(placeId: $placeId, rating: $rating, userId: $userId) {
+  mutation AddReview(
+    $placeId: String!
+    $rating: Int!
+    $userId: ID!
+    $lightRating: Int!
+    $easeRating: Int!
+    $dryingRating: Int!
+    $sinkRating: Int!
+    $toiletRating: Int!
+    $comment: String!
+  ) {
+    createReview(
+      placeId: $placeId
+      rating: $rating
+      userId: $userId
+      lightRating: $lightRating
+      easeRating: $easeRating
+      dryingRating: $dryingRating
+      sinkRating: $sinkRating
+      toiletRating: $toiletRating
+      comment: $comment
+    ) {
       id
       rating
     }

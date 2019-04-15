@@ -6,7 +6,7 @@ import { GET_REVIEWS_FOR_WASHROOM } from "../../config/queries";
 export default class WashroomContainer extends Component {
   render() {
     const washroomData = this.props.navigation.getParam("data");
-    console.log(washroomData);
+
     return (
       <Query
         query={GET_REVIEWS_FOR_WASHROOM}
@@ -27,24 +27,14 @@ export default class WashroomContainer extends Component {
               </View>
             );
 
-          if (!data.allReviews[0]) {
-            return (
-              <View>
-                <Text>Hello...</Text>
-              </View>
-            );
-          } else {
-            console.log(data);
-
-            return (
-              <Washroom
-                data={washroomData}
-                reviews={data}
-                nav={this.props.navigation}
-                refetch={refetch}
-              />
-            );
-          }
+          return (
+            <Washroom
+              data={washroomData}
+              reviews={data}
+              nav={this.props.navigation}
+              refetch={refetch}
+            />
+          );
         }}
       </Query>
     );
