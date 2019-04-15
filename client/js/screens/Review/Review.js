@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { Button, Header } from "react-native-elements";
+import { Item, Input, Label } from "native-base";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -10,7 +11,6 @@ import {
   GET_ALL_WASHROOMS,
   GET_REVIEWS_FOR_WASHROOM
 } from "../../config/queries";
-import Spinner from "react-native-number-spinner";
 import BackButton from "../../components/BackButton";
 class Review extends Component {
   constructor(props) {
@@ -118,7 +118,10 @@ class Review extends Component {
           selectedStar={rating => this.onStarRatingPress(rating, "sink")}
           fullStarColor={"black"}
         />
-
+        <Item floatingLabel>
+          <Label>Add comments</Label>
+          <Input maxLength={50} />
+        </Item>
         <Button
           onPress={async () => {
             let stateCopy = { ...this.state };
@@ -141,7 +144,7 @@ class Review extends Component {
             });
             let newOverall =
               (overallRating * numberOfReviews + total) / (numberOfReviews + 1);
-
+            console.log(newOverall);
             let updateID = await update_washroom_rating({
               variables: {
                 id: this.props.washroomData.id,

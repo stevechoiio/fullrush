@@ -21,6 +21,26 @@ export const GET_ALL_WASHROOMS = gql`
     }
   }
 `;
+export const CHECK_DUPLICATE_WASHROOM = gql`
+  query GetAllWashrooms($placeId: String!) {
+    allWashrooms(filter: { placeId: $placeId }) {
+      id
+      name
+      instruction
+      overallRating
+      numberOfReviews
+      address
+      placeId
+      locationLat
+      locationLong
+      toiletSeater
+      listOfPhotos {
+        id
+        url
+      }
+    }
+  }
+`;
 
 export const GET_ALL_PHOTOS = gql`
   query GetAllPhotos {
@@ -121,6 +141,7 @@ export const ADD_WASHROOM = gql`
       id
       name
       stall
+      placeId
     }
   }
 `;

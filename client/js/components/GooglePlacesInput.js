@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import { Image, Text, View, Dimensions } from "react-native";
+import { View, Dimensions, Text } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { Button, Header } from "react-native-elements";
+import { Header, Overlay, Button } from "react-native-elements";
 import { withNavigation } from "react-navigation";
-import { ScrollView } from "react-native";
+import { graphql, compose } from "react-apollo";
+import { CHECK_DUPLICATE_WASHROOM } from "../config/queries";
 class GooglePlacesInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: null
+      location: null,
+      isVisible: false
     };
   }
   componentDidMount() {
@@ -38,7 +40,31 @@ class GooglePlacesInput extends Component {
             style: { color: "#fff", fontSize: 20 }
           }}
         />
-
+        <Overlay
+          isVisible={this.state.isVisible}
+          onBackdropPress={() => this.setState({ isVisible: false })}
+        >
+          <Text>This washroom has already been added by a user.</Text>
+          <Button
+            title="Leave a review"
+            onPress={() => {
+              this.props.navigation.navigate("Review", {
+                ...this.state.data,
+                ...this.state.details
+              });
+              this.setState({ isVisible: false });
+            }}
+          />
+          <Button
+            title="go see the washroom"
+            onPress={() => {
+              this.props.navigation.navigate("Washroom", {
+                data: this.state.washroomDetails
+              });
+              this.setState({ isVisible: false });
+            }}
+          />
+        </Overlay>
         <GooglePlacesAutocomplete
           placeholder="Search for the building"
           minLength={2} // minimum length of text to search
@@ -48,11 +74,23 @@ class GooglePlacesInput extends Component {
           renderDescription={row => {
             return [row.description, row.name];
           }} // custom description render
-          onPress={(data, details = null) => {
-            this.props.navigation.navigate("AddWashroom", {
-              ...data,
-              ...details
+          onPress={async (data, details = null) => {
+            let washroom = await this.props.getId.refetch({
+              placeId: data.place_id
             });
+            if (washroom.data.allWashrooms[0]) {
+              this.setState({
+                data: { ...data, ...details },
+                washroomDetails: washroom.data.allWashrooms[0]
+              });
+              this.setState({ isVisible: true });
+            } else {
+              this.props.navigation.navigate("AddWashroom", {
+                ...data,
+                ...details
+              });
+              this.setState({ isVisible: false });
+            }
           }}
           getDefaultValue={() => ""}
           query={{
@@ -112,4 +150,8 @@ class GooglePlacesInput extends Component {
   }
 }
 
-export default withNavigation(GooglePlacesInput);
+export default withNavigation(
+  compose(graphql(CHECK_DUPLICATE_WASHROOM, { name: "getId" }))(
+    GooglePlacesInput
+  )
+);

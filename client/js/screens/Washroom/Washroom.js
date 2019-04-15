@@ -56,10 +56,7 @@ let checkForPhoto = item => {
   }
 };
 
-export default props => {
-  let { reviews, refetch, data } = props;
-  console.log(reviews);
-  console.log(data.listOfPhotos);
+export default ({ reviews, refetch, data }) => {
   return (
     <View>
       <Header
@@ -83,7 +80,7 @@ export default props => {
       <Text style={material.title}>Most Recent Review:</Text>
       <ListItem>
         <Left>
-          {reviews.allReviews[0].user ? (
+          {reviews.allReviews[0] ? (
             <Text style={material.caption}>
               {reviews.allReviews[0].user.name}
             </Text>
@@ -99,7 +96,7 @@ export default props => {
             disabled={true}
             starSize={5}
             maxStars={5}
-            rating={reviews.allReviews[0].rating}
+            rating={reviews.allReviews[0] ? reviews.allReviews[0] : 5}
           />
         </Right>
       </ListItem>
@@ -115,28 +112,34 @@ export default props => {
         renderContent={() => {
           return (
             <List>
-              {reviews.allReviews.map((review, index) => {
-                return (
-                  <ListItem key={index}>
-                    <Left>
-                      {review.user ? (
-                        <Text style={material.caption}>{review.user.name}</Text>
-                      ) : null}
-                    </Left>
-                    <Body>
-                      <Text>Jesus's love is here</Text>
-                    </Body>
-                    <Right>
-                      <StarRating
-                        disabled={true}
-                        starSize={5}
-                        maxStars={5}
-                        rating={review.rating}
-                      />
-                    </Right>
-                  </ListItem>
-                );
-              })}
+              {reviews.allReviews ? (
+                reviews.allReviews.map((review, index) => {
+                  return (
+                    <ListItem key={index}>
+                      <Left>
+                        {review.user ? (
+                          <Text style={material.caption}>
+                            {review.user.name}
+                          </Text>
+                        ) : null}
+                      </Left>
+                      <Body>
+                        <Text>Jesus's love is here</Text>
+                      </Body>
+                      <Right>
+                        <StarRating
+                          disabled={true}
+                          starSize={5}
+                          maxStars={5}
+                          rating={review.rating}
+                        />
+                      </Right>
+                    </ListItem>
+                  );
+                })
+              ) : (
+                <View />
+              )}
             </List>
           );
         }}
