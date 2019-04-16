@@ -37,14 +37,13 @@ const styles = StyleSheet.create({
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.state;
   }
 
   render() {
     return (
       <View
         style={{
-          height: 150,
+          height: 175,
           width: Dimensions.get("window").width,
           justifyContent: "flex-end",
           alignItems: "center"

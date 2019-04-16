@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  View,
   Container,
   Content,
   List,
@@ -43,14 +44,14 @@ class Home extends Component {
       this.setState({ refreshing: false });
     });
   };
-  originalPosition = fn => {
-    fn();
+  originalPosition = height => {
+    return height == 150 ? "100%" : 150;
   };
   render() {
     let { nav, data, location } = this.props;
     console.log(data);
     return (
-      <Container>
+      <Container style={{ backgroundColor: "#d3d3d3" }}>
         <Header
           containerStyle={{
             backgroundColor: "#ff6b6b",
@@ -69,7 +70,6 @@ class Home extends Component {
           leftComponent={
             <TouchableOpacity
               onPress={() => {
-                console.log("pressed");
                 ActionSheet.show(
                   {
                     options: BUTTONS,
@@ -112,6 +112,12 @@ class Home extends Component {
                 TouchableOpacity
                 onPress={() => nav.navigate("Washroom", { data: item })}
                 thumbnail
+                style={{
+                  backgroundColor: "white",
+                  height: 70,
+                  marginBottom: 3,
+                  marginLeft: 0
+                }}
               >
                 <Left>
                   {/* Map ListOfPhotos here as Thumbnail */}
@@ -122,6 +128,7 @@ class Home extends Component {
                   {/* //item.listOfPhotos.url}}/> */}
                   {/* //source={{uri: item.listOfPhotos[0]}}/> */}
                 </Left>
+                {console.log(item)}
                 <Body>
                   <Text>
                     {/* Here comes the Washroom name */}
@@ -133,14 +140,14 @@ class Home extends Component {
                   </Text>
                 </Body>
                 <Right>
-                  {item.toiletSeater ? (
-                    <Icon name={"toilet"} size={12} color={"black"} />
-                  ) : null}
                   <StarRating
                     disabled={true}
                     maxStars={5}
                     rating={item.overallRating}
                     starSize={12}
+                    halfStarColor="#FFDF00"
+                    emptyStarColor="#FFDF00"
+                    fullStarColor="#FFDF00"
                   />
                   <Text style={material.caption}>
                     {geolib.getDistance(
@@ -152,6 +159,16 @@ class Home extends Component {
                     )}
                     M
                   </Text>
+                  {item.toiletSeater ? (
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center"
+                      }}
+                    >
+                      <Icon name={"toilet"} size={12} color={"#d3d3d3"} />
+                    </View>
+                  ) : null}
                 </Right>
               </ListItem>
             ))}

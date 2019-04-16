@@ -22,6 +22,7 @@ const HomeStack = createStackNavigator(
     Review: ReviewScreen
   },
   {
+    initialRouteName: "Home",
     headerMode: "none"
   }
 );
@@ -43,9 +44,7 @@ const AddWashroomStack = createStackNavigator(
     AddWashroom: AddWashroomScreen,
     Camera: CameraScreen
   },
-  {
-    headerMode: "none"
-  }
+  { initialRouteName: "GoogleSearch", headerMode: "none" }
 );
 
 export default createBottomTabNavigator(

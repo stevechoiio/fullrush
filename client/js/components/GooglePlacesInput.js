@@ -147,7 +147,7 @@ class GooglePlacesInput extends Component {
                   },
                   description: {
                     fontWeight: "bold",
-                    color: "#007",
+                    color: "black",
                     borderTopWidth: 0,
                     borderBottomWidth: 0,
                     opacity: 0.9
