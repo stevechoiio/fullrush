@@ -56,7 +56,7 @@ let checkForPhoto = item => {
   }
 };
 
-export default ({ reviews, refetch, data }) => {
+export default ({ reviews, refetch, data, nav }) => {
   return (
     <View>
       <Header
@@ -77,6 +77,7 @@ export default ({ reviews, refetch, data }) => {
         <Text>Toilet Seat covers</Text>
         <Icon name="check" size={15} color="black" />
       </View>
+      <Text>2 stalls</Text>
       <Text style={material.title}>Most Recent Review:</Text>
       <ListItem>
         <Left>
@@ -96,7 +97,7 @@ export default ({ reviews, refetch, data }) => {
             disabled={true}
             starSize={5}
             maxStars={5}
-            rating={reviews.allReviews[0] ? reviews.allReviews[0] : 5}
+            rating={reviews.allReviews[0] ? reviews.allReviews[0].rating : 5}
           />
         </Right>
       </ListItem>
@@ -153,7 +154,7 @@ export default ({ reviews, refetch, data }) => {
       />
       <Button
         onPress={() => {
-          props.nav.navigate("Review", { refetch, data });
+          nav.navigate("Review", { refetch, data });
         }}
         title="review"
       />

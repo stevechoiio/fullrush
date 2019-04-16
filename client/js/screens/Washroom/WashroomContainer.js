@@ -6,7 +6,6 @@ import { GET_REVIEWS_FOR_WASHROOM } from "../../config/queries";
 export default class WashroomContainer extends Component {
   render() {
     const washroomData = this.props.navigation.getParam("data");
-
     return (
       <Query
         query={GET_REVIEWS_FOR_WASHROOM}

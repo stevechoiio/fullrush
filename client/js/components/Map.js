@@ -45,7 +45,7 @@ class Map extends Component {
     return (
       <View
         style={{
-          height: 175,
+          height: 150,
           width: Dimensions.get("window").width,
           justifyContent: "flex-end",
           alignItems: "center"
@@ -56,8 +56,8 @@ class Map extends Component {
           initialRegion={{
             latitude: this.props.location.lat,
             longitude: this.props.location.long,
-            latitudeDelta: 0.03,
-            longitudeDelta: 0.03
+            latitudeDelta: 0.001,
+            longitudeDelta: 0.001
           }}
         >
           <Marker

@@ -22,7 +22,7 @@ export const GET_ALL_WASHROOMS = gql`
   }
 `;
 export const CHECK_DUPLICATE_WASHROOM = gql`
-  query GetAllWashrooms($placeId: String!) {
+  query CheckDuplicate($placeId: String!) {
     allWashrooms(filter: { placeId: $placeId }) {
       id
       name
