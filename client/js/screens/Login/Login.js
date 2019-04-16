@@ -98,6 +98,10 @@ class Login extends Component {
             <View>
               {this.state.login ? (
                 <Header
+                  containerStyle={{
+                    backgroundColor: "#ff6b6b",
+                    justifyContent: "space-around"
+                  }}
                   centerComponent={{
                     text: "Login",
                     style: { color: "#fff", fontSize: 20 }
@@ -105,6 +109,10 @@ class Login extends Component {
                 />
               ) : (
                 <Header
+                  containerStyle={{
+                    backgroundColor: "#ff6b6b",
+                    justifyContent: "space-around"
+                  }}
                   centerComponent={{
                     text: "Sign Up",
                     style: { color: "#fff", fontSize: 20 }

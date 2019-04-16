@@ -63,15 +63,15 @@ export default createBottomTabNavigator(
 
         if (routeName === "Home") {
           icon = "toilet";
-          color = focused ? "blue" : "black";
+          color = focused ? "#ff6b6b" : "#cfd2cd";
         }
         if (routeName === "Account") {
           icon = "user";
-          color = focused ? "blue" : "black";
+          color = focused ? "#ff6b6b" : "#cfd2cd";
         }
         if (routeName === "AddWashroom") {
           icon = "plus";
-          color = focused ? "blue" : "black";
+          color = focused ? "#ff6b6b" : "#cfd2cd";
         }
         return (
           <Icon
@@ -89,7 +89,7 @@ export default createBottomTabNavigator(
           fontSize: 10
         },
         style: {
-          backgroundColor: "#ffffff"
+          backgroundColor: "#faf3dd"
         }
       }
     })

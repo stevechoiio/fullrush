@@ -6,7 +6,8 @@ import {
   GET_ALL_WASHROOMS,
   GET_ALL_WASHROOM_BY_DISTANCE
 } from "../../config/queries";
-
+import Spinner from "react-native-loading-spinner-overlay";
+var SpinnerOne = require("react-native-spinkit");
 export default class HomeContainer extends Component {
   constructor(props) {
     super(props);
@@ -35,12 +36,7 @@ export default class HomeContainer extends Component {
         }}
       >
         {({ loading, error, data, refetch }) => {
-          if (loading)
-            return (
-              <View>
-                <Text>Loading...</Text>
-              </View>
-            );
+          if (loading) return <Spinner visible={true} />;
           if (error)
             return (
               <View>

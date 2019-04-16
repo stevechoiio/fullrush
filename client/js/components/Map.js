@@ -41,7 +41,6 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.props.washrooms);
     return (
       <View
         style={{

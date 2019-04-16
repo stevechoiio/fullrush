@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard
+} from "react-native";
 import styles from "./styles";
 import { Form } from "react-final-form";
 import { Button, Header } from "react-native-elements";
@@ -58,160 +64,167 @@ class AddWashroom extends Component {
     } = this.props;
 
     return (
-      <View>
-        <Header
-          centerComponent={{
-            text: "Add New Washrooms for ",
-            style: { color: "#fff", fontSize: 20 }
-          }}
-        />
-
-        <View>
-          <Form
-            onSubmit={() => {
-              console.log("washroom submitted");
-              add_washroom({
-                variables: {
-                  name: "Thompson River University",
-                  stall: 5,
-                  overallRating: 5,
-                  toiletSeater: true
-                }
-              });
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={{ height: "100%", width: "100%" }}>
+          <Header
+            containerStyle={{
+              backgroundColor: "#ff6b6b",
+              justifyContent: "space-around"
             }}
-            validate={() => {}}
-            render={({
-              handleSubmit,
-              pristine,
-              invalid,
-              hasSubmitErrors,
-              submitError,
-              form
-            }) => (
-              <View style={styles.flexContent}>
-                <Text style={material.body1}>{name}</Text>
-                <Text style={material.body1}>{vicinity}</Text>
-
-                <Text>How many stalls were there?</Text>
-                <Spinner
-                  max={10}
-                  min={0}
-                  color="#f60"
-                  value={this.state.num}
-                  numColor="black"
-                  onNumChange={num => {
-                    this.setState({ num });
-                  }}
-                />
-                <Text>were there toilet seaters?</Text>
-                {this.state.hasSeater ? (
-                  <View>
-                    <Button
-                      title="👍"
-                      onPress={() => {
-                        this.setState({ hasSeater: true });
-                      }}
-                    />
-                    <Button
-                      title="👎"
-                      type="clear"
-                      onPress={() => {
-                        this.setState({ hasSeater: false });
-                      }}
-                    />
-                  </View>
-                ) : (
-                  <View>
-                    <Button
-                      title="👍"
-                      type="clear"
-                      onPress={() => {
-                        this.setState({ hasSeater: true });
-                      }}
-                    />
-                    <Button
-                      title="👎"
-                      onPress={() => {
-                        this.setState({ hasSeater: false });
-                      }}
-                    />
-                  </View>
-                )}
-                <Item floatingLabel>
-                  <Label>Access Instructions?</Label>
-                  <Input maxLength={50} />
-                </Item>
-                {photo ? (
-                  <Thumbnail square source={{ uri: photo.uri }} />
-                ) : (
-                  <Text>no photo</Text>
-                )}
-                <Button
-                  title="Take a photo of the washroom!"
-                  type="clear"
-                  onPress={() => {
-                    this.props.nav.navigate("Camera");
-                  }}
-                />
-
-                <TouchableOpacity
-                  onPress={async () => {
-                    try {
-                      // let washroomPhoto = await add_washroom_photo({
-                      //   variables: {
-                      //     url: photo ? photo.uri : null,
-                      //     name: "Sample Image",
-                      //     contentType: "image/png"
-                      //   }
-                      // });
-                      //{washroomPhoto 	? console.log(washroomPhoto.data.createFile.washroom.id) : console.log("Photo is empty")}
-                      // console.log("tEST MARK");
-                      // console.log(typeof washroomPhoto.data.createFile.id);
-
-                      let washroomId = await add_washroom({
-                        variables: {
-                          placeId: id,
-                          name,
-                          address: vicinity,
-                          stall: this.state.num,
-                          overallRating: 5,
-                          numberOfReviews: 1,
-                          toiletSeater: this.state.hasSeater,
-                          // listOfPhotosId: washroomPhoto.data.createFile.id,
-                          lat: location.lat,
-                          long: location.lng
-                        },
-                        refetchQueries: [
-                          {
-                            query: GET_ALL_WASHROOMS
-                          }
-                        ]
-                      });
-                      console.log(washroomId);
-
-                      this.props.navigation.navigate("Review", {
-                        data: washroomId.data.createWashroom
-                      });
-                    } catch (e) {
-                      // console.log(e);
-                      // let reviewID = await add_review({
-                      //   variables: {
-                      //     userId: this.state.userId,
-                      //     placeId: id,
-                      //     rating: this.state.starCount
-                      //   }
-                      // });
-                      this.props.navigation.navigate("Review");
-                    }
-                  }}
-                >
-                  <Text style={styles.buttonText}>Submit!</Text>
-                </TouchableOpacity>
-              </View>
-            )}
+            statusBarProps={{ barStyle: "light-content" }}
+            centerComponent={{
+              text: "Add New Washrooms for ",
+              style: { color: "#fff", fontSize: 20 }
+            }}
           />
+
+          <View>
+            <Form
+              onSubmit={() => {
+                console.log("washroom submitted");
+                add_washroom({
+                  variables: {
+                    name: "Thompson River University",
+                    stall: 5,
+                    overallRating: 5,
+                    toiletSeater: true
+                  }
+                });
+              }}
+              validate={() => {}}
+              render={({
+                handleSubmit,
+                pristine,
+                invalid,
+                hasSubmitErrors,
+                submitError,
+                form
+              }) => (
+                <View style={styles.flexContent}>
+                  <Text style={material.body1}>{name}</Text>
+                  <Text style={material.body1}>{vicinity}</Text>
+
+                  <Text>How many stalls were there?</Text>
+                  <Spinner
+                    max={10}
+                    min={0}
+                    color="#f60"
+                    value={this.state.num}
+                    numColor="black"
+                    onNumChange={num => {
+                      this.setState({ num });
+                    }}
+                  />
+                  <Text>were there toilet seaters?</Text>
+                  {this.state.hasSeater ? (
+                    <View>
+                      <Button
+                        title="👍"
+                        onPress={() => {
+                          this.setState({ hasSeater: true });
+                        }}
+                      />
+                      <Button
+                        title="👎"
+                        type="clear"
+                        onPress={() => {
+                          this.setState({ hasSeater: false });
+                        }}
+                      />
+                    </View>
+                  ) : (
+                    <View>
+                      <Button
+                        title="👍"
+                        type="clear"
+                        onPress={() => {
+                          this.setState({ hasSeater: true });
+                        }}
+                      />
+                      <Button
+                        title="👎"
+                        onPress={() => {
+                          this.setState({ hasSeater: false });
+                        }}
+                      />
+                    </View>
+                  )}
+                  <Item floatingLabel>
+                    <Label>Access Instructions?</Label>
+                    <Input maxLength={50} />
+                  </Item>
+                  {photo ? (
+                    <Thumbnail square source={{ uri: photo.uri }} />
+                  ) : (
+                    <Text>no photo</Text>
+                  )}
+                  <Button
+                    title="Take a photo of the washroom!"
+                    type="clear"
+                    onPress={() => {
+                      this.props.nav.navigate("Camera");
+                    }}
+                  />
+
+                  <TouchableOpacity
+                    onPress={async () => {
+                      try {
+                        // let washroomPhoto = await add_washroom_photo({
+                        //   variables: {
+                        //     url: photo ? photo.uri : null,
+                        //     name: "Sample Image",
+                        //     contentType: "image/png"
+                        //   }
+                        // });
+                        //{washroomPhoto 	? console.log(washroomPhoto.data.createFile.washroom.id) : console.log("Photo is empty")}
+                        // console.log("tEST MARK");
+                        // console.log(typeof washroomPhoto.data.createFile.id);
+
+                        let washroomId = await add_washroom({
+                          variables: {
+                            placeId: id,
+                            name,
+                            address: vicinity,
+                            stall: this.state.num,
+                            overallRating: 5,
+                            numberOfReviews: 1,
+                            toiletSeater: this.state.hasSeater,
+                            // listOfPhotosId: washroomPhoto.data.createFile.id,
+                            lat: location.lat,
+                            long: location.lng
+                          },
+                          refetchQueries: [
+                            {
+                              query: GET_ALL_WASHROOMS
+                            }
+                          ]
+                        });
+                        console.log(washroomId);
+
+                        this.props.navigation.navigate("Review", {
+                          data: washroomId.data.createWashroom
+                        });
+                      } catch (e) {
+                        // console.log(e);
+                        // let reviewID = await add_review({
+                        //   variables: {
+                        //     userId: this.state.userId,
+                        //     placeId: id,
+                        //     rating: this.state.starCount
+                        //   }
+                        // });
+                        this.props.navigation.navigate("Review");
+                      }
+                    }}
+                  >
+                    <Text style={styles.buttonText}>Submit!</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            />
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

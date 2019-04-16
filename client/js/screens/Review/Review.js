@@ -50,8 +50,13 @@ class Review extends Component {
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View>
+        <View style={{ width: "100%", height: "100%" }}>
           <Header
+            containerStyle={{
+              backgroundColor: "#ff6b6b",
+              justifyContent: "space-around"
+            }}
+            statusBarProps={{ barStyle: "light-content" }}
             leftComponent={<BackButton />}
             centerComponent={{
               text: "Leave a Review!",

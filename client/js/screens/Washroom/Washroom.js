@@ -60,6 +60,11 @@ export default ({ reviews, refetch, data, nav }) => {
   return (
     <View>
       <Header
+        containerStyle={{
+          backgroundColor: "#ff6b6b",
+          justifyContent: "space-around"
+        }}
+        statusBarProps={{ barStyle: "light-content" }}
         leftComponent={<BackButton />}
         centerComponent={{
           text: data.name,
