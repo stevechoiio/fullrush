@@ -13,6 +13,11 @@ export default ({ navigation, user }) => {
   return (
     <View style={styles.container}>
       <Header
+        containerStyle={{
+          backgroundColor: "#ff6b6b",
+          justifyContent: "space-around"
+        }}
+        statusBarProps={{ barStyle: "light-content" }}
         centerComponent={{
           text: "My Rewards",
           style: { color: "#fff", fontSize: 20 }

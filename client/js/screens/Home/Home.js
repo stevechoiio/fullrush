@@ -43,14 +43,22 @@ class Home extends Component {
       this.setState({ refreshing: false });
     });
   };
+  originalPosition = fn => {
+    fn();
+  };
   render() {
     let { nav, data, location } = this.props;
     console.log(data);
     return (
       <Container>
         <Header
+          containerStyle={{
+            backgroundColor: "#ff6b6b",
+            justifyContent: "space-around"
+          }}
+          statusBarProps={{ barStyle: "light-content" }}
           rightComponent={
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.originalPosition}>
               <Icon name={"map-marker-alt"} size={25} color={"white"} />
             </TouchableOpacity>
           }
@@ -81,7 +89,11 @@ class Home extends Component {
             </TouchableOpacity>
           }
         />
-        <Map location={location} washrooms={data} />
+        <Map
+          location={location}
+          washrooms={data}
+          originalPosition={this.originalPosition}
+        />
         <Content
           refreshControl={
             <RefreshControl
