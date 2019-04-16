@@ -57,6 +57,7 @@ class Map extends Component {
             latitudeDelta: 0.001,
             longitudeDelta: 0.001
           }}
+          showsMyLocationButton={true}
         >
           <Marker
             coordinate={{

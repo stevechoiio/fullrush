@@ -6,7 +6,13 @@ import {
   ScrollView,
   RefreshControl
 } from "react-native";
-import { Keyboard, TouchableWithoutFeedback } from "react-native";
+
+import { material } from "react-native-typography";
+import {
+  Keyboard,
+  TouchableWithoutFeedback,
+  TouchableOpacity
+} from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Header, Overlay, Button } from "react-native-elements";
 import { withNavigation } from "react-navigation";
@@ -66,11 +72,30 @@ class GooglePlacesInput extends Component {
             <Overlay
               isVisible={this.state.isVisible}
               onBackdropPress={() => this.setState({ isVisible: false })}
+              style={{
+                alignItems: "center",
+                justifyContent: "center"
+              }}
             >
-              <View>
-                <Text>This washroom has already been added by a user.</Text>
-                <Button
-                  title="Leave a review"
+              <View
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <Text style={material.headline}>
+                  This washroom has already been added by a user
+                </Text>
+                <TouchableOpacity
+                  style={{
+                    margin: 3,
+                    backgroundColor: "#BFD7EA",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "80%",
+                    height: 40,
+                    borderRadius: 13
+                  }}
                   onPress={() => {
                     this.props.navigation.navigate("Review", {
                       ...this.state.data,
@@ -78,16 +103,32 @@ class GooglePlacesInput extends Component {
                     });
                     this.setState({ isVisible: false });
                   }}
-                />
-                <Button
-                  title="go see the washroom"
+                >
+                  <Text style={{ ...material.title, color: "white" }}>
+                    review
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    margin: 3,
+                    backgroundColor: "#BFD7EA",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "80%",
+                    height: 40,
+                    borderRadius: 13
+                  }}
                   onPress={() => {
                     this.props.navigation.navigate("Washroom", {
                       data: this.state.washroomDetails
                     });
                     this.setState({ isVisible: false });
                   }}
-                />
+                >
+                  <Text style={{ ...material.title, color: "white" }}>
+                    washroom
+                  </Text>
+                </TouchableOpacity>
               </View>
             </Overlay>
 
@@ -138,7 +179,7 @@ class GooglePlacesInput extends Component {
                 styles={{
                   container: {
                     justifyContent: "center",
-                    backgroundColor: "#fff",
+                    backgroundColor: "#gray",
                     width: Dimensions.get("window").width,
                     marginTop: 0,
                     marginBottom: 100,
@@ -146,7 +187,6 @@ class GooglePlacesInput extends Component {
                     borderRadius: 8
                   },
                   description: {
-                    fontWeight: "bold",
                     color: "black",
                     borderTopWidth: 0,
                     borderBottomWidth: 0,

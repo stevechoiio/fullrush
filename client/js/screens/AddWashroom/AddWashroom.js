@@ -4,13 +4,16 @@ import {
   View,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Dimensions
 } from "react-native";
 import styles from "./styles";
+import MapView, { Marker } from "react-native-maps";
 import { Form } from "react-final-form";
 import { Button, Header } from "react-native-elements";
 import { graphql, compose } from "react-apollo";
 import AsyncStorage from "@react-native-community/async-storage";
+import Icon from "react-native-vector-icons/FontAwesome5";
 import {
   ADD_REVIEW,
   ADD_WASHROOM,
@@ -21,6 +24,7 @@ import { Thumbnail, Item, Input, Label } from "native-base";
 import Spinner from "react-native-number-spinner";
 import { material } from "react-native-typography";
 import { withNavigation } from "react-navigation";
+import BackButton from "../../components/BackButton";
 
 class AddWashroom extends Component {
   constructor(props) {
@@ -62,35 +66,63 @@ class AddWashroom extends Component {
       id,
       photo
     } = this.props;
-
+    {
+      console.log(this.props);
+    }
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={{ height: "100%", width: "100%" }}>
+        <View>
           <Header
             containerStyle={{
               backgroundColor: "#ff6b6b",
               justifyContent: "space-around"
             }}
             statusBarProps={{ barStyle: "light-content" }}
+            leftComponent={<BackButton />}
             centerComponent={{
-              text: "Add New Washrooms for ",
+              text: "Add New Washroom",
               style: { color: "#fff", fontSize: 20 }
             }}
           />
-
-          <View>
-            <Form
-              onSubmit={() => {
-                console.log("washroom submitted");
-                add_washroom({
-                  variables: {
-                    name: "Thompson River University",
-                    stall: 5,
-                    overallRating: 5,
-                    toiletSeater: true
-                  }
-                });
+          <View
+            style={{
+              height: 175,
+              width: Dimensions.get("window").width,
+              justifyContent: "flex-end",
+              alignItems: "center"
+            }}
+          >
+            <MapView
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0
               }}
+              initialRegion={{
+                latitude: this.props.location.lat,
+                longitude: this.props.location.lng,
+                latitudeDelta: 0.0005,
+                longitudeDelta: 0.0005
+              }}
+            >
+              <Marker
+                coordinate={{
+                  latitude: this.props.location.lat,
+                  longitude: this.props.location.lng
+                }}
+              />
+            </MapView>
+          </View>
+
+          <View
+            style={{
+              alignItems: "center"
+            }}
+          >
+            <Form
+              onSubmit={() => {}}
               validate={() => {}}
               render={({
                 handleSubmit,
@@ -100,11 +132,19 @@ class AddWashroom extends Component {
                 submitError,
                 form
               }) => (
-                <View style={styles.flexContent}>
-                  <Text style={material.body1}>{name}</Text>
+                <View
+                  style={{
+                    flex: 0,
+                    alignItems: "center",
+                    justifyContent: "space-evenly"
+                  }}
+                >
+                  <Text style={material.headline}>{name}</Text>
                   <Text style={material.body1}>{vicinity}</Text>
 
-                  <Text>How many stalls were there?</Text>
+                  <Text style={material.body1}>
+                    How many stalls were there?
+                  </Text>
                   <Spinner
                     max={10}
                     min={0}
@@ -115,7 +155,7 @@ class AddWashroom extends Component {
                       this.setState({ num });
                     }}
                   />
-                  <Text>were there toilet seaters?</Text>
+                  <Text style={material.body1}>were there toilet seaters?</Text>
                   {this.state.hasSeater ? (
                     <View>
                       <Button
@@ -150,7 +190,7 @@ class AddWashroom extends Component {
                     </View>
                   )}
                   <Item floatingLabel>
-                    <Label>Access Instructions?</Label>
+                    <Label style={material.body1}>Access Instructions?</Label>
                     <Input maxLength={50} />
                   </Item>
                   {photo ? (
@@ -158,15 +198,36 @@ class AddWashroom extends Component {
                   ) : (
                     <Text>no photo</Text>
                   )}
-                  <Button
-                    title="Take a photo of the washroom!"
-                    type="clear"
+                  <TouchableOpacity
+                    style={{
+                      margin: 3,
+                      backgroundColor: "#BFD7EA",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "100%",
+                      height: 40,
+                      borderRadius: 13
+                    }}
                     onPress={() => {
                       this.props.nav.navigate("Camera");
                     }}
-                  />
+                  >
+                    <Text style={{ ...material.title, color: "white" }}>
+                      <Icon name={"camera"} size={20} color={"white"} />
+                      Take a photo!
+                    </Text>
+                  </TouchableOpacity>
 
                   <TouchableOpacity
+                    style={{
+                      margin: 3,
+                      backgroundColor: "#BFD7EA",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "100%",
+                      height: 40,
+                      borderRadius: 13
+                    }}
                     onPress={async () => {
                       try {
                         // let washroomPhoto = await add_washroom_photo({
@@ -217,7 +278,9 @@ class AddWashroom extends Component {
                       }
                     }}
                   >
-                    <Text style={styles.buttonText}>Submit!</Text>
+                    <Text style={{ ...material.title, color: "white" }}>
+                      <Icon name={"check"} size={20} color={"white"} /> Submit
+                    </Text>
                   </TouchableOpacity>
                 </View>
               )}

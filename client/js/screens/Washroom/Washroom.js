@@ -87,9 +87,7 @@ export default ({ reviews, refetch, data, nav }) => {
           justifyContent: "space-evenly"
         }}
       >
-        <Text style={{ ...material.caption, marginTop: 10 }}>
-          {data.address}
-        </Text>
+        <Text style={{ ...material.caption }}>{data.address}</Text>
         {/* <Thumbnail square source={{ uri: foo(item.listOfPhotos) }} /> */}
         {/* <Image source={{uri: checkForPhoto(data.listOfPhotos)}}></Image> */}
         <Thumbnail square source={{ uri: checkForPhoto(data.listOfPhotos) }} />
@@ -186,64 +184,63 @@ export default ({ reviews, refetch, data, nav }) => {
           style={{
             alignItems: "center"
           }}
+        />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around"
+          }}
         >
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around"
-            }}
-          >
-            <TouchableOpacity
-              style={{
-                margin: 3,
-                backgroundColor: "#ff6b6b",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "40%",
-                height: 70,
-                borderRadius: 13
-              }}
-              onPress={() =>
-                handleGetDirections(data.locationLat, data.locationLong)
-              }
-            >
-              <Icon name={"map-marker-alt"} size={25} color={"white"} />
-              <Text style={{ ...material.title, color: "white" }}>
-                Direction
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                margin: 3,
-                backgroundColor: "#BFD7EA",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "40%",
-                height: 70,
-                borderRadius: 13
-              }}
-              onPress={() => {
-                nav.navigate("Review", { refetch, data });
-              }}
-            >
-              <Icon name={"search-location"} size={25} color={"white"} />
-              <Text style={{ ...material.title, color: "white" }}>Review</Text>
-            </TouchableOpacity>
-          </View>
           <TouchableOpacity
             style={{
+              margin: 3,
+              backgroundColor: "#ff6b6b",
               alignItems: "center",
               justifyContent: "center",
-              width: "100%",
-              height: 30
+              width: "40%",
+              height: 70,
+              borderRadius: 13
             }}
-            onPress={() => {}}
+            onPress={() =>
+              handleGetDirections(data.locationLat, data.locationLong)
+            }
           >
-            <Text style={{ ...material.caption, color: "#BFD7EA" }}>
-              Is the infromation incorrect?
+            <Icon name={"search-location"} size={17} color={"white"} />
+            <Text style={{ ...material.title, color: "white" }}>
+              directions
             </Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              margin: 3,
+              backgroundColor: "#BFD7EA",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "40%",
+              height: 70,
+              borderRadius: 13
+            }}
+            onPress={() => {
+              nav.navigate("Review", { refetch, data });
+            }}
+          >
+            <Icon name={"star"} size={17} color={"white"} />
+            <Text style={{ ...material.title, color: "white" }}>review</Text>
+          </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            height: 30
+          }}
+          onPress={() => {}}
+        >
+          <Text style={{ ...material.caption, color: "#BFD7EA" }}>
+            Is the infromation incorrect?
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
