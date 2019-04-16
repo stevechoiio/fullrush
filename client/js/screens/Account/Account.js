@@ -36,8 +36,8 @@ export default ({ navigation, user }) => {
           size={300}
           width={20}
           fill={80}
-          tintColor="#00e0ff"
-          backgroundColor="#3d5875"
+          backgroundColor="#BFD7EA"
+          tintColor="#3d5875"
         >
           {() => <Text> you have wrote {user.userReviews.length} reviews</Text>}
         </CircularProgress>

@@ -36,7 +36,7 @@ export default class HomeContainer extends Component {
         }}
       >
         {({ loading, error, data, refetch }) => {
-          if (loading) return <Spinner visible={true} />;
+          if (loading) return <Spinner visible={loading} />;
           if (error)
             return (
               <View>
