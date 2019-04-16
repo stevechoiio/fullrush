@@ -1,10 +1,10 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { material } from "react-native-typography";
 import StarRating from "react-native-star-rating";
 import getDirections from "react-native-google-maps-directions";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { Button, Header } from "react-native-elements";
+import { Header } from "react-native-elements";
 import BackButton from "../../components/BackButton";
 import {
   Accordion,
@@ -18,6 +18,7 @@ import {
   Body,
   Image
 } from "native-base";
+
 const handleGetDirections = async (lat, long) => {
   await navigator.geolocation.getCurrentPosition(pos => {
     var crd = pos.coords;
@@ -153,16 +154,21 @@ export default ({ reviews, refetch, data, nav }) => {
         expanded={-1}
       />
 
-      <Button
+      <TouchableOpacity
+        style={{ backgroundColor: "#BFD7EA", alignItems: "center" }}
         onPress={() => handleGetDirections(data.locationLat, data.locationLong)}
         title="direction"
-      />
-      <Button
+      >
+        <Text>direction</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
         onPress={() => {
           nav.navigate("Review", { refetch, data });
         }}
-        title="review"
-      />
+        style={{ backgroundColor: "#BFD7EA", alignItems: "center" }}
+      >
+        <Text>Review</Text>
+      </TouchableOpacity>
     </View>
   );
 };

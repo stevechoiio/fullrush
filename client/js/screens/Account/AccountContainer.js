@@ -4,6 +4,7 @@ import { Text, View } from "react-native";
 import { Query } from "react-apollo";
 import { GET_USER_INFO } from "../../config/queries";
 import AsyncStorage from "@react-native-community/async-storage";
+import Spinner from "react-native-loading-spinner-overlay";
 export default class AccountContainer extends Component {
   constructor(props) {
     super(props);
@@ -17,12 +18,7 @@ export default class AccountContainer extends Component {
     return (
       <Query query={GET_USER_INFO} variables={{ id: this.state.id }}>
         {({ loading, error, data }) => {
-          if (loading)
-            return (
-              <View>
-                <Text>Loading...</Text>
-              </View>
-            );
+          if (loading) return <Spinner visible={loading} />;
           if (error)
             return (
               <View>
