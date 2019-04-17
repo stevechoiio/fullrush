@@ -6,7 +6,13 @@ import {
   ScrollView,
   RefreshControl
 } from "react-native";
-import { Keyboard, TouchableWithoutFeedback } from "react-native";
+
+import { material } from "react-native-typography";
+import {
+  Keyboard,
+  TouchableWithoutFeedback,
+  TouchableOpacity
+} from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Header, Overlay, Button } from "react-native-elements";
 import { withNavigation } from "react-navigation";
@@ -66,11 +72,37 @@ class GooglePlacesInput extends Component {
             <Overlay
               isVisible={this.state.isVisible}
               onBackdropPress={() => this.setState({ isVisible: false })}
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 20
+              }}
+              height="65%"
             >
-              <View>
-                <Text>This washroom has already been added by a user.</Text>
-                <Button
-                  title="Leave a review"
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <Text style={{ ...material.headline, margin: 20 }}>
+                  This washroom has already been added by a user
+                </Text>
+                <Text style={{ ...material.body1, color: "black" }}>
+                  you can:
+                </Text>
+                <TouchableOpacity
+                  style={{
+                    margin: 3,
+                    backgroundColor: "#BFD7EA",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "80%",
+                    height: 40,
+                    borderRadius: 13
+                  }}
                   onPress={() => {
                     this.props.navigation.navigate("Review", {
                       ...this.state.data,
@@ -78,16 +110,32 @@ class GooglePlacesInput extends Component {
                     });
                     this.setState({ isVisible: false });
                   }}
-                />
-                <Button
-                  title="go see the washroom"
+                >
+                  <Text style={{ ...material.body2, color: "white" }}>
+                    leave a review
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    margin: 3,
+                    backgroundColor: "#BFD7EA",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "80%",
+                    height: 40,
+                    borderRadius: 13
+                  }}
                   onPress={() => {
                     this.props.navigation.navigate("Washroom", {
                       data: this.state.washroomDetails
                     });
                     this.setState({ isVisible: false });
                   }}
-                />
+                >
+                  <Text style={{ ...material.body2, color: "white" }}>
+                    see washroom detail
+                  </Text>
+                </TouchableOpacity>
               </View>
             </Overlay>
 
@@ -109,6 +157,7 @@ class GooglePlacesInput extends Component {
                   return [row.description, row.name];
                 }} // custom description render
                 onPress={async (data, details = null) => {
+                  console.log(data, details);
                   let washroom = await this.props.getId.refetch({
                     placeId: data.place_id
                   });
@@ -138,7 +187,7 @@ class GooglePlacesInput extends Component {
                 styles={{
                   container: {
                     justifyContent: "center",
-                    backgroundColor: "#fff",
+                    backgroundColor: "#gray",
                     width: Dimensions.get("window").width,
                     marginTop: 0,
                     marginBottom: 100,
@@ -146,8 +195,7 @@ class GooglePlacesInput extends Component {
                     borderRadius: 8
                   },
                   description: {
-                    fontWeight: "bold",
-                    color: "#007",
+                    color: "black",
                     borderTopWidth: 0,
                     borderBottomWidth: 0,
                     opacity: 0.9
@@ -179,7 +227,7 @@ class GooglePlacesInput extends Component {
                   "locality",
                   "administrative_area_level_3"
                 ]} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-                debounce={100} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+                debounce={0} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
               />
             </ScrollView>
           </View>

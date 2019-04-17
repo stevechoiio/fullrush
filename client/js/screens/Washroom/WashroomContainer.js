@@ -3,7 +3,7 @@ import Washroom from "./Washroom";
 import { Query } from "react-apollo";
 import { View, Text } from "react-native";
 import { GET_REVIEWS_FOR_WASHROOM } from "../../config/queries";
-var Spinner = require("react-native-spinkit");
+import Spinner from "react-native-loading-spinner-overlay";
 export default class WashroomContainer extends Component {
   render() {
     const washroomData = this.props.navigation.getParam("data");
@@ -13,12 +13,7 @@ export default class WashroomContainer extends Component {
         variables={{ placeId: washroomData.placeId }}
       >
         {({ loading, error, data, refetch }) => {
-          if (loading)
-            return (
-              <View>
-                <Text>loading</Text>
-              </View>
-            );
+          if (loading) return <Spinner visible={loading} />;
           if (error)
             return (
               <View>

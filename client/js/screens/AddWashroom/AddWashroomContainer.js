@@ -8,7 +8,8 @@ export default class AddWashroomContainer extends Component {
     const vicinity = navigation.getParam("vicinity");
     let { location } = navigation.getParam("geometry");
     const id = navigation.getParam("place_id");
-    const photo = navigation.getParam("photo");
+    const photos = navigation.getParam("photos");
+
     return (
       <AddWashroom
         nav={this.props.navigation}
@@ -16,7 +17,7 @@ export default class AddWashroomContainer extends Component {
         vicinity={vicinity}
         location={location}
         id={id}
-        photo={photo}
+        photos={photos}
       />
     );
   }

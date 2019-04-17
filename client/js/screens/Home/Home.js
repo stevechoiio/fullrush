@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  View,
   Container,
   Content,
   List,
@@ -18,7 +19,9 @@ import StarRating from "react-native-star-rating";
 import { material } from "react-native-typography";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Map from "../../components/Map";
+import getDirections from "react-native-google-maps-directions";
 let defaultImage = "https://dummyimage.com/600x400/000/fff";
+
 var BUTTONS = ["Distance", "Rating", "Cancel"];
 var DESTRUCTIVE_INDEX = 2;
 let checkForPhoto = item => {
@@ -37,20 +40,47 @@ class Home extends Component {
       filterDistance: true
     };
   }
+  handleGetDirections = async (lat, long) => {
+    await navigator.geolocation.getCurrentPosition(pos => {
+      var crd = pos.coords;
+      const data = {
+        source: {
+          latitude: crd.latitude,
+          longitude: crd.longitude
+        },
+        destination: {
+          latitude: lat,
+          longitude: long
+        },
+        params: [
+          {
+            key: "travelmode",
+            value: "walking"
+          },
+          {
+            key: "dir_action",
+            value: "navigate"
+          }
+        ]
+      };
+
+      getDirections(data);
+    });
+  };
   _onRefresh = () => {
     this.setState({ refreshing: true });
     this.props.refetch().then(() => {
       this.setState({ refreshing: false });
     });
   };
-  originalPosition = fn => {
-    fn();
+  originalPosition = height => {
+    return height == 150 ? "100%" : 150;
   };
   render() {
     let { nav, data, location } = this.props;
     console.log(data);
     return (
-      <Container>
+      <Container style={{ backgroundColor: "#d3d3d3" }}>
         <Header
           containerStyle={{
             backgroundColor: "#ff6b6b",
@@ -58,18 +88,26 @@ class Home extends Component {
           }}
           statusBarProps={{ barStyle: "light-content" }}
           rightComponent={
-            <TouchableOpacity onPress={this.originalPosition}>
-              <Icon name={"map-marker-alt"} size={25} color={"white"} />
+            <TouchableOpacity
+              onPress={() => {
+                this.handleGetDirections(
+                  data[0].locationLat,
+                  data[0].locationLong
+                );
+              }}
+            >
+              <Icon
+                style={{ marginRight: 5 }}
+                name={"running"}
+                size={25}
+                color={"white"}
+              />
             </TouchableOpacity>
           }
-          centerComponent={{
-            text: "Washrooms Nearby",
-            style: { color: "#fff", fontSize: 20 }
-          }}
+          centerComponent={<Icon name={"restroom"} size={25} color={"white"} />}
           leftComponent={
             <TouchableOpacity
               onPress={() => {
-                console.log("pressed");
                 ActionSheet.show(
                   {
                     options: BUTTONS,
@@ -104,7 +142,7 @@ class Home extends Component {
           dataArray={this.props.contacts}
           renderRow={row => <Row row={row} />}
         >
-          <List>
+          <List style={{ marginTop: 10 }}>
             {data.map((item, key) => (
               <ListItem
                 key={key}
@@ -112,6 +150,15 @@ class Home extends Component {
                 TouchableOpacity
                 onPress={() => nav.navigate("Washroom", { data: item })}
                 thumbnail
+                style={{
+                  borderRadius: 5,
+                  borderColor: "white",
+                  borderStyle: "solid",
+                  backgroundColor: "white",
+                  height: 70,
+                  marginBottom: 5,
+                  marginLeft: 0
+                }}
               >
                 <Left>
                   {/* Map ListOfPhotos here as Thumbnail */}
@@ -122,6 +169,7 @@ class Home extends Component {
                   {/* //item.listOfPhotos.url}}/> */}
                   {/* //source={{uri: item.listOfPhotos[0]}}/> */}
                 </Left>
+                {console.log(item)}
                 <Body>
                   <Text>
                     {/* Here comes the Washroom name */}
@@ -133,14 +181,14 @@ class Home extends Component {
                   </Text>
                 </Body>
                 <Right>
-                  {item.toiletSeater ? (
-                    <Icon name={"toilet"} size={12} color={"black"} />
-                  ) : null}
                   <StarRating
                     disabled={true}
                     maxStars={5}
                     rating={item.overallRating}
                     starSize={12}
+                    halfStarColor="#FFDF00"
+                    emptyStarColor="#FFDF00"
+                    fullStarColor="#FFDF00"
                   />
                   <Text style={material.caption}>
                     {geolib.getDistance(
@@ -152,6 +200,16 @@ class Home extends Component {
                     )}
                     M
                   </Text>
+                  {item.toiletSeater ? (
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center"
+                      }}
+                    >
+                      <Icon name={"toilet"} size={12} color={"#d3d3d3"} />
+                    </View>
+                  ) : null}
                 </Right>
               </ListItem>
             ))}

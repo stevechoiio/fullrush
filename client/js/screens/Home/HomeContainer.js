@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import { Text, View } from "react-native";
 import Home from "./Home";
 import { Query } from "react-apollo";
-import {
-  GET_ALL_WASHROOMS,
-  GET_ALL_WASHROOM_BY_DISTANCE
-} from "../../config/queries";
+import { GET_ALL_WASHROOM_BY_DISTANCE } from "../../config/queries";
 import Spinner from "react-native-loading-spinner-overlay";
-var SpinnerOne = require("react-native-spinkit");
 export default class HomeContainer extends Component {
   constructor(props) {
     super(props);
