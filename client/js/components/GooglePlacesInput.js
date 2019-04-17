@@ -73,18 +73,25 @@ class GooglePlacesInput extends Component {
               isVisible={this.state.isVisible}
               onBackdropPress={() => this.setState({ isVisible: false })}
               style={{
+                flex: 1,
                 alignItems: "center",
-                justifyContent: "center"
+                justifyContent: "center",
+                borderRadius: 20
               }}
+              height="65%"
             >
               <View
                 style={{
+                  flex: 1,
                   alignItems: "center",
                   justifyContent: "center"
                 }}
               >
-                <Text style={material.headline}>
+                <Text style={{ ...material.headline, margin: 20 }}>
                   This washroom has already been added by a user
+                </Text>
+                <Text style={{ ...material.body1, color: "black" }}>
+                  you can:
                 </Text>
                 <TouchableOpacity
                   style={{
@@ -104,8 +111,8 @@ class GooglePlacesInput extends Component {
                     this.setState({ isVisible: false });
                   }}
                 >
-                  <Text style={{ ...material.title, color: "white" }}>
-                    review
+                  <Text style={{ ...material.body2, color: "white" }}>
+                    leave a review
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -125,8 +132,8 @@ class GooglePlacesInput extends Component {
                     this.setState({ isVisible: false });
                   }}
                 >
-                  <Text style={{ ...material.title, color: "white" }}>
-                    washroom
+                  <Text style={{ ...material.body2, color: "white" }}>
+                    see washroom detail
                   </Text>
                 </TouchableOpacity>
               </View>
