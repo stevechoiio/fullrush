@@ -149,8 +149,8 @@ class Home extends Component {
                 washroom={item}
                 TouchableOpacity
                 onPress={() => nav.navigate("Washroom", { data: item })}
-                thumbnail
                 style={{
+                  justifyContent: "flex-end",
                   borderRadius: 5,
                   borderColor: "white",
                   borderStyle: "solid",
@@ -160,24 +160,16 @@ class Home extends Component {
                   marginLeft: 0
                 }}
               >
-                <Left>
-                  {/* Map ListOfPhotos here as Thumbnail */}
-                  <Thumbnail
-                    square
-                    source={{ uri: checkForPhoto(item.listOfPhotos) }}
-                  />
-                  {/* //item.listOfPhotos.url}}/> */}
-                  {/* //source={{uri: item.listOfPhotos[0]}}/> */}
-                </Left>
-                {console.log(item)}
+                <Thumbnail
+                  square
+                  source={{ uri: checkForPhoto(item.listOfPhotos) }}
+                />
+                {/* //item.listOfPhotos.url}}/> */}
+                {/* //source={{uri: item.listOfPhotos[0]}}/> */}
+
                 <Body>
-                  <Text>
-                    {/* Here comes the Washroom name */}
+                  <Text numberOfLines={2} adjustsFontSizeToFit>
                     {item.name}
-                  </Text>
-                  <Text note numberOfLines={1}>
-                    {/* Here comes the instruction of the washroom */}
-                    {item.instruction}
                   </Text>
                 </Body>
                 <Right>

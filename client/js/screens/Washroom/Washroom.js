@@ -56,7 +56,7 @@ let checkForPhoto = item => {
 
 export default ({ reviews, refetch, data, nav }) => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, justifyContent: "space-between" }}>
       <Header
         containerStyle={{
           backgroundColor: "#ff6b6b",
