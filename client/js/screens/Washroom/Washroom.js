@@ -237,7 +237,13 @@ export default ({ reviews, refetch, data, nav }) => {
           }}
           onPress={() => {}}
         >
-          <Text style={{ ...material.caption, color: "#BFD7EA" }}>
+          <Text
+            style={{
+              ...material.caption,
+              color: "#ff6b6b",
+              textDecorationLine: "underline"
+            }}
+          >
             Is the infromation incorrect?
           </Text>
         </TouchableOpacity>

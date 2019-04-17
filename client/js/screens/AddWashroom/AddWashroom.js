@@ -177,7 +177,7 @@ class AddWashroom extends Component {
                     <Text style={material.body1}>{vicinity}</Text>
 
                     <Text style={{ ...material.body1, marginTop: 10 }}>
-                      How many stalls were there?
+                      How many stalls are here?
                     </Text>
                     <SwitchSelector
                       height={50}
@@ -192,7 +192,7 @@ class AddWashroom extends Component {
                       onPress={value => this.setState({ nul: value })}
                     />
                     <Text style={{ ...material.body1, marginTop: 10 }}>
-                      were there toilet seaters?
+                      Are there toilet seat covers?
                     </Text>
 
                     <SwitchSelector
@@ -208,8 +208,11 @@ class AddWashroom extends Component {
                       onPress={value => this.setState({ hasSeater: value })}
                     />
 
-                    <Item floatingLabel>
-                      <Label style={material.body1}>Access Instructions?</Label>
+                    <Item
+                      floatingLabel
+                      style={{ marginTop: 10, marginBotton: 5 }}
+                    >
+                      <Label style={material.body1}>Access Instructions</Label>
                       <Input maxLength={50} />
                     </Item>
                     {/* {photos ? (
@@ -223,7 +226,7 @@ class AddWashroom extends Component {
                         backgroundColor: "#BFD7EA",
                         alignItems: "center",
                         justifyContent: "center",
-                        width: "100%",
+                        width: 200,
                         height: 40,
                         borderRadius: 13
                       }}
@@ -231,8 +234,18 @@ class AddWashroom extends Component {
                         this.props.nav.navigate("Camera");
                       }}
                     >
-                      <Text style={{ ...material.title, color: "white" }}>
-                        <Icon name={"camera"} size={20} color={"white"} />
+                      <Text
+                        style={{
+                          ...material.title,
+                          color: "white"
+                        }}
+                      >
+                        <Icon
+                          style={{ marginRight: 2 }}
+                          name={"camera"}
+                          size={20}
+                          color={"white"}
+                        />{" "}
                         Take a photo!
                       </Text>
                     </TouchableOpacity>
@@ -243,7 +256,7 @@ class AddWashroom extends Component {
                         backgroundColor: "#BFD7EA",
                         alignItems: "center",
                         justifyContent: "center",
-                        width: "100%",
+                        width: 200,
                         height: 40,
                         borderRadius: 13
                       }}
