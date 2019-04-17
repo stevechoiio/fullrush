@@ -19,7 +19,9 @@ import StarRating from "react-native-star-rating";
 import { material } from "react-native-typography";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Map from "../../components/Map";
+import getDirections from "react-native-google-maps-directions";
 let defaultImage = "https://dummyimage.com/600x400/000/fff";
+
 var BUTTONS = ["Distance", "Rating", "Cancel"];
 var DESTRUCTIVE_INDEX = 2;
 let checkForPhoto = item => {
@@ -38,6 +40,33 @@ class Home extends Component {
       filterDistance: true
     };
   }
+  handleGetDirections = async (lat, long) => {
+    await navigator.geolocation.getCurrentPosition(pos => {
+      var crd = pos.coords;
+      const data = {
+        source: {
+          latitude: crd.latitude,
+          longitude: crd.longitude
+        },
+        destination: {
+          latitude: lat,
+          longitude: long
+        },
+        params: [
+          {
+            key: "travelmode",
+            value: "walking"
+          },
+          {
+            key: "dir_action",
+            value: "navigate"
+          }
+        ]
+      };
+
+      getDirections(data);
+    });
+  };
   _onRefresh = () => {
     this.setState({ refreshing: true });
     this.props.refetch().then(() => {
@@ -59,8 +88,20 @@ class Home extends Component {
           }}
           statusBarProps={{ barStyle: "light-content" }}
           rightComponent={
-            <TouchableOpacity onPress={this.originalPosition}>
-              <Icon name={"map-marker-alt"} size={25} color={"white"} />
+            <TouchableOpacity
+              onPress={() => {
+                this.handleGetDirections(
+                  data[0].locationLat,
+                  data[0].locationLong
+                );
+              }}
+            >
+              <Icon
+                style={{ marginRight: 5 }}
+                name={"running"}
+                size={25}
+                color={"white"}
+              />
             </TouchableOpacity>
           }
           centerComponent={{
@@ -113,9 +154,12 @@ class Home extends Component {
                 onPress={() => nav.navigate("Washroom", { data: item })}
                 thumbnail
                 style={{
+                  borderRadius: 10,
+                  borderColor: "white",
+                  borderStyle: "solid",
                   backgroundColor: "white",
                   height: 70,
-                  marginBottom: 3,
+                  marginBottom: 5,
                   marginLeft: 0
                 }}
               >
