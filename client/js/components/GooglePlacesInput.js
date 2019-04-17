@@ -227,7 +227,7 @@ class GooglePlacesInput extends Component {
                   "locality",
                   "administrative_area_level_3"
                 ]} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-                debounce={100} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+                debounce={0} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
               />
             </ScrollView>
           </View>

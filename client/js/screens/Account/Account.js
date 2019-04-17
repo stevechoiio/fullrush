@@ -22,7 +22,7 @@ export default ({ navigation, user }) => {
           text: "My Rewards",
           style: { color: "#fff", fontSize: 20 }
         }}
-        rightComponent={() => {
+        leftComponent={() => {
           return (
             <TouchableOpacity>
               <Icon name="cog" size={25} color="white" />

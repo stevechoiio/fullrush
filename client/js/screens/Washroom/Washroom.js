@@ -70,7 +70,7 @@ export default ({ reviews, refetch, data, nav }) => {
         }}
         rightComponent={
           <TouchableOpacity
-            style={{ marginRight: 10 }}
+            style={{ marginRight: 5 }}
             onPress={() =>
               handleGetDirections(data.locationLat, data.locationLong)
             }
