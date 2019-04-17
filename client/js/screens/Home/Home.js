@@ -104,10 +104,7 @@ class Home extends Component {
               />
             </TouchableOpacity>
           }
-          centerComponent={{
-            text: "Washrooms Nearby",
-            style: { color: "#fff", fontSize: 20 }
-          }}
+          centerComponent={<Icon name={"restroom"} size={25} color={"white"} />}
           leftComponent={
             <TouchableOpacity
               onPress={() => {
@@ -145,7 +142,7 @@ class Home extends Component {
           dataArray={this.props.contacts}
           renderRow={row => <Row row={row} />}
         >
-          <List>
+          <List style={{ marginTop: 10 }}>
             {data.map((item, key) => (
               <ListItem
                 key={key}
@@ -154,7 +151,7 @@ class Home extends Component {
                 onPress={() => nav.navigate("Washroom", { data: item })}
                 thumbnail
                 style={{
-                  borderRadius: 10,
+                  borderRadius: 5,
                   borderColor: "white",
                   borderStyle: "solid",
                   backgroundColor: "white",

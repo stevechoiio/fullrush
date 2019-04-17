@@ -150,6 +150,7 @@ class GooglePlacesInput extends Component {
                   return [row.description, row.name];
                 }} // custom description render
                 onPress={async (data, details = null) => {
+                  console.log(data, details);
                   let washroom = await this.props.getId.refetch({
                     placeId: data.place_id
                   });

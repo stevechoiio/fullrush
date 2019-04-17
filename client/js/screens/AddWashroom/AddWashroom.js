@@ -6,15 +6,15 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Dimensions,
-  KeyboardAvoidingView
+  Image
 } from "react-native";
-import styles from "./styles";
 import MapView, { Marker } from "react-native-maps";
 import { Form } from "react-final-form";
 import { Button, Header } from "react-native-elements";
 import { graphql, compose } from "react-apollo";
 import AsyncStorage from "@react-native-community/async-storage";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import SwitchSelector from "react-native-switch-selector";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
   ADD_REVIEW,
@@ -27,7 +27,17 @@ import Spinner from "react-native-number-spinner";
 import { material } from "react-native-typography";
 import { withNavigation } from "react-navigation";
 import BackButton from "../../components/BackButton";
-
+const options = [
+  { label: "yes", value: "true" },
+  { label: "no", value: "false" }
+];
+const options2 = [
+  { label: "1", value: "1" },
+  { label: "2", value: "2" },
+  { label: "3", value: "3" },
+  { label: "4", value: "4" },
+  { label: "5+", value: "5" }
+];
 class AddWashroom extends Component {
   constructor(props) {
     super(props);
@@ -66,11 +76,13 @@ class AddWashroom extends Component {
       vicinity,
       location,
       id,
-      photo
+      photos
     } = this.props;
-    {
-      console.log(this.props);
-    }
+    // let photoURL = photos ? photos[0].photo_reference : null;
+    // let API_KEY = "AIzaSyAr_W5HFV59akkn9SOTu5PJr0SWz_38_NE";
+    // let imageURL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoURL}&key=${API_KEY}`;
+    // console.log(imageURL);
+
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View>
@@ -81,6 +93,18 @@ class AddWashroom extends Component {
             }}
             statusBarProps={{ barStyle: "light-content" }}
             leftComponent={<BackButton />}
+            rightComponent={() => {
+              return (
+                <TouchableOpacity>
+                  <Icon
+                    style={{ marginRight: 10 }}
+                    name={"check"}
+                    size={20}
+                    color={"white"}
+                  />
+                </TouchableOpacity>
+              );
+            }}
             centerComponent={{
               text: "Add New Washroom",
               style: { color: "#fff", fontSize: 20 }
@@ -121,7 +145,13 @@ class AddWashroom extends Component {
                 />
               </MapView>
             </View>
-
+            {/* <Image
+              style={{ width: 50, height: 50 }}
+              source={{
+                uri:
+                  "https://facebook.github.io/react-native/docs/assets/favicon.png"
+              }}
+            /> */}
             <View
               style={{
                 alignItems: "center"
@@ -140,72 +170,53 @@ class AddWashroom extends Component {
                 }) => (
                   <View
                     style={{
-                      flex: 0,
-                      alignItems: "center",
-                      justifyContent: "space-evenly"
+                      alignItems: "center"
                     }}
                   >
                     <Text style={material.headline}>{name}</Text>
                     <Text style={material.body1}>{vicinity}</Text>
 
-                    <Text style={material.body1}>
+                    <Text style={{ ...material.body1, marginTop: 10 }}>
                       How many stalls were there?
                     </Text>
-                    <Spinner
-                      max={10}
-                      min={0}
-                      color="#f60"
-                      value={this.state.num}
-                      numColor="black"
-                      onNumChange={num => {
-                        this.setState({ num });
-                      }}
+                    <SwitchSelector
+                      height={50}
+                      options={options2}
+                      fontSize={17}
+                      initial={0}
+                      textColor={"#ff6b6b"} //'#7a44cf'
+                      selectedColor={"white"}
+                      buttonColor={"#ff6b6b"}
+                      borderColor={"#ff6b6b"}
+                      hasPadding
+                      onPress={value => this.setState({ nul: value })}
                     />
-                    <Text style={material.body1}>
+                    <Text style={{ ...material.body1, marginTop: 10 }}>
                       were there toilet seaters?
                     </Text>
-                    {this.state.hasSeater ? (
-                      <View>
-                        <Button
-                          title="👍"
-                          onPress={() => {
-                            this.setState({ hasSeater: true });
-                          }}
-                        />
-                        <Button
-                          title="👎"
-                          type="clear"
-                          onPress={() => {
-                            this.setState({ hasSeater: false });
-                          }}
-                        />
-                      </View>
-                    ) : (
-                      <View>
-                        <Button
-                          title="👍"
-                          type="clear"
-                          onPress={() => {
-                            this.setState({ hasSeater: true });
-                          }}
-                        />
-                        <Button
-                          title="👎"
-                          onPress={() => {
-                            this.setState({ hasSeater: false });
-                          }}
-                        />
-                      </View>
-                    )}
+
+                    <SwitchSelector
+                      height={50}
+                      options={options}
+                      initial={1}
+                      fontSize={17}
+                      textColor={"#ff6b6b"} //'#7a44cf'
+                      selectedColor={"white"}
+                      buttonColor={"#ff6b6b"}
+                      borderColor={"#ff6b6b"}
+                      hasPadding
+                      onPress={value => this.setState({ hasSeater: value })}
+                    />
+
                     <Item floatingLabel>
                       <Label style={material.body1}>Access Instructions?</Label>
                       <Input maxLength={50} />
                     </Item>
-                    {photo ? (
-                      <Thumbnail square source={{ uri: photo.uri }} />
+                    {/* {photos ? (
+                      <Thumbnail square source={{ uri: photos.uri }} />
                     ) : (
                       <Text>no photo</Text>
-                    )}
+                    )} */}
                     <TouchableOpacity
                       style={{
                         margin: 3,
@@ -274,15 +285,7 @@ class AddWashroom extends Component {
                             data: washroomId.data.createWashroom
                           });
                         } catch (e) {
-                          // console.log(e);
-                          // let reviewID = await add_review({
-                          //   variables: {
-                          //     userId: this.state.userId,
-                          //     placeId: id,
-                          //     rating: this.state.starCount
-                          //   }
-                          // });
-                          this.props.navigation.navigate("Review");
+                          console.log(e);
                         }
                       }}
                     >
