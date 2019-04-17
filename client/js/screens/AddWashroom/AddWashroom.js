@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Storage } from 'aws-amplify';
 import {
   Text,
   View,
@@ -65,6 +66,17 @@ class AddWashroom extends Component {
     this.setState({
       starCount: rating
     });
+  }
+
+  // TODO: Function for uploading any file/photo
+  addToStorage = () => {
+    Storage.put(this.state.photo.id, 
+      this.state.photo.uri
+    )
+    .then (result => {
+      console.log('result: ', result)
+    })
+    .catch(err => console.log('error: ', err));
   }
 
   render() {
@@ -300,6 +312,7 @@ class AddWashroom extends Component {
                         } catch (e) {
                           console.log(e);
                         }
+                        
                       }}
                     >
                       <Text style={{ ...material.title, color: "white" }}>

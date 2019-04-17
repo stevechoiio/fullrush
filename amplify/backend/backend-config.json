@@ -16,5 +16,12 @@
 			"service": "S3AndCloudFront",
 			"providerPlugin": "awscloudformation"
 		}
+	},
+	"api": {},
+	"storage": {
+		"fullrushpics": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }
