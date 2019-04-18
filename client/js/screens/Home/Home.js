@@ -7,9 +7,9 @@ import {
   ListItem,
   Thumbnail,
   Text,
-  Left,
   Right,
-  Body
+  Body,
+  Separator
 } from "native-base";
 import { RefreshControl, TouchableOpacity } from "react-native";
 import { Header } from "react-native-elements";
@@ -80,7 +80,7 @@ class Home extends Component {
     let { nav, data, location } = this.props;
     console.log(data);
     return (
-      <Container style={{ backgroundColor: "#d3d3d3" }}>
+      <Container style={{ backgroundColor: "#F0F0F0" }}>
         <Header
           containerStyle={{
             backgroundColor: "#ff6b6b",
@@ -114,10 +114,17 @@ class Home extends Component {
                     destructiveButtonIndex: DESTRUCTIVE_INDEX,
                     title: "Sort by:"
                   },
-                  () => {
-                    this.setState({
-                      filterDistance: !this.state.filterDistance
-                    });
+                  a => {
+                    if (a === 1) {
+                      this.setState({
+                        filterDistance: false
+                      });
+                    } else {
+                      this.setState({
+                        filterDistance: true
+                      });
+                    }
+
                     console.log(this.state.filterDistance);
                   }
                 );
@@ -142,15 +149,48 @@ class Home extends Component {
           dataArray={this.props.contacts}
           renderRow={row => <Row row={row} />}
         >
-          <List style={{ marginTop: 10 }}>
+          <List>
+            <TouchableOpacity
+              onPress={() => {
+                ActionSheet.show(
+                  {
+                    options: BUTTONS,
+                    destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                    title: "Sort by:"
+                  },
+                  a => {
+                    if (a === 1) {
+                      this.setState({
+                        filterDistance: false
+                      });
+                    } else {
+                      this.setState({
+                        filterDistance: true
+                      });
+                    }
+
+                    console.log(this.state.filterDistance);
+                  }
+                );
+              }}
+            >
+              <Separator>
+                <Text>
+                  {this.state.filterDistance
+                    ? "sorted by distance:"
+                    : "sorted by rating:"}
+                </Text>
+              </Separator>
+            </TouchableOpacity>
+
             {data.map((item, key) => (
               <ListItem
                 key={key}
                 washroom={item}
                 TouchableOpacity
                 onPress={() => nav.navigate("Washroom", { data: item })}
-                thumbnail
                 style={{
+                  justifyContent: "flex-end",
                   borderRadius: 5,
                   borderColor: "white",
                   borderStyle: "solid",
@@ -160,24 +200,16 @@ class Home extends Component {
                   marginLeft: 0
                 }}
               >
-                <Left>
-                  {/* Map ListOfPhotos here as Thumbnail */}
-                  <Thumbnail
-                    square
-                    source={{ uri: checkForPhoto(item.listOfPhotos) }}
-                  />
-                  {/* //item.listOfPhotos.url}}/> */}
-                  {/* //source={{uri: item.listOfPhotos[0]}}/> */}
-                </Left>
-                {console.log(item)}
+                <Thumbnail
+                  square
+                  source={{ uri: checkForPhoto(item.listOfPhotos) }}
+                />
+                {/* //item.listOfPhotos.url}}/> */}
+                {/* //source={{uri: item.listOfPhotos[0]}}/> */}
+
                 <Body>
-                  <Text>
-                    {/* Here comes the Washroom name */}
+                  <Text numberOfLines={2} adjustsFontSizeToFit>
                     {item.name}
-                  </Text>
-                  <Text note numberOfLines={1}>
-                    {/* Here comes the instruction of the washroom */}
-                    {item.instruction}
                   </Text>
                 </Body>
                 <Right>

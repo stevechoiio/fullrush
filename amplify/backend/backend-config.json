@@ -1,13 +1,17 @@
 {
 	"auth": {
-		"cognitodc303424": {
+		"cognito0704d18b": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
 	},
-	"analytics": {
-		"fullrush": {
-			"service": "Pinpoint",
+	"storage": {
+		"s372998304": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		},
+		"dynamo1e44ee0b": {
+			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation"
 		}
 	},
@@ -17,11 +21,13 @@
 			"providerPlugin": "awscloudformation"
 		}
 	},
-	"api": {},
-	"storage": {
-		"fullrushpics": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation"
+	"api": {
+		"fullrushAPI": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"securityType": "AMAZON_COGNITO_USER_POOLS"
+			}
 		}
 	}
 }

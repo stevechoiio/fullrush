@@ -1,261 +1,110 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
-export const getUser = `query GetUser($id: ID!) {
-  getUser(id: $id) {
+export const getBlog = `query GetBlog($id: ID!) {
+  getBlog(id: $id) {
     id
     name
-    email
-    createdAt
-    updatedAt
-    password
-    facebookUserId
-    userReviews {
+    posts {
       items {
         id
-        rating
-        comment
-        placeId
+        title
       }
       nextToken
     }
-    gender
   }
 }
 `;
-export const listUsers = `query ListUsers(
-  $filter: ModelUserFilterInput
+export const listBlogs = `query ListBlogs(
+  $filter: ModelBlogFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       name
-      email
-      createdAt
-      updatedAt
-      password
-      facebookUserId
-      userReviews {
+      posts {
         nextToken
       }
-      gender
     }
     nextToken
   }
 }
 `;
-export const getWashroom = `query GetWashroom($id: ID!) {
-  getWashroom(id: $id) {
+export const getPost = `query GetPost($id: ID!) {
+  getPost(id: $id) {
     id
-    name
-    stall
-    listOfPhotos {
+    title
+    blog {
+      id
+      name
+      posts {
+        nextToken
+      }
+    }
+    comments {
       items {
         id
-        contentType
-        name
-        url
-        date
+        content
       }
       nextToken
     }
-    listOfReviews {
-      items {
-        id
-        rating
-        comment
-        placeId
-      }
-      nextToken
-    }
-    toiletSeater
-    overallRating
-    numberOfReviews
-    instruction
-    address
-    locationLat
-    locationLong
-    hoursFrom
-    hoursTo
-    placeId
   }
 }
 `;
-export const listWashrooms = `query ListWashrooms(
-  $filter: ModelWashroomFilterInput
+export const listPosts = `query ListPosts(
+  $filter: ModelPostFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listWashrooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
-      stall
-      listOfPhotos {
+      title
+      blog {
+        id
+        name
+      }
+      comments {
         nextToken
       }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
     }
     nextToken
   }
 }
 `;
-export const getReview = `query GetReview($id: ID!) {
-  getReview(id: $id) {
+export const getComment = `query GetComment($id: ID!) {
+  getComment(id: $id) {
     id
-    user {
+    content
+    post {
       id
-      name
-      email
-      createdAt
-      updatedAt
-      password
-      facebookUserId
-      userReviews {
+      title
+      blog {
+        id
+        name
+      }
+      comments {
         nextToken
       }
-      gender
     }
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    rating
-    comment
-    placeId
   }
 }
 `;
-export const listReviews = `query ListReviews(
-  $filter: ModelReviewFilterInput
+export const listComments = `query ListComments(
+  $filter: ModelCommentFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listReviews(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      user {
+      content
+      post {
         id
-        name
-        email
-        createdAt
-        updatedAt
-        password
-        facebookUserId
-        gender
+        title
       }
-      washroom {
-        id
-        name
-        stall
-        toiletSeater
-        overallRating
-        numberOfReviews
-        instruction
-        address
-        locationLat
-        locationLong
-        hoursFrom
-        hoursTo
-        placeId
-      }
-      rating
-      comment
-      placeId
-    }
-    nextToken
-  }
-}
-`;
-export const getPhoto = `query GetPhoto($id: ID!) {
-  getPhoto(id: $id) {
-    id
-    contentType
-    name
-    url
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    date
-  }
-}
-`;
-export const listPhotos = `query ListPhotos(
-  $filter: ModelPhotoFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listPhotos(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      contentType
-      name
-      url
-      washroom {
-        id
-        name
-        stall
-        toiletSeater
-        overallRating
-        numberOfReviews
-        instruction
-        address
-        locationLat
-        locationLong
-        hoursFrom
-        hoursTo
-        placeId
-      }
-      date
     }
     nextToken
   }

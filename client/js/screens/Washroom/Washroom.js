@@ -56,7 +56,7 @@ let checkForPhoto = item => {
 
 export default ({ reviews, refetch, data, nav }) => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, justifyContent: "space-between" }}>
       <Header
         containerStyle={{
           backgroundColor: "#ff6b6b",
@@ -198,14 +198,14 @@ export default ({ reviews, refetch, data, nav }) => {
               alignItems: "center",
               justifyContent: "center",
               width: "40%",
-              height: 70,
+              height: 50,
               borderRadius: 13
             }}
             onPress={() =>
               handleGetDirections(data.locationLat, data.locationLong)
             }
           >
-            <Icon name={"search-location"} size={17} color={"white"} />
+            <Icon name={"search-location"} size={14} color={"white"} />
             <Text style={{ ...material.title, color: "white" }}>
               directions
             </Text>
@@ -217,14 +217,14 @@ export default ({ reviews, refetch, data, nav }) => {
               alignItems: "center",
               justifyContent: "center",
               width: "40%",
-              height: 70,
+              height: 50,
               borderRadius: 13
             }}
             onPress={() => {
               nav.navigate("Review", { refetch, data });
             }}
           >
-            <Icon name={"star"} size={17} color={"white"} />
+            <Icon name={"star"} size={14} color={"white"} />
             <Text style={{ ...material.title, color: "white" }}>review</Text>
           </TouchableOpacity>
         </View>

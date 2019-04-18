@@ -1,0 +1,10 @@
+{
+    "AppSyncApiName": "fullrushAPI",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito0704d18b",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

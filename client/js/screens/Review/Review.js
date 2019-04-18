@@ -4,12 +4,11 @@ import {
   View,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Keyboard,
-  TextInput
+  Keyboard
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { material } from "react-native-typography";
-import { Header } from "react-native-elements";
+import { Header, Overlay, Button } from "react-native-elements";
 import { Item, Input, Label } from "native-base";
 import StarRating from "react-native-star-rating";
 import { graphql, compose } from "react-apollo";
@@ -26,7 +25,8 @@ class Review extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: null
+      userId: null,
+      alert: false
     };
   }
   componentDidMount = async () => {
@@ -39,22 +39,97 @@ class Review extends Component {
       [criteria]: rating
     });
   }
-
-  render() {
-    let { add_review, update_washroom_rating } = this.props;
+  addReview = async () => {
+    const {
+      washroomData,
+      add_review,
+      update_washroom_rating,
+      nav
+    } = this.props;
     let overallRating, numberOfReviews;
-    if (this.props.washroomData) {
-      overallRating = this.props.washroomData.overallRating;
-      numberOfReviews = this.props.washroomData.numberOfReviews;
+    if (washroomData) {
+      overallRating = washroomData.overallRating;
+      numberOfReviews = washroomData.numberOfReviews;
     } else {
       overallRating = 0;
       numberOfReviews = 0;
     }
+    this.setState({ alert: true });
+    let stateCopy = { ...this.state };
+    delete stateCopy.userId;
+    let total = Object.values(stateCopy).reduce((a, b) => a + b) / 5;
+
+    let reviewID = await add_review({
+      variables: {
+        userId: this.state.userId,
+        washroomId: washroomData.id,
+        rating: total,
+        lightRating: this.state.light,
+        dryingRating: this.state.drying,
+        toiletRating: this.state.toilet,
+        sinkRating: this.state.sink,
+        easeRating: this.state.ease,
+        comment: "none",
+        placeId: washroomData.placeId
+      }
+    });
+    let newOverall =
+      (overallRating * numberOfReviews + total) / (numberOfReviews + 1);
+
+    let updateID = await update_washroom_rating({
+      variables: {
+        id: this.props.washroomData.id,
+        overallRating: newOverall,
+        numberOfReviews: numberOfReviews + 1
+      },
+      refetchQueries: [
+        {
+          query: GET_ALL_WASHROOMS
+        },
+        {
+          query: GET_REVIEWS_FOR_WASHROOM,
+          variables: {
+            placeId: washroomData.placeId
+          }
+        }
+      ]
+    });
+
+    this.setState({ alert: false });
+    nav.navigate("Home");
+  };
+  render() {
+    let { add_review, update_washroom_rating } = this.props;
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View behavior="padding">
-          <View style={{ width: "100%", height: "100%" }}>
+          <Overlay
+            isVisible={this.state.alert}
+            onBackdropPress={() => this.setState({ isVisible: false })}
+            overlayStyle={{ borderRadius: 20 }}
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+            height="35%"
+          >
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 20
+              }}
+            >
+              <Icon name={"check-circle"} size={70} color={"#ff6b6b"} />
+              <Text style={{ ...material.headline, margin: 20 }}>
+                Thank you!
+              </Text>
+            </View>
+          </Overlay>
+          <View style={{ flex: 0, justifyContent: "space-between" }}>
             <Header
               containerStyle={{
                 backgroundColor: "#ff6b6b",
@@ -68,7 +143,7 @@ class Review extends Component {
               }}
               rightComponent={() => {
                 return (
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={this.addReview}>
                     <Icon
                       style={{ marginRight: 10 }}
                       name={"check"}
@@ -83,12 +158,11 @@ class Review extends Component {
               resetScrollToCoords={{ x: 0, y: 0 }}
               scrollEnabled={false}
             >
-              <View>
+              <View style={{ flex: 0, justifyContent: "flex-end" }}>
                 <View
                   style={{
                     marginLeft: 40,
                     marginRight: 40,
-                    justifyContent: "center",
                     padding: 10
                   }}
                 >
@@ -191,7 +265,6 @@ class Review extends Component {
                 </View>
                 <View
                   style={{
-                    justifyContent: "center",
                     alignItems: "center"
                   }}
                 >
@@ -205,51 +278,7 @@ class Review extends Component {
                       height: 40,
                       borderRadius: 13
                     }}
-                    onPress={async () => {
-                      let stateCopy = { ...this.state };
-                      delete stateCopy.userId;
-                      let total =
-                        Object.values(stateCopy).reduce((a, b) => a + b) / 5;
-
-                      let reviewID = await add_review({
-                        variables: {
-                          userId: this.state.userId,
-                          washroomId: this.props.washroomData.id,
-                          rating: total,
-                          lightRating: this.state.light,
-                          dryingRating: this.state.drying,
-                          toiletRating: this.state.toilet,
-                          sinkRating: this.state.sink,
-                          easeRating: this.state.ease,
-                          comment: "none",
-                          placeId: this.props.washroomData.placeId
-                        }
-                      });
-                      let newOverall =
-                        (overallRating * numberOfReviews + total) /
-                        (numberOfReviews + 1);
-                      console.log(newOverall);
-                      let updateID = await update_washroom_rating({
-                        variables: {
-                          id: this.props.washroomData.id,
-                          overallRating: newOverall,
-                          numberOfReviews: numberOfReviews + 1
-                        },
-                        refetchQueries: [
-                          {
-                            query: GET_ALL_WASHROOMS
-                          },
-                          {
-                            query: GET_REVIEWS_FOR_WASHROOM,
-                            variables: {
-                              placeId: this.props.washroomData.placeId
-                            }
-                          }
-                        ]
-                      });
-
-                      this.props.nav.navigate("Home");
-                    }}
+                    onPress={this.addReview}
                   >
                     <Text style={{ ...material.title, color: "white" }}>
                       <Icon name={"check"} size={20} color={"white"} /> Submit

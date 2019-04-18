@@ -13,7 +13,7 @@ export default class WashroomContainer extends Component {
         variables={{ placeId: washroomData.placeId }}
       >
         {({ loading, error, data, refetch }) => {
-          if (loading) return <Spinner visible={loading} />;
+          if (loading) return <Spinner visible={true} />;
           if (error)
             return (
               <View>
