@@ -22,15 +22,11 @@ import {
   ADD_WASHROOM_PHOTO,
   GET_ALL_WASHROOMS
 } from "../../config/queries";
-import { Thumbnail, Item, Input, Label } from "native-base";
-import Spinner from "react-native-number-spinner";
+import { Item, Input, Label } from "native-base";
 import { material } from "react-native-typography";
 import { withNavigation } from "react-navigation";
 import BackButton from "../../components/BackButton";
-const options = [
-  { label: "yes", value: "true" },
-  { label: "no", value: "false" }
-];
+const options = [{ label: "yes", value: true }, { label: "no", value: false }];
 const options2 = [
   { label: "1", value: "1" },
   { label: "2", value: "2" },
@@ -56,7 +52,6 @@ class AddWashroom extends Component {
   }
   componentDidMount = async () => {
     this.setState({ num: 3 });
-
     AsyncStorage.getItem("id").then(userId => {
       this.setState({ userId });
     });
@@ -189,9 +184,9 @@ class AddWashroom extends Component {
                         How many stalls are here?
                       </Text>
                       <SwitchSelector
-                        height={50}
+                        height={40}
                         options={options2}
-                        fontSize={17}
+                        fontSize={20}
                         initial={0}
                         textColor={"#ff6b6b"} //'#7a44cf'
                         selectedColor={"white"}
@@ -205,10 +200,10 @@ class AddWashroom extends Component {
                       </Text>
 
                       <SwitchSelector
-                        height={50}
+                        height={40}
                         options={options}
                         initial={1}
-                        fontSize={17}
+                        fontSize={20}
                         textColor={"#ff6b6b"} //'#7a44cf'
                         selectedColor={"white"}
                         buttonColor={"#ff6b6b"}
@@ -290,8 +285,8 @@ class AddWashroom extends Component {
                                 name,
                                 address: vicinity,
                                 stall: this.state.num,
-                                overallRating: 5,
-                                numberOfReviews: 1,
+                                overallRating: 0,
+                                numberOfReviews: 0,
                                 toiletSeater: this.state.hasSeater,
                                 // listOfPhotosId: washroomPhoto.data.createFile.id,
                                 lat: location.lat,
@@ -303,7 +298,6 @@ class AddWashroom extends Component {
                                 }
                               ]
                             });
-                            console.log(washroomId);
 
                             this.props.navigation.navigate("Review", {
                               data: washroomId.data.createWashroom

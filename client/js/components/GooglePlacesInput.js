@@ -72,25 +72,26 @@ class GooglePlacesInput extends Component {
             <Overlay
               isVisible={this.state.isVisible}
               onBackdropPress={() => this.setState({ isVisible: false })}
+              overlayStyle={{ borderRadius: 20 }}
               style={{
                 flex: 1,
                 alignItems: "center",
-                justifyContent: "center",
-                borderRadius: 20
+                justifyContent: "center"
               }}
-              height="65%"
+              height="45%"
             >
               <View
                 style={{
                   flex: 1,
                   alignItems: "center",
-                  justifyContent: "center"
+                  justifyContent: "center",
+                  borderRadius: 20
                 }}
               >
                 <Text style={{ ...material.headline, margin: 20 }}>
                   This washroom has already been added by a user
                 </Text>
-                <Text style={{ ...material.body1, color: "black" }}>
+                <Text style={{ ...material.body1, color: "gray" }}>
                   you can:
                 </Text>
                 <TouchableOpacity
@@ -157,7 +158,6 @@ class GooglePlacesInput extends Component {
                   return [row.description, row.name];
                 }} // custom description render
                 onPress={async (data, details = null) => {
-                  console.log(data, details);
                   let washroom = await this.props.getId.refetch({
                     placeId: data.place_id
                   });

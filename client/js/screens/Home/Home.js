@@ -80,7 +80,7 @@ class Home extends Component {
     let { nav, data, location } = this.props;
     console.log(data);
     return (
-      <Container style={{ backgroundColor: "#d3d3d3" }}>
+      <Container style={{ backgroundColor: "#F0F0F0" }}>
         <Header
           containerStyle={{
             backgroundColor: "#ff6b6b",

@@ -4,8 +4,7 @@ import {
   View,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Keyboard,
-  TextInput
+  Keyboard
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { material } from "react-native-typography";

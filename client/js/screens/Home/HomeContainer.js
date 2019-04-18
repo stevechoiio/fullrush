@@ -32,32 +32,24 @@ export default class HomeContainer extends Component {
         }}
       >
         {({ loading, error, data, refetch }) => {
-          if (loading) return <Spinner visible={loading} />;
-          if (error)
+          if (loading) return <Spinner visible={true} />;
+          if (error) {
             return (
               <View>
                 <Text>Error...</Text>
                 <Text>{error.message}</Text>
               </View>
             );
-
-          if (!data.allWashrooms[0]) {
-            console.log(data);
-            return (
-              <View>
-                <Text>Hello...</Text>
-              </View>
-            );
-          } else {
-            return (
-              <Home
-                nav={this.props.navigation}
-                refetch={refetch}
-                data={data.allWashrooms}
-                location={this.state}
-              />
-            );
           }
+
+          return (
+            <Home
+              nav={this.props.navigation}
+              refetch={refetch}
+              data={data.allWashrooms}
+              location={this.state}
+            />
+          );
         }}
       </Query>
     );
