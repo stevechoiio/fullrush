@@ -1,6 +1,6 @@
 projects:
   fullrushAPI:
-    schemaPath: client/src/graphql/schema.json
+    schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.js
     excludes:
