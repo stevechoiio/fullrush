@@ -16,6 +16,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import SwitchSelector from "react-native-switch-selector";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import AwesomeAlert from "react-native-awesome-alerts";
 import {
   ADD_REVIEW,
   ADD_WASHROOM,
@@ -26,7 +27,7 @@ import { Item, Input, Label } from "native-base";
 import { material } from "react-native-typography";
 import { withNavigation } from "react-navigation";
 import BackButton from "../../components/BackButton";
-const options = [{ label: "yes", value: true }, { label: "no", value: false }];
+const options = [{ label: "Yes", value: true }, { label: "No", value: false }];
 const options2 = [
   { label: "1", value: "1" },
   { label: "2", value: "2" },
@@ -50,6 +51,7 @@ class AddWashroom extends Component {
       photo: null
     };
   }
+
   componentDidMount = async () => {
     this.setState({ num: 3 });
     AsyncStorage.getItem("id").then(userId => {
@@ -106,6 +108,7 @@ class AddWashroom extends Component {
                 style: { color: "#fff", fontSize: 20 }
               }}
             />
+
             <KeyboardAwareScrollView
               resetScrollToCoords={{ x: 0, y: 0 }}
               scrollEnabled={false}

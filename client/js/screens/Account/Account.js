@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { CircularProgress } from "react-native-circular-progress";
 import styles from "./styles";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { material } from "react-native-typography";
 export default ({ navigation, user }) => {
   _signOutAsync = async () => {
     await AsyncStorage.clear();
@@ -31,7 +32,7 @@ export default ({ navigation, user }) => {
         }}
       />
       <View style={styles.container}>
-        <Text>Hello, {user.name}!</Text>
+        <Text style={material.display1}>Hello, {user.name}!</Text>
         <CircularProgress
           size={300}
           width={20}
@@ -39,11 +40,25 @@ export default ({ navigation, user }) => {
           backgroundColor="#BFD7EA"
           tintColor="#3d5875"
         >
-          {() => <Text> you have wrote {user.userReviews.length} reviews</Text>}
+          {() => (
+            <Text style={material.button}>
+              you have wrote {user.userReviews.length} reviews
+            </Text>
+          )}
         </CircularProgress>
       </View>
-      <TouchableOpacity onPress={_signOutAsync}>
-        <Text>Log Out</Text>
+      <TouchableOpacity
+        style={{
+          margin: 3,
+          alignItems: "center",
+          justifyContent: "center",
+          width: "40%",
+          height: 50,
+          borderRadius: 13
+        }}
+        onPress={_signOutAsync}
+      >
+        <Text style={{ ...material.title, color: "#BFD7EA" }}>Log Out</Text>
       </TouchableOpacity>
     </View>
   );

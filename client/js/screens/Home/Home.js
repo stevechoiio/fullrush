@@ -7,9 +7,9 @@ import {
   ListItem,
   Thumbnail,
   Text,
-  Left,
   Right,
-  Body
+  Body,
+  Separator
 } from "native-base";
 import { RefreshControl, TouchableOpacity } from "react-native";
 import { Header } from "react-native-elements";
@@ -114,10 +114,17 @@ class Home extends Component {
                     destructiveButtonIndex: DESTRUCTIVE_INDEX,
                     title: "Sort by:"
                   },
-                  () => {
-                    this.setState({
-                      filterDistance: !this.state.filterDistance
-                    });
+                  a => {
+                    if (a === 1) {
+                      this.setState({
+                        filterDistance: false
+                      });
+                    } else {
+                      this.setState({
+                        filterDistance: true
+                      });
+                    }
+
                     console.log(this.state.filterDistance);
                   }
                 );
@@ -142,7 +149,40 @@ class Home extends Component {
           dataArray={this.props.contacts}
           renderRow={row => <Row row={row} />}
         >
-          <List style={{ marginTop: 10 }}>
+          <List>
+            <TouchableOpacity
+              onPress={() => {
+                ActionSheet.show(
+                  {
+                    options: BUTTONS,
+                    destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                    title: "Sort by:"
+                  },
+                  a => {
+                    if (a === 1) {
+                      this.setState({
+                        filterDistance: false
+                      });
+                    } else {
+                      this.setState({
+                        filterDistance: true
+                      });
+                    }
+
+                    console.log(this.state.filterDistance);
+                  }
+                );
+              }}
+            >
+              <Separator>
+                <Text>
+                  {this.state.filterDistance
+                    ? "sorted by distance:"
+                    : "sorted by rating:"}
+                </Text>
+              </Separator>
+            </TouchableOpacity>
+
             {data.map((item, key) => (
               <ListItem
                 key={key}
