@@ -1,19 +1,20 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "fullrush-20190415211635-authRole",
-            "UnauthRoleArn": "arn:aws:iam::973706607165:role/fullrush-20190415211635-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::973706607165:role/fullrush-20190415211635-authRole",
+            "AuthRoleName": "fullrush-20190417201229-authRole",
+            "UnauthRoleArn": "arn:aws:iam::102255394098:role/fullrush-20190417201229-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::102255394098:role/fullrush-20190417201229-authRole",
             "Region": "us-west-2",
-            "DeploymentBucketName": "fullrush-20190415211635-deployment",
-            "UnauthRoleName": "fullrush-20190415211635-unauthRole",
-            "StackName": "fullrush-20190415211635",
-            "StackId": "arn:aws:cloudformation:us-west-2:973706607165:stack/fullrush-20190415211635/6dac6fa0-5ffe-11e9-a1ab-0660270eccea"
+            "DeploymentBucketName": "fullrush-20190417201229-deployment",
+            "UnauthRoleName": "fullrush-20190417201229-unauthRole",
+            "StackName": "fullrush-20190417201229",
+            "StackId": "arn:aws:cloudformation:us-west-2:102255394098:stack/fullrush-20190417201229/cd1f4a90-6187-11e9-9963-0a1528792fce"
         },
         "categories": {
             "auth": {
-                "cognitodc303424": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"502695646937785\",\"client_secret\":\"2a7256ce8fbb903e01842732a3ecb77f\"}]"
+                "cognito0704d18b": {
+                    "facebookAppId": "428062801100184",
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"428062801100184\",\"client_secret\":\"cdc5e7b001c228822368650b044b1008\"}]"
                 }
             }
         }

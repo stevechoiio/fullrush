@@ -1,12 +1,12 @@
 {
-    "identityPoolName": "fullrush_identitypool_7084fdb2",
-    "allowUnauthenticatedIdentities": false,
-    "lambdaLogPolicy": "fullrush_lambda_log_policy",
-    "openIdLambdaRoleName": "fullrush_openid_lambda_role",
-    "openIdRolePolicy": "fullrush_openid_pass_role_policy",
-    "openIdLambdaIAMPolicy": "fullrush_openid_lambda_iam_policy",
-    "openIdLogPolicy": "fullrush_openid_lambda_log_policy",
-    "userPoolName": "cognitodc303424_userpool_803279bd",
+    "identityPoolName": "cognito0704d18b_identitypool_0704d18b",
+    "allowUnauthenticatedIdentities": true,
+    "lambdaLogPolicy": "cognito0704d18b_lambda_log_policy",
+    "openIdLambdaRoleName": "cognito0704d18b_openid_lambda_role",
+    "openIdRolePolicy": "cognito0704d18b_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "cognito0704d18b_openid_lambda_iam_policy",
+    "openIdLogPolicy": "cognito0704d18b_openid_lambda_log_policy",
+    "userPoolName": "cognito0704d18b_userpool_0704d18b",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -14,25 +14,24 @@
     "mfaTypes": [
         "SMS Text Message"
     ],
-    "roleName": "cognitodc303424_sns-role",
-    "roleExternalId": "cognitodc303424_role_external_id",
-    "policyName": "cognitodc303424-sns-policy",
+    "roleName": "cognito0704d18b_sns-role",
+    "roleExternalId": "cognito0704d18b_role_external_id",
+    "policyName": "cognito0704d18b-sns-policy",
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
-    "defaultPasswordPolicy": false,
+    "defaultPasswordPolicy": true,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
         "Requires Lowercase",
-        "Requires Uppercase",
         "Requires Numbers",
         "Requires Symbols"
     ],
     "requiredAttributes": [
         "email"
     ],
-    "userpoolClientName": "cognitodc303424_app_client",
+    "userpoolClientName": "cognito0704d18b_app_client",
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
@@ -41,16 +40,16 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "mfaLambdaRole": "cognitodc303424_totp_lambda_role",
-    "mfaLambdaLogPolicy": "cognitodc303424_totp_lambda_log_policy",
-    "mfaPassRolePolicy": "cognitodc303424_totp_pass_role_policy",
-    "mfaLambdaIAMPolicy": "cognitodc303424_totp_lambda_iam_policy",
-    "userpoolClientLambdaRole": "cognitodc303424_userpoolclient_lambda_role",
-    "userpoolClientLogPolicy": "cognitodc303424_userpoolclient_lambda_log_policy",
-    "userpoolClientLambdaPolicy": "cognitodc303424_userpoolclient_lambda_iam_policy",
+    "mfaLambdaRole": "cognito0704d18b_totp_lambda_role",
+    "mfaLambdaLogPolicy": "cognito0704d18b_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "cognito0704d18b_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "cognito0704d18b_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "cognito0704d18b_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "cognito0704d18b_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "cognito0704d18b_userpoolclient_lambda_iam_policy",
     "userpoolClientSetAttributes": false,
+    "resourceName": "cognito0704d18b",
     "authSelections": "identityPoolAndUserPool",
-    "resourceName": "cognitodc303424",
     "authRoleName": {
         "Ref": "AuthRoleName"
     },
@@ -69,12 +68,21 @@
             "Arn"
         ]
     },
+    "useDefault": "manual",
     "hostedUI": true,
-    "useDefault": "defaultSocial",
-    "hostedUIDomainName": "fullrush68142cc7-68142cc7",
+    "usernameAttributes": [
+        "email"
+    ],
+    "hostedUIDomainName": "fullrush0704d18b-0704d18b",
     "authProvidersUserPool": [
         "Facebook"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,default\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}}]",
+    "thirdPartyAuth": true,
+    "authProviders": [
+        "graph.facebook.com"
+    ],
+    "addCallbackOnUpdate": false,
+    "addLogoutOnUpdate": false,
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://localhost:8081/\"],\"LogoutURLs\":[\"https://localhost:8081/\"]}"
 }

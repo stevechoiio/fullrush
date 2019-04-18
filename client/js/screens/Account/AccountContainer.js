@@ -18,7 +18,7 @@ export default class AccountContainer extends Component {
     return (
       <Query query={GET_USER_INFO} variables={{ id: this.state.id }}>
         {({ loading, error, data }) => {
-          if (loading) return <Spinner visible={loading} />;
+          if (loading) return <Spinner visible={true} />;
           if (error)
             return (
               <View>
