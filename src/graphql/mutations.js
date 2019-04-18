@@ -1,402 +1,162 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
-export const createUser = `mutation CreateUser($input: CreateUserInput!) {
-  createUser(input: $input) {
+export const createBlog = `mutation CreateBlog($input: CreateBlogInput!) {
+  createBlog(input: $input) {
     id
     name
-    email
-    createdAt
-    updatedAt
-    password
-    facebookUserId
-    userReviews {
+    posts {
       items {
         id
-        rating
-        comment
-        placeId
+        title
       }
       nextToken
     }
-    gender
   }
 }
 `;
-export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
-  updateUser(input: $input) {
+export const updateBlog = `mutation UpdateBlog($input: UpdateBlogInput!) {
+  updateBlog(input: $input) {
     id
     name
-    email
-    createdAt
-    updatedAt
-    password
-    facebookUserId
-    userReviews {
+    posts {
       items {
         id
-        rating
-        comment
-        placeId
+        title
       }
       nextToken
     }
-    gender
   }
 }
 `;
-export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
-  deleteUser(input: $input) {
+export const deleteBlog = `mutation DeleteBlog($input: DeleteBlogInput!) {
+  deleteBlog(input: $input) {
     id
     name
-    email
-    createdAt
-    updatedAt
-    password
-    facebookUserId
-    userReviews {
+    posts {
       items {
         id
-        rating
-        comment
-        placeId
+        title
       }
       nextToken
     }
-    gender
   }
 }
 `;
-export const createWashroom = `mutation CreateWashroom($input: CreateWashroomInput!) {
-  createWashroom(input: $input) {
+export const createPost = `mutation CreatePost($input: CreatePostInput!) {
+  createPost(input: $input) {
     id
-    name
-    stall
-    listOfPhotos {
+    title
+    blog {
+      id
+      name
+      posts {
+        nextToken
+      }
+    }
+    comments {
       items {
         id
-        contentType
+        content
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updatePost = `mutation UpdatePost($input: UpdatePostInput!) {
+  updatePost(input: $input) {
+    id
+    title
+    blog {
+      id
+      name
+      posts {
+        nextToken
+      }
+    }
+    comments {
+      items {
+        id
+        content
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deletePost = `mutation DeletePost($input: DeletePostInput!) {
+  deletePost(input: $input) {
+    id
+    title
+    blog {
+      id
+      name
+      posts {
+        nextToken
+      }
+    }
+    comments {
+      items {
+        id
+        content
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createComment = `mutation CreateComment($input: CreateCommentInput!) {
+  createComment(input: $input) {
+    id
+    content
+    post {
+      id
+      title
+      blog {
+        id
         name
-        url
-        date
       }
-      nextToken
-    }
-    listOfReviews {
-      items {
-        id
-        rating
-        comment
-        placeId
+      comments {
+        nextToken
       }
-      nextToken
     }
-    toiletSeater
-    overallRating
-    numberOfReviews
-    instruction
-    address
-    locationLat
-    locationLong
-    hoursFrom
-    hoursTo
-    placeId
   }
 }
 `;
-export const updateWashroom = `mutation UpdateWashroom($input: UpdateWashroomInput!) {
-  updateWashroom(input: $input) {
+export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!) {
+  updateComment(input: $input) {
     id
-    name
-    stall
-    listOfPhotos {
-      items {
+    content
+    post {
+      id
+      title
+      blog {
         id
-        contentType
         name
-        url
-        date
       }
-      nextToken
-    }
-    listOfReviews {
-      items {
-        id
-        rating
-        comment
-        placeId
+      comments {
+        nextToken
       }
-      nextToken
     }
-    toiletSeater
-    overallRating
-    numberOfReviews
-    instruction
-    address
-    locationLat
-    locationLong
-    hoursFrom
-    hoursTo
-    placeId
   }
 }
 `;
-export const deleteWashroom = `mutation DeleteWashroom($input: DeleteWashroomInput!) {
-  deleteWashroom(input: $input) {
+export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!) {
+  deleteComment(input: $input) {
     id
-    name
-    stall
-    listOfPhotos {
-      items {
+    content
+    post {
+      id
+      title
+      blog {
         id
-        contentType
         name
-        url
-        date
       }
-      nextToken
+      comments {
+        nextToken
+      }
     }
-    listOfReviews {
-      items {
-        id
-        rating
-        comment
-        placeId
-      }
-      nextToken
-    }
-    toiletSeater
-    overallRating
-    numberOfReviews
-    instruction
-    address
-    locationLat
-    locationLong
-    hoursFrom
-    hoursTo
-    placeId
-  }
-}
-`;
-export const createReview = `mutation CreateReview($input: CreateReviewInput!) {
-  createReview(input: $input) {
-    id
-    user {
-      id
-      name
-      email
-      createdAt
-      updatedAt
-      password
-      facebookUserId
-      userReviews {
-        nextToken
-      }
-      gender
-    }
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    rating
-    comment
-    placeId
-  }
-}
-`;
-export const updateReview = `mutation UpdateReview($input: UpdateReviewInput!) {
-  updateReview(input: $input) {
-    id
-    user {
-      id
-      name
-      email
-      createdAt
-      updatedAt
-      password
-      facebookUserId
-      userReviews {
-        nextToken
-      }
-      gender
-    }
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    rating
-    comment
-    placeId
-  }
-}
-`;
-export const deleteReview = `mutation DeleteReview($input: DeleteReviewInput!) {
-  deleteReview(input: $input) {
-    id
-    user {
-      id
-      name
-      email
-      createdAt
-      updatedAt
-      password
-      facebookUserId
-      userReviews {
-        nextToken
-      }
-      gender
-    }
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    rating
-    comment
-    placeId
-  }
-}
-`;
-export const createPhoto = `mutation CreatePhoto($input: CreatePhotoInput!) {
-  createPhoto(input: $input) {
-    id
-    contentType
-    name
-    url
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    date
-  }
-}
-`;
-export const updatePhoto = `mutation UpdatePhoto($input: UpdatePhotoInput!) {
-  updatePhoto(input: $input) {
-    id
-    contentType
-    name
-    url
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    date
-  }
-}
-`;
-export const deletePhoto = `mutation DeletePhoto($input: DeletePhotoInput!) {
-  deletePhoto(input: $input) {
-    id
-    contentType
-    name
-    url
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    date
   }
 }
 `;

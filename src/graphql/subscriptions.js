@@ -1,402 +1,162 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
-export const onCreateUser = `subscription OnCreateUser {
-  onCreateUser {
+export const onCreateBlog = `subscription OnCreateBlog {
+  onCreateBlog {
     id
     name
-    email
-    createdAt
-    updatedAt
-    password
-    facebookUserId
-    userReviews {
+    posts {
       items {
         id
-        rating
-        comment
-        placeId
+        title
       }
       nextToken
     }
-    gender
   }
 }
 `;
-export const onUpdateUser = `subscription OnUpdateUser {
-  onUpdateUser {
+export const onUpdateBlog = `subscription OnUpdateBlog {
+  onUpdateBlog {
     id
     name
-    email
-    createdAt
-    updatedAt
-    password
-    facebookUserId
-    userReviews {
+    posts {
       items {
         id
-        rating
-        comment
-        placeId
+        title
       }
       nextToken
     }
-    gender
   }
 }
 `;
-export const onDeleteUser = `subscription OnDeleteUser {
-  onDeleteUser {
+export const onDeleteBlog = `subscription OnDeleteBlog {
+  onDeleteBlog {
     id
     name
-    email
-    createdAt
-    updatedAt
-    password
-    facebookUserId
-    userReviews {
+    posts {
       items {
         id
-        rating
-        comment
-        placeId
+        title
       }
       nextToken
     }
-    gender
   }
 }
 `;
-export const onCreateWashroom = `subscription OnCreateWashroom {
-  onCreateWashroom {
+export const onCreatePost = `subscription OnCreatePost {
+  onCreatePost {
     id
-    name
-    stall
-    listOfPhotos {
+    title
+    blog {
+      id
+      name
+      posts {
+        nextToken
+      }
+    }
+    comments {
       items {
         id
-        contentType
+        content
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onUpdatePost = `subscription OnUpdatePost {
+  onUpdatePost {
+    id
+    title
+    blog {
+      id
+      name
+      posts {
+        nextToken
+      }
+    }
+    comments {
+      items {
+        id
+        content
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onDeletePost = `subscription OnDeletePost {
+  onDeletePost {
+    id
+    title
+    blog {
+      id
+      name
+      posts {
+        nextToken
+      }
+    }
+    comments {
+      items {
+        id
+        content
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onCreateComment = `subscription OnCreateComment {
+  onCreateComment {
+    id
+    content
+    post {
+      id
+      title
+      blog {
+        id
         name
-        url
-        date
       }
-      nextToken
-    }
-    listOfReviews {
-      items {
-        id
-        rating
-        comment
-        placeId
+      comments {
+        nextToken
       }
-      nextToken
     }
-    toiletSeater
-    overallRating
-    numberOfReviews
-    instruction
-    address
-    locationLat
-    locationLong
-    hoursFrom
-    hoursTo
-    placeId
   }
 }
 `;
-export const onUpdateWashroom = `subscription OnUpdateWashroom {
-  onUpdateWashroom {
+export const onUpdateComment = `subscription OnUpdateComment {
+  onUpdateComment {
     id
-    name
-    stall
-    listOfPhotos {
-      items {
+    content
+    post {
+      id
+      title
+      blog {
         id
-        contentType
         name
-        url
-        date
       }
-      nextToken
-    }
-    listOfReviews {
-      items {
-        id
-        rating
-        comment
-        placeId
+      comments {
+        nextToken
       }
-      nextToken
     }
-    toiletSeater
-    overallRating
-    numberOfReviews
-    instruction
-    address
-    locationLat
-    locationLong
-    hoursFrom
-    hoursTo
-    placeId
   }
 }
 `;
-export const onDeleteWashroom = `subscription OnDeleteWashroom {
-  onDeleteWashroom {
+export const onDeleteComment = `subscription OnDeleteComment {
+  onDeleteComment {
     id
-    name
-    stall
-    listOfPhotos {
-      items {
+    content
+    post {
+      id
+      title
+      blog {
         id
-        contentType
         name
-        url
-        date
       }
-      nextToken
+      comments {
+        nextToken
+      }
     }
-    listOfReviews {
-      items {
-        id
-        rating
-        comment
-        placeId
-      }
-      nextToken
-    }
-    toiletSeater
-    overallRating
-    numberOfReviews
-    instruction
-    address
-    locationLat
-    locationLong
-    hoursFrom
-    hoursTo
-    placeId
-  }
-}
-`;
-export const onCreateReview = `subscription OnCreateReview {
-  onCreateReview {
-    id
-    user {
-      id
-      name
-      email
-      createdAt
-      updatedAt
-      password
-      facebookUserId
-      userReviews {
-        nextToken
-      }
-      gender
-    }
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    rating
-    comment
-    placeId
-  }
-}
-`;
-export const onUpdateReview = `subscription OnUpdateReview {
-  onUpdateReview {
-    id
-    user {
-      id
-      name
-      email
-      createdAt
-      updatedAt
-      password
-      facebookUserId
-      userReviews {
-        nextToken
-      }
-      gender
-    }
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    rating
-    comment
-    placeId
-  }
-}
-`;
-export const onDeleteReview = `subscription OnDeleteReview {
-  onDeleteReview {
-    id
-    user {
-      id
-      name
-      email
-      createdAt
-      updatedAt
-      password
-      facebookUserId
-      userReviews {
-        nextToken
-      }
-      gender
-    }
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    rating
-    comment
-    placeId
-  }
-}
-`;
-export const onCreatePhoto = `subscription OnCreatePhoto {
-  onCreatePhoto {
-    id
-    contentType
-    name
-    url
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    date
-  }
-}
-`;
-export const onUpdatePhoto = `subscription OnUpdatePhoto {
-  onUpdatePhoto {
-    id
-    contentType
-    name
-    url
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    date
-  }
-}
-`;
-export const onDeletePhoto = `subscription OnDeletePhoto {
-  onDeletePhoto {
-    id
-    contentType
-    name
-    url
-    washroom {
-      id
-      name
-      stall
-      listOfPhotos {
-        nextToken
-      }
-      listOfReviews {
-        nextToken
-      }
-      toiletSeater
-      overallRating
-      numberOfReviews
-      instruction
-      address
-      locationLat
-      locationLong
-      hoursFrom
-      hoursTo
-      placeId
-    }
-    date
   }
 }
 `;
