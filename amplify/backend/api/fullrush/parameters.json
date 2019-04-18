@@ -1,0 +1,4 @@
+{
+    "AppSyncApiName": "fullrush",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST"
+}

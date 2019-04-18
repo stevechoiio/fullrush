@@ -1,0 +1,14 @@
+{
+    "devm": {
+        "awscloudformation": {
+            "AuthRoleName": "fullrush-20190418134235-authRole",
+            "UnauthRoleArn": "arn:aws:iam::102255394098:role/fullrush-20190418134235-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::102255394098:role/fullrush-20190418134235-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "fullrush-20190418134235-deployment",
+            "UnauthRoleName": "fullrush-20190418134235-unauthRole",
+            "StackName": "fullrush-20190418134235",
+            "StackId": "arn:aws:cloudformation:us-west-2:102255394098:stack/fullrush-20190418134235/7f4f0e70-621a-11e9-a9ae-069f57a511c8"
+        }
+    }
+}
