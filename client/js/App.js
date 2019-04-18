@@ -1,41 +1,29 @@
 import React, { Component } from "react";
-import { StyleSheet, Text } from "react-native";
+import { Rehydrated } from "aws-appsync-react";
 import RootStackNavigator from "./navigation/RootStackNavigator";
 import { ApolloProvider } from "react-apollo";
 import client from "./config/api";
-import { Drawer } from "native-base";
 import SplashScreen from "react-native-splash-screen";
 import { Root } from "native-base";
-const SideBar = () => {
-  return <Text>hey</Text>;
-};
+import Amplify from "aws-amplify";
+import awsconfig from "../aws-exports";
+
+Amplify.configure(awsconfig);
 
 export default class App extends Component {
   componentDidMount() {
     SplashScreen.hide();
   }
 
-  closeDrawer = () => {
-    this.drawer._root.close();
-  };
-  openDrawer = () => {
-    this.drawer._root.open();
-  };
   render() {
     return (
-      <Drawer
-        ref={ref => {
-          this.drawer = ref;
-        }}
-        content={<SideBar navigator={this.navigator} />}
-        onClose={() => this.closeDrawer()}
-      >
-        <Root>
-          <ApolloProvider client={client}>
+      <Root>
+        <ApolloProvider client={client}>
+          <Rehydrated>
             <RootStackNavigator />
-          </ApolloProvider>
-        </Root>
-      </Drawer>
+          </Rehydrated>
+        </ApolloProvider>
+      </Root>
     );
   }
 }

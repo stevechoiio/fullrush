@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "apollo-boost": "^0.3.1",
+    "aws-amplify-react": "^2.3.6",
+    "aws-amplify-react-native": "^2.1.10",
     "final-form": "^4.12.0",
     "geolib": "^2.0.24",
     "graphql": "^14.2.1",
@@ -40,6 +42,9 @@
     "@babel/runtime": "^7.4.2",
     "@react-native-community/async-storage": "^1.2.2",
     "@react-native-community/eslint-config": "^0.0.3",
+    "aws-amplify": "^1.1.26",
+    "aws-appsync": "^1.7.2",
+    "aws-appsync-react": "^1.2.7",
     "babel-jest": "^24.5.0",
     "eslint": "^5.16.0",
     "faker": "^4.1.0",
