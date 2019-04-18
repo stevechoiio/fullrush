@@ -3,12 +3,12 @@ import AWSAppSyncClient from "aws-appsync";
 
 const client = new AWSAppSyncClient({
   url: awsconfig.aws_appsync_graphqlEndPoint,
-  region: awsconfig.aws_appsync_region,
+  region: awsconfig.aws_project_region,
   auth: {
-    type: awsconfig.authType,
-    apiKey: awsconfig.apiKey,
+    type: awsconfig.aws_appsync_authType,
+    apiKey: awsconfig.aws_appsync_apiKey
     // jwtToken: async () => (await Auth.currentSession()).getAcceessToken().getJwtToken(),
-  },
+  }
 });
 
 export default client;
