@@ -22,5 +22,56 @@
             "StackName": "fullrush-20190418142117",
             "StackId": "arn:aws:cloudformation:us-west-2:973706607165:stack/fullrush-20190418142117/e878cd50-621f-11e9-9e1a-0a608bc1c1d0"
         }
+    },
+    "test": {
+        "awscloudformation": {
+            "AuthRoleName": "fullrush-20190418163513-authRole",
+            "UnauthRoleArn": "arn:aws:iam::973706607165:role/fullrush-20190418163513-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::973706607165:role/fullrush-20190418163513-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "fullrush-20190418163513-deployment",
+            "UnauthRoleName": "fullrush-20190418163513-unauthRole",
+            "StackName": "fullrush-20190418163513",
+            "StackId": "arn:aws:cloudformation:us-west-2:973706607165:stack/fullrush-20190418163513/9e08bb50-6232-11e9-8058-0a3c8425d484"
+        },
+        "categories": {
+            "auth": {
+                "cognitoba67c120": {}
+            }
+        }
+    },
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "fullrush-20190418164021-authRole",
+            "UnauthRoleArn": "arn:aws:iam::973706607165:role/fullrush-20190418164021-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::973706607165:role/fullrush-20190418164021-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "fullrush-20190418164021-deployment",
+            "UnauthRoleName": "fullrush-20190418164021-unauthRole",
+            "StackName": "fullrush-20190418164021",
+            "StackId": "arn:aws:cloudformation:us-west-2:973706607165:stack/fullrush-20190418164021/55a23a20-6233-11e9-9891-0603d76d1104"
+        },
+        "categories": {
+            "auth": {
+                "cognitoba67c120": {}
+            }
+        }
+    },
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "fullrush-20190418164209-authRole",
+            "UnauthRoleArn": "arn:aws:iam::973706607165:role/fullrush-20190418164209-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::973706607165:role/fullrush-20190418164209-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "fullrush-20190418164209-deployment",
+            "UnauthRoleName": "fullrush-20190418164209-unauthRole",
+            "StackName": "fullrush-20190418164209",
+            "StackId": "arn:aws:cloudformation:us-west-2:973706607165:stack/fullrush-20190418164209/96459ef0-6233-11e9-b656-067b3c60baa6"
+        },
+        "categories": {
+            "auth": {
+                "cognitoba67c120": {}
+            }
+        }
     }
 }
