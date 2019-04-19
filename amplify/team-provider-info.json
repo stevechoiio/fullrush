@@ -21,6 +21,11 @@
             "UnauthRoleName": "fullrush-20190418142117-unauthRole",
             "StackName": "fullrush-20190418142117",
             "StackId": "arn:aws:cloudformation:us-west-2:973706607165:stack/fullrush-20190418142117/e878cd50-621f-11e9-9e1a-0a608bc1c1d0"
+        },
+        "categories": {
+            "auth": {
+                "cognitoba67c120": {}
+            }
         }
     },
     "test": {
