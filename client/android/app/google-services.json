@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "362637953966",
+    "firebase_url": "https://fullrush-c4cfe.firebaseio.com",
+    "project_id": "fullrush-c4cfe",
+    "storage_bucket": "fullrush-c4cfe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362637953966:android:6dfea9f21d46133a",
+        "android_client_info": {
+          "package_name": "com.fullrush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362637953966-hsdhqgtomdtbir7r15d77utb6861bos1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fullrush",
+            "certificate_hash": "8902f5314a7a6250413b9827492effb89a4e1471"
+          }
+        },
+        {
+          "client_id": "362637953966-u8lg2n3m4qagv1ek5kpkq56s47ikt3fm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNNPsngm76mYyTVth1jsuZ5ofi_TVqx2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362637953966-u8lg2n3m4qagv1ek5kpkq56s47ikt3fm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
