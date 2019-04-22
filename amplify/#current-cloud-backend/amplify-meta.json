@@ -1,0 +1,32 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "fullrush-20190418134235-authRole",
+			"UnauthRoleArn": "arn:aws:iam::102255394098:role/fullrush-20190418134235-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::102255394098:role/fullrush-20190418134235-authRole",
+			"Region": "us-west-2",
+			"DeploymentBucketName": "fullrush-20190418134235-deployment",
+			"UnauthRoleName": "fullrush-20190418134235-unauthRole",
+			"StackName": "fullrush-20190418134235",
+			"StackId": "arn:aws:cloudformation:us-west-2:102255394098:stack/fullrush-20190418134235/7f4f0e70-621a-11e9-a9ae-069f57a511c8"
+		}
+	},
+	"api": {
+		"fullrushtestm": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"securityType": "API_KEY",
+				"GraphQLAPIIdOutput": "u3gmrp3itjhk3jgb2lcjt6lp7e",
+				"GraphQLAPIEndpointOutput": "https://ubo4wshls5bjll462ctynyn6fm.appsync-api.us-west-2.amazonaws.com/graphql",
+				"GraphQLAPIKeyOutput": "da2-gvowb3aj2rcvfenrb7xai7phyq"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/fullrush-20190418134235-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apifullrushtestm"
+			},
+			"lastPushTimeStamp": "2019-04-18T21:59:21.181Z",
+			"lastPushDirHash": "wlYu7o2s2LvrPtB9M1qTFsIkuSE="
+		}
+	}
+}
