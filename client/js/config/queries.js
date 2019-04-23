@@ -34,10 +34,6 @@ export const CHECK_DUPLICATE_WASHROOM = gql`
       locationLat
       locationLong
       toiletSeater
-      listOfPhotos {
-        id
-        url
-      }
     }
   }
 `;
@@ -76,10 +72,6 @@ export const GET_ALL_WASHROOM_BY_DISTANCE = gql`
       locationLat
       locationLong
       toiletSeater
-      listOfPhotos {
-        id
-        url
-      }
     }
   }
 `;
@@ -88,9 +80,6 @@ export const GET_REVIEWS_FOR_WASHROOM = gql`
     allReviews(filter: { placeId: $placeId }) {
       rating
       placeId
-      user {
-        name
-      }
     }
   }
 `;
