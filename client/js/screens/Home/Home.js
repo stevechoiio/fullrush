@@ -20,17 +20,19 @@ import { material } from "react-native-typography";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Map from "../../components/Map";
 import getDirections from "react-native-google-maps-directions";
-let defaultImage = "https://dummyimage.com/600x400/000/fff";
+
+//let defaultImage = "https://dummyimage.com/600x400/000/fff";
 
 var BUTTONS = ["Distance", "Rating", "Cancel"];
 var DESTRUCTIVE_INDEX = 2;
-let checkForPhoto = item => {
-  if (item == null) {
-    return defaultImage;
-  } else {
-    return item.url;
-  }
-};
+
+// let checkForPhoto = item => {
+//   if (item == null) {
+//     return defaultImage;
+//   } else {
+//     return item.url;
+//   }
+// };
 
 class Home extends Component {
   constructor(props) {
