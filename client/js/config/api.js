@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { createRtdbLink } from "apollo-link-firebase";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
@@ -24,6 +25,17 @@ export const client = new ApolloClient({
   link: rtdbLink,
   cache: new InMemoryCache()
 });
+=======
+import ApolloClient, { createNetworkInterface } from 'react-apollo'
+// import { createNetworkInterface }
+
+let link = "";
+
+const client = new ApolloClient({
+  link: link,
+  cache: new InMemoryCache()
+})
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 
 const query = gql`
   query getUsers {

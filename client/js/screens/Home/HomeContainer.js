@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 import Home from "./Home";
-import { Query } from "react-apollo";
-import { GET_ALL_WASHROOM_BY_DISTANCE } from "../../config/queries";
+import { Query, Mutation } from "react-apollo";
+import { GET_ALL_WASHROOMS } from "../../config/queries";
 import Spinner from "react-native-loading-spinner-overlay";
 export default class HomeContainer extends Component {
   constructor(props) {
@@ -22,16 +22,8 @@ export default class HomeContainer extends Component {
   }
   render() {
     return (
-      <Query
-        query={GET_ALL_WASHROOM_BY_DISTANCE}
-        variables={{
-          latmin: this.state.lat - 0.1,
-          latmax: this.state.lat + 0.1,
-          longmin: this.state.long - 0.1,
-          longmax: this.state.long + 0.1
-        }}
-      >
-        {({ loading, error, data, refetch }) => {
+      <Mutation mutation={GET_ALL_WASHROOMS}>
+        {(createuser, { loading, error, data, refetch }) => {
           if (loading) return <Spinner visible={true} />;
           if (error) {
             return (
@@ -41,7 +33,7 @@ export default class HomeContainer extends Component {
               </View>
             );
           }
-
+          console.log(createuser);
           return (
             <Home
               nav={this.props.navigation}
@@ -51,7 +43,7 @@ export default class HomeContainer extends Component {
             />
           );
         }}
-      </Query>
+      </Mutation>
     );
   }
 }

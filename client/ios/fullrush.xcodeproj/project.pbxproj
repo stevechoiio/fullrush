@@ -71,6 +71,7 @@
 		DFE1640AF8464BD89EBCE29F /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCDA2A75CB0461CB69B5FBB /* Feather.ttf */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
+		BE6FB4B1A8C9403AA1029DB4 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D053238510DF4BD4A4B4DF74 /* libRNFirebase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -518,6 +519,8 @@
 		EF14506396BD34193A1DB81F /* Pods-fullrush-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fullrush-tvOS.release.xcconfig"; path = "Target Support Files/Pods-fullrush-tvOS/Pods-fullrush-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		F9A0454878A7E2DE9A02C2C7 /* libPods-fullrushTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-fullrushTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFBE8663CFE0439FA46AB5D9 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = "<group>"; };
+		659FF98A450A424BB683FA1D /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; name = "RNFirebase.xcodeproj"; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D053238510DF4BD4A4B4DF74 /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,8 +558,12 @@
 				9F922A520E1F42B49C9F8B97 /* libRNCamera.a in Frameworks */,
 				569DB016531247F5B857763E /* libAirMaps.a in Frameworks */,
 				BA55900270EE409580CD92EB /* libRNSpinkit.a in Frameworks */,
+<<<<<<< HEAD
 				D3F174DED030D6A0EB372B68 /* libPods-fullrush.a in Frameworks */,
 				961DAAC5D43D41089A4254F3 /* libRNFirebase.a in Frameworks */,
+=======
+				BE6FB4B1A8C9403AA1029DB4 /* libRNFirebase.a in Frameworks */,
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,7 +888,11 @@
 				3AD97AFB105843978EFED422 /* RNCamera.xcodeproj */,
 				BC26F04E09C148F0AFAE070C /* AirMaps.xcodeproj */,
 				A00618C7F5304E93A6A7E9F8 /* RNSpinkit.xcodeproj */,
+<<<<<<< HEAD
 				3032BF8D5CD14DAC803B98A7 /* RNFirebase.xcodeproj */,
+=======
+				659FF98A450A424BB683FA1D /* RNFirebase.xcodeproj */,
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1771,7 +1782,11 @@
 					"$(SRCROOT)..\node_modules\neact-native-cameraios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+=======
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 				);
 				INFOPLIST_FILE = fullrushTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1822,7 +1837,11 @@
 					"$(SRCROOT)..\node_modules\neact-native-cameraios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+=======
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 				);
 				INFOPLIST_FILE = fullrushTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1874,7 +1893,11 @@
 					"$(SRCROOT)..\node_modules\neact-native-cameraios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+=======
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 				);
 				INFOPLIST_FILE = fullrush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1910,7 +1933,11 @@
 					"$(SRCROOT)..\node_modules\neact-native-cameraios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+=======
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 				);
 				INFOPLIST_FILE = fullrush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1948,7 +1975,11 @@
 					"$(SRCROOT)..\node_modules\neact-native-cameraios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+=======
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 				);
 				INFOPLIST_FILE = "fullrush-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2002,7 +2033,11 @@
 					"$(SRCROOT)..\node_modules\neact-native-cameraios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+=======
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 				);
 				INFOPLIST_FILE = "fullrush-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2055,7 +2090,11 @@
 					"$(SRCROOT)..\node_modules\neact-native-cameraios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+=======
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 				);
 				INFOPLIST_FILE = "fullrush-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2108,7 +2147,11 @@
 					"$(SRCROOT)..\node_modules\neact-native-cameraios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+=======
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 				);
 				INFOPLIST_FILE = "fullrush-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

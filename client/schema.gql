@@ -17,7 +17,11 @@ type Washroom  {
   locationLong: Float
   hoursFrom: Int
   hoursTo: Int
+<<<<<<< HEAD
   placeId: String 
+=======
+  placeId:String 
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
 }
 
 type Review  {
@@ -29,7 +33,11 @@ type Review  {
   dryingRating: Int
   sinkRating: Int
   easeRating: Int
+<<<<<<< HEAD
   rating: Int
+=======
+  rating:Int
+>>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
   comment: String 
   placeId: String
 }
