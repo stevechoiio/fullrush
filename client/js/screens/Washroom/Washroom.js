@@ -38,14 +38,14 @@ const handleGetDirections = async (lat, long) => {
   });
 };
 
-let defaultImage = "https://dummyimage.com/600x400/000/fff";
-let checkForPhoto = item => {
-  if (item == null) {
-    return defaultImage;
-  } else {
-    return item.url;
-  }
-};
+// let defaultImage = "https://dummyimage.com/600x400/000/fff";
+// let checkForPhoto = item => {
+//   if (item == null) {
+//     return defaultImage;
+//   } else {
+//     return item.url;
+//   }
+// };
 
 export default ({ reviews, refetch, data, nav }) => {
   return (
@@ -97,6 +97,59 @@ export default ({ reviews, refetch, data, nav }) => {
           </View>
           <Text>2 stalls</Text>
 
+<<<<<<< HEAD
+      <View
+        style={{
+          alignItems: "center",
+          height: "30%",
+          justifyContent: "space-evenly"
+        }}
+      >
+        <Text style={{ ...material.caption }}>{data.address}</Text>
+        {/* <Thumbnail square source={{ uri: foo(item.listOfPhotos) }} /> */}
+        {/* <Image source={{uri: checkForPhoto(data.listOfPhotos)}}></Image> */}
+        {/* <Thumbnail square source={{ uri: checkForPhoto(data.listOfPhotos) }} /> */}
+        <StarRating
+          disabled={true}
+          maxStars={5}
+          rating={data.overallRating}
+          halfStarColor="#FFDF00"
+          emptyStarColor="#FFDF00"
+          fullStarColor="#FFDF00"
+        />
+        <View style={{ flex: 0, flexDirection: "row" }}>
+          <Text>Toilet Seat covers</Text>
+          <Icon name="check" size={15} color="black" />
+        </View>
+        <Text>2 stalls</Text>
+      </View>
+      <View style={{ margin: 5 }}>
+        <Text style={material.title}>Most Recent Review:</Text>
+        <ListItem>
+          <Left>
+            <Text>Empty
+            {/* {reviews.allReviews[0] ? (
+              <Text style={material.caption}>
+                {reviews.allReviews[0].user.name}
+              </Text>
+            ) : (
+              <Text style={material.caption}>Bob</Text>
+            )} */}
+            </Text>
+          </Left>
+          <Body>
+            <Text>not bad</Text>
+          </Body>
+          <Right>
+            <StarRating
+              disabled={true}
+              starSize={5}
+              maxStars={5}
+              rating={reviews.allReviews[0] ? reviews.allReviews[0].rating : 5}
+              halfStarColor="#FFDF00"
+              emptyStarColor="#FFDF00"
+              fullStarColor="#FFDF00"
+=======
           <View style={{ margin: 5 }}>
             <Text style={material.title}>Most Recent Review:</Text>
             <ListItem>
@@ -155,6 +208,7 @@ export default ({ reviews, refetch, data, nav }) => {
               }}
               dataArray={[{ title: 0, content: 0 }]}
               expanded={-1}
+>>>>>>> a707191729227bb665cde04e16cac1f7f210d047
             />
 
             <View

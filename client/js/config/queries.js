@@ -14,10 +14,6 @@ export const GET_ALL_WASHROOMS = gql`
       locationLat
       locationLong
       toiletSeater
-      listOfPhotos {
-        id
-        url
-      }
     }
   }
 `;
@@ -38,14 +34,15 @@ export const CHECK_DUPLICATE_WASHROOM = gql`
   }
 `;
 
-export const GET_ALL_PHOTOS = gql`
-  query GetAllPhotos {
-    allFiles {
-      id
-      url
-    }
-  }
-`;
+// export const GET_ALL_PHOTOS = gql`
+//   query GetAllPhotos {
+//     allFiles {
+//       id
+//       url
+//     }
+//   }
+// `;
+
 export const GET_ALL_WASHROOM_BY_DISTANCE = gql`
   query GetAllReviewsByDistance(
     $latmin: Float!
@@ -84,18 +81,18 @@ export const GET_REVIEWS_FOR_WASHROOM = gql`
   }
 `;
 
-export const GET_USER_INFO = gql`
-  query USER($id: ID!) {
-    allUsers(filter: { id: $id }) {
-      id
-      name
-      email
-      userReviews {
-        id
-      }
-    }
-  }
-`;
+// export const GET_USER_INFO = gql`
+//   query USER($id: ID!) {
+//     allUsers(filter: { id: $id }) {
+//       id
+//       name
+//       email
+//       userReviews {
+//         id
+//       }  
+//     }
+//   }
+// `;
 
 export const GET_WASHROOM_FROM_PHOTO = gql`
   query GetWashroomFromPhoto($id: ID!) {
@@ -111,7 +108,6 @@ export const ADD_WASHROOM = gql`
     $overallRating: Float!
     $numberOfReviews: Int!
     $toiletSeater: Boolean!
-    $listOfPhotosId: ID
     $address: String!
     $lat: Float!
     $long: Float!
@@ -123,7 +119,6 @@ export const ADD_WASHROOM = gql`
       overallRating: $overallRating
       numberOfReviews: $numberOfReviews
       toiletSeater: $toiletSeater
-      listOfPhotosId: $listOfPhotosId
       address: $address
       locationLat: $lat
       locationLong: $long
@@ -138,8 +133,7 @@ export const ADD_WASHROOM = gql`
 export const ADD_REVIEW = gql`
   mutation AddReview(
     $placeId: String!
-    $rating: Int!
-    $userId: ID!
+    $rating: Float!
     $lightRating: Int!
     $easeRating: Int!
     $dryingRating: Int!
@@ -150,7 +144,6 @@ export const ADD_REVIEW = gql`
     createReview(
       placeId: $placeId
       rating: $rating
-      userId: $userId
       lightRating: $lightRating
       easeRating: $easeRating
       dryingRating: $dryingRating
@@ -164,46 +157,50 @@ export const ADD_REVIEW = gql`
   }
 `;
 
-export const ADD_WASHROOM_PHOTO = gql`
-  mutation AddWashroomPhoto(
-    $url: String!
-    $name: String!
-    $contentType: String!
-  ) {
-    createFile(url: $url, name: $name, contentType: $contentType) {
-      id
-      url
-      name
-      contentType
-    }
-  }
-`;
-export const AUTHENTICATE_USER = gql`
-  mutation Authenticate($email: String!, $password: String!) {
-    authenticateUser(email: $email, password: $password) {
-      id
-      token
-    }
-  }
-`;
-export const SIGNUP_USER = gql`
-  mutation signup($email: String!, $password: String!) {
-    signupUser(email: $email, password: $password) {
-      id
-      token
-    }
-  }
-`;
-export const UPDATE_SIGNEDUPUSER = gql`
-  mutation updateSignedupUser($id: ID!, $name: String!, $gender: String!) {
-    updateUser(id: $id, name: $name, gender: $gender) {
-      id
-      name
-      email
-      gender
-    }
-  }
-`;
+// export const ADD_WASHROOM_PHOTO = gql`
+//   mutation AddWashroomPhoto(
+//     $url: String!
+//     $name: String!
+//     $contentType: String!
+//   ) {
+//     createFile(url: $url, name: $name, contentType: $contentType) {
+//       id
+//       url
+//       name
+//       contentType
+//     }
+//   }
+// `;
+
+// export const AUTHENTICATE_USER = gql`
+//   mutation Authenticate($email: String!, $password: String!) {
+//     authenticateUser(email: $email, password: $password) {
+//       id
+//       token
+//     }
+//   }
+// `;
+
+// export const SIGNUP_USER = gql`
+//   mutation signup($email: String!, $password: String!) {
+//     signupUser(email: $email, password: $password) {
+//       id
+//       token
+//     }
+//   }
+// `;
+
+// export const UPDATE_SIGNEDUPUSER = gql`
+//   mutation updateSignedupUser($id: ID!, $name: String!, $gender: String!) {
+//     updateUser(id: $id, name: $name, gender: $gender) {
+//       id
+//       name
+//       email
+//       gender
+//     }
+//   }
+// `;
+
 export const UPDATE_WASHROOM_RATING = gql`
   mutation updateWashroomRating(
     $id: ID!

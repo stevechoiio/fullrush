@@ -34,11 +34,13 @@ class Review extends Component {
       this.setState({ userId });
     });
   };
+  
   onStarRatingPress(rating, criteria) {
     this.setState({
       [criteria]: rating
     });
   }
+  
   addReview = async () => {
     const {
       washroomData,
@@ -58,10 +60,9 @@ class Review extends Component {
     let stateCopy = { ...this.state };
     delete stateCopy.userId;
     let total = Object.values(stateCopy).reduce((a, b) => a + b) / 5;
-
+    // console.log("alert has popped up")
     let reviewID = await add_review({
       variables: {
-        userId: this.state.userId,
         washroomId: washroomData.id,
         rating: total,
         lightRating: this.state.light,
@@ -98,13 +99,14 @@ class Review extends Component {
     this.setState({ alert: false });
     nav.navigate("Home");
   };
+  
   render() {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View behavior="padding">
           <Overlay
             isVisible={this.state.alert}
-            onBackdropPress={() => this.setState({ isVisible: false })}
+            onBackdropPress={() => this.setState({ alert: false })}
             overlayStyle={{ borderRadius: 20 }}
             style={{
               flex: 1,
