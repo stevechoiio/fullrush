@@ -28,11 +28,11 @@ import { withNavigation } from "react-navigation";
 import BackButton from "../../components/BackButton";
 const options = [{ label: "Yes", value: true }, { label: "No", value: false }];
 const options2 = [
-  { label: "1", value: "1" },
-  { label: "2", value: "2" },
-  { label: "3", value: "3" },
-  { label: "4", value: "4" },
-  { label: "5+", value: "5" }
+  { label: "1", value: 1 },
+  { label: "2", value: 2 },
+  { label: "3", value: 3 },
+  { label: "4", value: 4 },
+  { label: "5+", value: 5 }
 ];
 class AddWashroom extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class AddWashroom extends Component {
   }
 
   componentDidMount = async () => {
-    this.setState({ num: 3 });
+    // this.setState({ num:  });
     // AsyncStorage.getItem("id").then(userId => {
     //   this.setState({ userId });
     // });
@@ -255,7 +255,7 @@ class AddWashroom extends Component {
                                 }
                               ]
                             });
-
+                            
                             this.props.navigation.navigate("Review", {
                               data: washroomId.data.createWashroom
                             });
