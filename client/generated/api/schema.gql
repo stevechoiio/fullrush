@@ -21,7 +21,7 @@ type Washroom  {
 }
 
 type Review  {
-  id: ID! 
+  key: ID! 
   user: User 
   washroom: Washroom 
   lightRating: Int
@@ -43,13 +43,16 @@ type File  {
   date: Int
 }
 
-input UserInput {    
+input UserInput {   
+    key:ID! 
   name: String!
 }
 
-input WashroomInput {    
+input WashroomInput {  
+    key:ID!
   name: String
   stall: Int
+  reviews:ReviewInput
   toiletSeater: Boolean
   overallRating: Float
   numberOfReviews:Int
@@ -61,9 +64,10 @@ input WashroomInput {
   hoursTo: Int
   placeId:String 
 }
-input ReviewInput {    
-  user: UserInput 
-  washroom: WashroomInput
+input ReviewInput {   
+    key:ID! 
+  user: User
+  washroom: Washroom
   lightRating: Int 
   toiletRating: Int 
   dryingRating: Int 
@@ -117,7 +121,6 @@ input UpdateWashroomInput {
     
 input UpdateReviewInput {
   key: ID!
-  id: ID
   lightRating: Int
   toiletRating: Int
   dryingRating: Int
