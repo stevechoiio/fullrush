@@ -1,18 +1,30 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createSwitchNavigator
+} from "react-navigation";
 import NavigationLayout from "./NavigationLayout";
 import OnboardScreen from "../screens/Onboard";
 import OnboardLoading from "../components/AuthLoading/OnboardLoading";
+
 const AppStack = createStackNavigator(
   {
-    OnboardLoading: OnboardLoading,
-    Layout: NavigationLayout,
-    Onboard: OnboardScreen
+    Layout: NavigationLayout
   },
   {
-    mode: "modal",
     headerMode: "none",
-    initialRouteName: "OnboardLoading"
+    initialRouteName: "Layout"
   }
 );
-
-export default createAppContainer(AppStack);
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      OnboardLoading: OnboardLoading,
+      App: AppStack,
+      Onboard: OnboardScreen
+    },
+    {
+      initialRouteName: "OnboardLoading"
+    }
+  )
+);

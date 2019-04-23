@@ -6,11 +6,9 @@ import {
 import React from "react";
 import HomeScreen from "../screens/Home";
 import AddWashroomScreen from "../screens/AddWashroom";
-import AccountScreen from "../screens/Account";
+import AboutScreen from "../screens/Account";
 import WashroomScreen from "../screens/Washroom";
 import ReviewScreen from "../screens/Review";
-import LoginScreen from "../screens/Login";
-import AuthLoadingScreen from "../components/AuthLoading/AuthLoading";
 import CameraScreen from "../screens/Camera";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import GooglePlacesInput from "../components//GooglePlacesInput";
@@ -27,14 +25,12 @@ const HomeStack = createStackNavigator(
   }
 );
 
-const AccountStack = createSwitchNavigator(
+const AboutStack = createSwitchNavigator(
   {
-    AuthLoading: AuthLoadingScreen,
-    Account: AccountScreen,
-    Login: LoginScreen
+    About: AboutScreen
   },
   {
-    initialRouteName: "AuthLoading"
+    initialRouteName: "About"
   }
 );
 
@@ -51,7 +47,7 @@ export default createBottomTabNavigator(
   {
     Home: HomeStack,
     AddWashroom: AddWashroomStack,
-    Account: AccountStack
+    About: AboutStack
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -64,7 +60,7 @@ export default createBottomTabNavigator(
           icon = "toilet";
           color = focused ? "#ff6b6b" : "#cfd2cd";
         }
-        if (routeName === "Account") {
+        if (routeName === "About") {
           icon = "user";
           color = focused ? "#ff6b6b" : "#cfd2cd";
         }
