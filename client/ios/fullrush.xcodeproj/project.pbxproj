@@ -5,9 +5,11 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		004ECFAB226F97FA00FB1028 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 004ECF79226F97FA00FB1028 /* Base.lproj */; };
 		004ECFAE226F99A100FB1028 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 004ECFAC226F99A100FB1028 /* Images.xcassets */; };
+		00766FE4226FD1B5006E90E9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00766FB2226FD1B5006E90E9 /* LaunchScreen.xib */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
@@ -429,6 +431,7 @@
 /* Begin PBXFileReference section */
 		004ECF79226F97FA00FB1028 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = fullrush/Base.lproj; sourceTree = "<group>"; };
 		004ECFAD226F99A100FB1028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Base; path = fullrush/Base.lproj/Images.xcassets; sourceTree = "<group>"; };
+		00766FB2226FD1B5006E90E9 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = fullrush/LaunchScreen.xib; sourceTree = "<group>"; };
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
@@ -733,6 +736,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				00766FB2226FD1B5006E90E9 /* LaunchScreen.xib */,
 			);
 			name = fullrush;
 			sourceTree = "<group>";
@@ -1463,6 +1467,7 @@
 				7DE3541FBE6240E888E1E4A3 /* MaterialIcons.ttf in Resources */,
 				ABD3637F959A4A2387EB097B /* Octicons.ttf in Resources */,
 				5D99EFAA730544349AA85309 /* SimpleLineIcons.ttf in Resources */,
+				00766FE4226FD1B5006E90E9 /* LaunchScreen.xib in Resources */,
 				6CC3816AFDA54988BA4DB070 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
