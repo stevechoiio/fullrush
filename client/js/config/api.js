@@ -33,6 +33,10 @@ const query = gql`
     }
     reviews @rtdbQuery(ref: "/reviews", type: "Reviews") @array {
       id @key
+      rating
+    }
+    washrooms @rtdbQuery(ref: "/washrooms", type: "Washrooms") @array {
+      id @key
       name
     }
   }
@@ -40,5 +44,5 @@ const query = gql`
 
 // Invoke the query and log the person's name
 client.query({ query }).then(response => {
-  console.log(response.data.users);
+  console.log(response.data);
 });
