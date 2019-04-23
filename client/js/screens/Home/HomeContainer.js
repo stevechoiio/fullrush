@@ -25,10 +25,10 @@ export default class HomeContainer extends Component {
       <Query
         query={GET_ALL_WASHROOM_BY_DISTANCE}
         variables={{
-          latmin: this.state.lat - 0.1,
-          latmax: this.state.lat + 0.1,
-          longmin: this.state.long - 0.1,
-          longmax: this.state.long + 0.1
+          latmin: this.state.lat - 0.01,
+          latmax: this.state.lat + 0.01,
+          longmin: this.state.long - 0.01,
+          longmax: this.state.long + 0.01
         }}
       >
         {({ loading, error, data, refetch }) => {
