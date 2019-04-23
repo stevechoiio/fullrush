@@ -28,11 +28,11 @@ import { withNavigation } from "react-navigation";
 import BackButton from "../../components/BackButton";
 const options = [{ label: "Yes", value: true }, { label: "No", value: false }];
 const options2 = [
-  { label: "1", value: "1" },
-  { label: "2", value: "2" },
-  { label: "3", value: "3" },
-  { label: "4", value: "4" },
-  { label: "5+", value: "5" }
+  { label: "1", value: 1 },
+  { label: "2", value: 2 },
+  { label: "3", value: 3 },
+  { label: "4", value: 4 },
+  { label: "5+", value: 5 }
 ];
 class AddWashroom extends Component {
   constructor(props) {
@@ -44,7 +44,7 @@ class AddWashroom extends Component {
       language: null,
       num: null,
       hasSeater: false,
-      locationName: null,
+      locationName: null
     };
   }
 
@@ -62,14 +62,7 @@ class AddWashroom extends Component {
   }
 
   render() {
-    let {
-      add_washroom,
-      add_review,
-      name,
-      vicinity,
-      location,
-      id
-    } = this.props;
+    let { add_washroom, add_review, name, vicinity, location, id } = this.props;
     // let photoURL = photos ? photos[0].photo_reference : null;
     // let API_KEY = "AIzaSyAr_W5HFV59akkn9SOTu5PJr0SWz_38_NE";
     // let imageURL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoURL}&key=${API_KEY}`;
@@ -111,7 +104,8 @@ class AddWashroom extends Component {
               <View
                 style={{
                   flex: 1,
-                  alignItems: "center"
+                  alignItems: "center",
+                  height: "100%"
                 }}
               >
                 <View
@@ -152,6 +146,7 @@ class AddWashroom extends Component {
             /> */}
 
                 <Form
+                  style={{ backgroundColor: "yellow" }}
                   onSubmit={() => {}}
                   validate={() => {}}
                   render={({
@@ -166,7 +161,8 @@ class AddWashroom extends Component {
                       style={{
                         flex: 1,
                         alignItems: "center",
-                        justifyContent: "flex-end"
+                        justifyContent: "flex-end",
+                        height: "100%"
                       }}
                     >
                       <Text
@@ -233,7 +229,8 @@ class AddWashroom extends Component {
                           justifyContent: "center",
                           width: 200,
                           height: 40,
-                          borderRadius: 13
+                          borderRadius: 13,
+                          marginTop: 20
                         }}
                         onPress={async () => {
                           try {

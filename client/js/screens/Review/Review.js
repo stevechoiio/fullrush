@@ -34,13 +34,13 @@ class Review extends Component {
       this.setState({ userId });
     });
   };
-  
+
   onStarRatingPress(rating, criteria) {
     this.setState({
       [criteria]: rating
     });
   }
-  
+
   addReview = async () => {
     const {
       washroomData,
@@ -99,7 +99,7 @@ class Review extends Component {
     this.setState({ alert: false });
     nav.navigate("Home");
   };
-  
+
   render() {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
