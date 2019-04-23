@@ -108,6 +108,7 @@ android {
         missingDimensionStrategy 'react-native-camera', 'general'
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -139,6 +140,7 @@ android {
 }
 
 dependencies {
+    compile 'com.android.support:multidex:1.0.0'
     implementation project(':react-native-firebase')
     implementation project(':react-native-spinkit')
     implementation project(':react-native-maps')

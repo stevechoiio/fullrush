@@ -10,14 +10,9 @@
   "dependencies": {
     "apollo-boost": "^0.3.1",
     "apollo-link-firebase": "^1.1.0",
-<<<<<<< HEAD
     "apollo-server-express": "^2.4.8",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-=======
-    "aws-amplify-react": "^2.3.6",
-    "aws-amplify-react-native": "^2.1.10",
->>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
     "final-form": "^4.12.0",
     "firebase": "^5.0.2",
     "g": "^2.0.1",
@@ -55,13 +50,7 @@
     "@babel/runtime": "^7.4.2",
     "@react-native-community/async-storage": "^1.2.2",
     "@react-native-community/eslint-config": "^0.0.3",
-<<<<<<< HEAD
     "apollo-cache-inmemory": "^1.5.1",
-=======
-    "aws-amplify": "^1.1.26",
-    "aws-appsync": "^1.7.2",
-    "aws-appsync-react": "^1.2.7",
->>>>>>> df4bac5b143d4f9a7af78e53c321644b254fcf35
     "babel-jest": "^24.5.0",
     "eslint": "^5.16.0",
     "faker": "^4.1.0",
@@ -82,8 +71,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "resolutions": {
-    "grpc": "^1.12.0"
   }
 }

@@ -38,6 +38,14 @@
             {
               "client_id": "362637953966-u8lg2n3m4qagv1ek5kpkq56s47ikt3fm.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "362637953966-9s1a9ife71t2vu8u7nnopnhfguoo001o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.fullrush",
+                "app_store_id": "123123"
+              }
             }
           ]
         }
