@@ -49,7 +49,8 @@ class Review extends Component {
       nav
     } = this.props;
     let overallRating, numberOfReviews;
-    if (washroomData) {
+    console.log(washroomData.name + "Whats this ");
+    if (washroomData.overallRating) {
       overallRating = washroomData.overallRating;
       numberOfReviews = washroomData.numberOfReviews;
     } else {
