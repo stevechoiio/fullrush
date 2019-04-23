@@ -64,6 +64,7 @@ export const GET_ALL_WASHROOM_BY_DISTANCE = gql`
         locationLong_gt: $longmin
         locationLong_lt: $longmax
       }
+      first: 10
     ) {
       id
       name

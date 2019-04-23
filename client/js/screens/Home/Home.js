@@ -79,6 +79,31 @@ class Home extends Component {
   render() {
     let { nav, data, location } = this.props;
     console.log(data);
+    if (this.state.filterDistance) {
+      data = data.sort((a, b) => {
+        let distanceA = geolib.getDistance(
+          { latitude: location.lat, longitude: location.long },
+          {
+            latitude: a.locationLat,
+            longitude: a.locationLong
+          }
+        );
+        let distanceB = geolib.getDistance(
+          { latitude: location.lat, longitude: location.long },
+          {
+            latitude: b.locationLat,
+            longitude: b.locationLong
+          }
+        );
+
+        return distanceA - distanceB;
+      });
+    } else {
+      data = data.sort((a, b) => {
+        return b.overallRating - a.overallRating;
+      });
+    }
+
     return (
       <Container style={{ backgroundColor: "#F0F0F0" }}>
         <Header
