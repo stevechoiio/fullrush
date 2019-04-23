@@ -1,0 +1,130 @@
+type User {
+  key: ID!
+
+  name: String!
+}
+type Washroom  {
+  key: ID! 
+  name: String
+  stall: Int
+  listOfReviews: [Review!]!
+  toiletSeater: Boolean
+  overallRating: Float
+  numberOfReviews:Int
+  instruction: String
+  address: String
+  locationLat: Float
+  locationLong: Float
+  hoursFrom: Int
+  hoursTo: Int
+  placeId:String 
+}
+
+type Review  {
+  id: ID! 
+  user: User 
+  washroom: Washroom 
+  lightRating: Int
+  toiletRating: Int
+  dryingRating: Int
+  sinkRating: Int
+  easeRating: Int
+  rating:Int
+  comment: String 
+  placeId: String
+}
+
+type File  {
+  id: ID! 
+  contentType: String
+  name: String
+  url: String!
+  washroom: Washroom 
+  date: Int
+}
+
+input UserInput {    
+  name: String!
+}
+
+input WashroomInput {    
+  name: String
+  stall: Int
+  toiletSeater: Boolean
+  overallRating: Float
+  numberOfReviews:Int
+  instruction: String
+  address: String
+  locationLat: Float
+  locationLong: Float
+  hoursFrom: Int
+  hoursTo: Int
+  placeId:String 
+}
+input ReviewInput {    
+  user: UserInput 
+  washroom: WashroomInput
+  lightRating: Int 
+  toiletRating: Int 
+  dryingRating: Int 
+  sinkRating: Int
+  easeRating: Int 
+  rating:Int
+  comment: String 
+  placeId: String
+}
+
+type Query {
+  getUserByKey(key: ID!): User
+  getReviewByKey(key: ID!): Review
+  getWashroomByKey(key: ID!): Washroom
+  getUserByUsername(name: String!): User!
+  getUsers: [User!]!
+  getReviewByID(key: ID!): Review!
+  getReviews: [Review!]!
+  getWashroomByID(key: ID!): Washroom!
+  getWashrooms: [Washroom!]!
+}
+
+type Mutation {
+  updateUserByKey(input: UpdateUserInput!): User
+  updateWashroomByKey(input: UpdateWashroomInput!): Washroom
+  updateReviewByKey(input: UpdateReviewInput!): Review
+  createUser(input: UserInput!): User!
+  createWashroom(input: WashroomInput!): Washroom!
+  createReview(input: ReviewInput!): Review!
+}
+input UpdateUserInput {
+  key: ID!
+  name: String
+}
+    
+input UpdateWashroomInput {
+  key: ID!
+  name: String
+  stall: Int
+  toiletSeater: Boolean
+  overallRating: Float
+  numberOfReviews: Int
+  instruction: String
+  address: String
+  locationLat: Float
+  locationLong: Float
+  hoursFrom: Int
+  hoursTo: Int
+  placeId: String
+}
+    
+input UpdateReviewInput {
+  key: ID!
+  id: ID
+  lightRating: Int
+  toiletRating: Int
+  dryingRating: Int
+  sinkRating: Int
+  easeRating: Int
+  rating: Int
+  comment: String
+  placeId: String
+}
+    
