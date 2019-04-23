@@ -9,7 +9,6 @@ const AppStack = createStackNavigator(
     Onboard: OnboardScreen
   },
   {
-    mode: "modal",
     headerMode: "none",
     initialRouteName: "OnboardLoading"
   }
