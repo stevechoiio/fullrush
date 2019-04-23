@@ -31,6 +31,10 @@ const query = gql`
       id @key
       name
     }
+    reviews @rtdbQuery(ref: "/reviews", type: "Reviews") @array {
+      id @key
+      name
+    }
   }
 `;
 
