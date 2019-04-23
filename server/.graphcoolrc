@@ -1,3 +1,0 @@
-targets:
-  prod: shared-eu-west-1/cjtyu238t35960162rmokq743
-  default: prod

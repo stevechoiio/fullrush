@@ -1,8 +1,8 @@
 type User {
   key: ID!
-
   name: String!
 }
+
 type Washroom  {
   key: ID! 
   name: String
@@ -17,7 +17,7 @@ type Washroom  {
   locationLong: Float
   hoursFrom: Int
   hoursTo: Int
-  placeId:String 
+  placeId: String 
 }
 
 type Review  {
@@ -29,7 +29,7 @@ type Review  {
   dryingRating: Int
   sinkRating: Int
   easeRating: Int
-  rating:Int
+  rating: Int
   comment: String 
   placeId: String
 }
