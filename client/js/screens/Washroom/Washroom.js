@@ -45,14 +45,14 @@ const handleGetDirections = async (lat, long) => {
   });
 };
 
-let defaultImage = "https://dummyimage.com/600x400/000/fff";
-let checkForPhoto = item => {
-  if (item == null) {
-    return defaultImage;
-  } else {
-    return item.url;
-  }
-};
+// let defaultImage = "https://dummyimage.com/600x400/000/fff";
+// let checkForPhoto = item => {
+//   if (item == null) {
+//     return defaultImage;
+//   } else {
+//     return item.url;
+//   }
+// };
 
 export default ({ reviews, refetch, data, nav }) => {
   return (
@@ -90,7 +90,7 @@ export default ({ reviews, refetch, data, nav }) => {
         <Text style={{ ...material.caption }}>{data.address}</Text>
         {/* <Thumbnail square source={{ uri: foo(item.listOfPhotos) }} /> */}
         {/* <Image source={{uri: checkForPhoto(data.listOfPhotos)}}></Image> */}
-        <Thumbnail square source={{ uri: checkForPhoto(data.listOfPhotos) }} />
+        {/* <Thumbnail square source={{ uri: checkForPhoto(data.listOfPhotos) }} /> */}
         <StarRating
           disabled={true}
           maxStars={5}
@@ -109,13 +109,15 @@ export default ({ reviews, refetch, data, nav }) => {
         <Text style={material.title}>Most Recent Review:</Text>
         <ListItem>
           <Left>
-            {reviews.allReviews[0] ? (
+            <Text>Empty
+            {/* {reviews.allReviews[0] ? (
               <Text style={material.caption}>
                 {reviews.allReviews[0].user.name}
               </Text>
             ) : (
               <Text style={material.caption}>Bob</Text>
-            )}
+            )} */}
+            </Text>
           </Left>
           <Body>
             <Text>not bad</Text>

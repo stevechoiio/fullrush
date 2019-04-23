@@ -20,7 +20,6 @@ import AwesomeAlert from "react-native-awesome-alerts";
 import {
   ADD_REVIEW,
   ADD_WASHROOM,
-  ADD_WASHROOM_PHOTO,
   GET_ALL_WASHROOMS
 } from "../../config/queries";
 import { Item, Input, Label } from "native-base";
@@ -285,7 +284,7 @@ class AddWashroom extends Component {
 export default withNavigation(
   compose(
     graphql(ADD_WASHROOM, { name: "add_washroom" }),
-    graphql(ADD_REVIEW, { name: "add_review" }),
-    graphql(ADD_WASHROOM_PHOTO, { name: "add_washroom_photo" })
+    graphql(ADD_REVIEW, { name: "add_review" })
+    // graphql(ADD_WASHROOM_PHOTO, { name: "add_washroom_photo" })
   )(AddWashroom)
 );
