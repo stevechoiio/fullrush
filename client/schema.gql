@@ -21,7 +21,7 @@ type Washroom  {
 }
 
 type Review  {
-  id: ID! 
+  key: ID! 
   user: User 
   washroom: Washroom 
   lightRating: Int

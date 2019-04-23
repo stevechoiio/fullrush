@@ -6,7 +6,6 @@ import { client } from "./config/api";
 
 import SplashScreen from "react-native-splash-screen";
 import { Root } from "native-base";
-import firebase from "react-native-firebase";
 
 const SideBar = () => {
   return <Text>hey</Text>;
@@ -18,14 +17,13 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(firebase);
     return (
       <Root>
         <ApolloProvider client={client}>
-          {/* <RootStackNavigator /> */}
-          <View>
+          <RootStackNavigator />
+          {/* <View>
             <Text>testing</Text>
-          </View>
+          </View> */}
         </ApolloProvider>
       </Root>
     );

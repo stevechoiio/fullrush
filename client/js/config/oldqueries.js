@@ -6,6 +6,14 @@ export const GET_ALL_WASHROOMS = gql`
     washrooms @rtdbQuery(ref: "/washrooms", type: "Washrooms") @array {
       id @key
       name
+      instruction
+      overallRating
+      numberOfReviews
+      address
+      placeId
+      locationLat
+      locationLong
+      toiletSeater
     }
   }
 `;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text, View } from "react-native";
 import Home from "./Home";
 import { Query } from "react-apollo";
-import { GET_ALL_WASHROOM_BY_DISTANCE } from "../../config/queries";
+import { GET_ALL_WASHROOMS } from "../../config/queries";
 import Spinner from "react-native-loading-spinner-overlay";
 export default class HomeContainer extends Component {
   constructor(props) {
@@ -17,20 +17,11 @@ export default class HomeContainer extends Component {
       var crd = pos.coords;
 
       this.setState({ lat: crd.latitude, long: crd.longitude });
-      console.log(this.state);
     });
   }
   render() {
     return (
-      <Query
-        query={GET_ALL_WASHROOM_BY_DISTANCE}
-        variables={{
-          latmin: this.state.lat - 0.1,
-          latmax: this.state.lat + 0.1,
-          longmin: this.state.long - 0.1,
-          longmax: this.state.long + 0.1
-        }}
-      >
+      <Query query={GET_ALL_WASHROOMS}>
         {({ loading, error, data, refetch }) => {
           if (loading) return <Spinner visible={true} />;
           if (error) {
@@ -41,14 +32,18 @@ export default class HomeContainer extends Component {
               </View>
             );
           }
+          console.log(data);
 
           return (
-            <Home
-              nav={this.props.navigation}
-              refetch={refetch}
-              data={data.allWashrooms}
-              location={this.state}
-            />
+            <View>
+              <Text>asdf</Text>
+            </View>
+            // <Home
+            //   nav={this.props.navigation}
+            //   refetch={refetch}
+            //   data={data.allWashrooms}
+            //   location={this.state}
+            // />
           );
         }}
       </Query>
