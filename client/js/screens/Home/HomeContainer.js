@@ -17,13 +17,12 @@ export default class HomeContainer extends Component {
       var crd = pos.coords;
 
       this.setState({ lat: crd.latitude, long: crd.longitude });
-      console.log(this.state);
     });
   }
   render() {
     return (
-      <Mutation mutation={GET_ALL_WASHROOMS}>
-        {(createuser, { loading, error, data, refetch }) => {
+      <Query query={GET_ALL_WASHROOMS}>
+        {({ loading, error, data, refetch }) => {
           if (loading) return <Spinner visible={true} />;
           if (error) {
             return (
@@ -33,17 +32,21 @@ export default class HomeContainer extends Component {
               </View>
             );
           }
-          console.log(createuser);
+          console.log(data);
+
           return (
-            <Home
-              nav={this.props.navigation}
-              refetch={refetch}
-              data={data.allWashrooms}
-              location={this.state}
-            />
+            <View>
+              <Text>asdf</Text>
+            </View>
+            // <Home
+            //   nav={this.props.navigation}
+            //   refetch={refetch}
+            //   data={data.allWashrooms}
+            //   location={this.state}
+            // />
           );
         }}
-      </Mutation>
+      </Query>
     );
   }
 }

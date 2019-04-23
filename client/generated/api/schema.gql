@@ -1,130 +1,1705 @@
-type User {
-  key: ID!
-
-  name: String!
-}
-type Washroom  {
-  key: ID! 
-  name: String
-  stall: Int
-  listOfReviews: [Review!]!
-  toiletSeater: Boolean
-  overallRating: Float
-  numberOfReviews:Int
-  instruction: String
-  address: String
-  locationLat: Float
-  locationLong: Float
-  hoursFrom: Int
-  hoursTo: Int
-  placeId:String 
+enum _ModelMutationType {
+  CREATED
+  UPDATED
+  DELETED
 }
 
-type Review  {
-  id: ID! 
-  user: User 
-  washroom: Washroom 
-  lightRating: Int
-  toiletRating: Int
-  dryingRating: Int
-  sinkRating: Int
-  easeRating: Int
-  rating:Int
-  comment: String 
-  placeId: String
+type _QueryMeta {
+  count: Int!
 }
 
-type File  {
-  id: ID! 
+type AddToReviewPayload {
+  washroomWashroom: Washroom
+  listOfReviewsReview: Review
+}
+input WashroomInput {
+    address: String
+    hoursFrom: DateTime
+    hoursTo: DateTime
+    instruction: String
+    locationLat: Float
+    locationLong: Float
+    name: String
+    numberOfReviews: Int
+    overallRating: Float
+    placeId: String
+    stall: Int
+    toiletSeater: Boolean
+    listOfPhotosId: ID
+    listOfPhotos: WashroomlistOfPhotosFile
+    listOfReviewsIds: [ID!]
+    listOfReviews: [WashroomlistOfReviewsReview!]
+}
+input ReviewInput {
+     comment: String
+    dryingRating: Int!
+    easeRating: Int!
+    lightRating: Int!
+    placeId: String!
+    rating: Int!
+    sinkRating: Int!
+    toiletRating: Int!
+    userId: ID
+    user: ReviewuserUser
+    washroomId: ID
+    washroom: ReviewwashroomWashroom
+}
+type AddToUserPayload {
+  userUser: User
+  userReviewsReview: Review
+}
+
+type AuthenticateUserPayload {
+  id: ID!
+  token: String!
+}
+
+input CreateFile {
   contentType: String
+  date: DateTime
   name: String
   url: String!
-  washroom: Washroom 
-  date: Int
+  washroomId: ID
+  washroom: FilewashroomWashroom
 }
 
-input UserInput {    
-  name: String!
+input CreateReview {
+  comment: String
+  dryingRating: Int!
+  easeRating: Int!
+  lightRating: Int!
+  placeId: String!
+  rating: Int!
+  sinkRating: Int!
+  toiletRating: Int!
+  userId: ID
+  user: ReviewuserUser
+  washroomId: ID
+  washroom: ReviewwashroomWashroom
 }
 
-input WashroomInput {    
+input CreateUser {
+  email: String!
+  facebookUserId: String
+  gender: String
   name: String
-  stall: Int
-  toiletSeater: Boolean
-  overallRating: Float
-  numberOfReviews:Int
-  instruction: String
+  password: String!
+  userReviewsIds: [ID!]
+  userReviews: [UseruserReviewsReview!]
+}
+
+input CreateWashroom {
   address: String
+  hoursFrom: DateTime
+  hoursTo: DateTime
+  instruction: String
   locationLat: Float
   locationLong: Float
-  hoursFrom: Int
-  hoursTo: Int
-  placeId:String 
-}
-input ReviewInput {    
-  user: UserInput 
-  washroom: WashroomInput
-  lightRating: Int 
-  toiletRating: Int 
-  dryingRating: Int 
-  sinkRating: Int
-  easeRating: Int 
-  rating:Int
-  comment: String 
+  name: String
+  numberOfReviews: Int
+  overallRating: Float
   placeId: String
+  stall: Int
+  toiletSeater: Boolean
+  listOfPhotosId: ID
+  listOfPhotos: WashroomlistOfPhotosFile
+  listOfReviewsIds: [ID!]
+  listOfReviews: [WashroomlistOfReviewsReview!]
 }
 
-type Query {
-  getUserByKey(key: ID!): User
-  getReviewByKey(key: ID!): Review
-  getWashroomByKey(key: ID!): Washroom
-  getUserByUsername(name: String!): User!
-  getUsers: [User!]!
-  getReviewByID(key: ID!): Review!
-  getReviews: [Review!]!
-  getWashroomByID(key: ID!): Washroom!
-  getWashrooms: [Washroom!]!
+scalar DateTime
+
+type File implements Node {
+  contentType: String
+  date: DateTime
+  key: ID!
+  name: String
+  url: String!
+  washroom(filter: WashroomFilter): Washroom
+}
+
+input FileFilter {
+  AND: [FileFilter!]
+  OR: [FileFilter!]
+  contentType: String
+  contentType_not: String
+  contentType_in: [String!]
+  contentType_not_in: [String!]
+  contentType_lt: String
+  contentType_lte: String
+  contentType_gt: String
+  contentType_gte: String
+  contentType_contains: String
+  contentType_not_contains: String
+  contentType_starts_with: String
+  contentType_not_starts_with: String
+  contentType_ends_with: String
+  contentType_not_ends_with: String
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  washroom: WashroomFilter
+}
+
+enum FileOrderBy {
+  contentType_ASC
+  contentType_DESC
+  date_ASC
+  date_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  url_ASC
+  url_DESC
+}
+
+type FilePreviousValues {
+  contentType: String
+  date: DateTime
+  id: ID!
+  name: String
+  url: String!
+}
+
+input FileSubscriptionFilter {
+  AND: [FileSubscriptionFilter!]
+  OR: [FileSubscriptionFilter!]
+  mutation_in: [_ModelMutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: FileSubscriptionFilterNode
+}
+
+input FileSubscriptionFilterNode {
+  contentType: String
+  contentType_not: String
+  contentType_in: [String!]
+  contentType_not_in: [String!]
+  contentType_lt: String
+  contentType_lte: String
+  contentType_gt: String
+  contentType_gte: String
+  contentType_contains: String
+  contentType_not_contains: String
+  contentType_starts_with: String
+  contentType_not_starts_with: String
+  contentType_ends_with: String
+  contentType_not_ends_with: String
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  washroom: WashroomFilter
+}
+
+type FileSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: File
+  updatedFields: [String!]
+  previousValues: FilePreviousValues
+}
+
+input FilewashroomWashroom {
+  address: String
+  hoursFrom: DateTime
+  hoursTo: DateTime
+  instruction: String
+  locationLat: Float
+  locationLong: Float
+  name: String
+  numberOfReviews: Int
+  overallRating: Float
+  placeId: String
+  stall: Int
+  toiletSeater: Boolean
+  listOfReviewsIds: [ID!]
+  listOfReviews: [WashroomlistOfReviewsReview!]
+}
+
+input InvokeFunctionInput {
+  name: String!
+  input: String!
+  clientMutationId: String
+}
+
+type InvokeFunctionPayload {
+  result: String!
+  clientMutationId: String
+}
+
+type LoggedInUserPayload {
+  id: ID!
 }
 
 type Mutation {
-  updateUserByKey(input: UpdateUserInput!): User
-  updateWashroomByKey(input: UpdateWashroomInput!): Washroom
+  updateFileByKey(input: UpdateFileInput!): File
   updateReviewByKey(input: UpdateReviewInput!): Review
-  createUser(input: UserInput!): User!
-  createWashroom(input: WashroomInput!): Washroom!
-  createReview(input: ReviewInput!): Review!
+  updateWashroomByKey(input: UpdateWashroomInput!): Washroom
+  updateUserByKey(input: UpdateUserInput!): User
+  updateSetWashroomPhotosPayloadByKey(input: UpdateSetWashroomPhotosPayloadInput!): SetWashroomPhotosPayload
+  updateUnsetWashroomPhotosPayloadByKey(input: UpdateUnsetWashroomPhotosPayloadInput!): UnsetWashroomPhotosPayload
+  updateAddToReviewPayloadByKey(input: UpdateAddToReviewPayloadInput!): AddToReviewPayload
+  updateAddToUserPayloadByKey(input: UpdateAddToUserPayloadInput!): AddToUserPayload
+  updateRemoveFromReviewPayloadByKey(input: UpdateRemoveFromReviewPayloadInput!): RemoveFromReviewPayload
+  updateRemoveFromUserPayloadByKey(input: UpdateRemoveFromUserPayloadInput!): RemoveFromUserPayload
+  updateAuthenticateUserPayloadByKey(input: UpdateAuthenticateUserPayloadInput!): AuthenticateUserPayload
+  updateSignupUserPayloadByKey(input: UpdateSignupUserPayloadInput!): SignupUserPayload
+  updateInvokeFunctionPayloadByKey(input: UpdateInvokeFunctionPayloadInput!): InvokeFunctionPayload
+  createFile(
+    contentType: String
+    date: DateTime
+    name: String
+    url: String!
+    washroomId: ID
+    washroom: FilewashroomWashroom
+  ): File
+  createReview(
+   input:ReviewInput!
+  ): Review
+  createWashroom(
+    input:WashroomInput!
+  ): Washroom
+  updateFile(
+    contentType: String
+    date: DateTime
+    id: ID!
+    name: String
+    url: String
+    washroomId: ID
+    washroom: FilewashroomWashroom
+  ): File
+  updateReview(
+    comment: String
+    dryingRating: Int
+    easeRating: Int
+    id: ID!
+    lightRating: Int
+    placeId: String
+    rating: Int
+    sinkRating: Int
+    toiletRating: Int
+    userId: ID
+    user: ReviewuserUser
+    washroomId: ID
+    washroom: ReviewwashroomWashroom
+  ): Review
+  updateUser(
+    email: String
+    facebookUserId: String
+    gender: String
+    id: ID!
+    name: String
+    password: String
+    userReviewsIds: [ID!]
+    userReviews: [UseruserReviewsReview!]
+  ): User
+  updateWashroom(
+    address: String
+    hoursFrom: DateTime
+    hoursTo: DateTime
+    id: ID!
+    instruction: String
+    locationLat: Float
+    locationLong: Float
+    name: String
+    numberOfReviews: Int
+    overallRating: Float
+    placeId: String
+    stall: Int
+    toiletSeater: Boolean
+    listOfPhotosId: ID
+    listOfPhotos: WashroomlistOfPhotosFile
+    listOfReviewsIds: [ID!]
+    listOfReviews: [WashroomlistOfReviewsReview!]
+  ): Washroom
+  updateOrCreateFile(update: UpdateFile!, create: CreateFile!): File
+  updateOrCreateReview(update: UpdateReview!, create: CreateReview!): Review
+  updateOrCreateUser(update: UpdateUser!, create: CreateUser!): User
+  updateOrCreateWashroom(
+    update: UpdateWashroom!
+    create: CreateWashroom!
+  ): Washroom
+  deleteFile(id: ID!): File
+  deleteReview(id: ID!): Review
+  deleteUser(id: ID!): User
+  deleteWashroom(id: ID!): Washroom
+  setWashroomPhotos(
+    listOfPhotosFileId: ID!
+    washroomWashroomId: ID!
+  ): SetWashroomPhotosPayload
+  unsetWashroomPhotos(
+    listOfPhotosFileId: ID!
+    washroomWashroomId: ID!
+  ): UnsetWashroomPhotosPayload
+  addToReview(
+    listOfReviewsReviewId: ID!
+    washroomWashroomId: ID!
+  ): AddToReviewPayload
+  addToUser(userReviewsReviewId: ID!, userUserId: ID!): AddToUserPayload
+  removeFromReview(
+    listOfReviewsReviewId: ID!
+    washroomWashroomId: ID!
+  ): RemoveFromReviewPayload
+  removeFromUser(
+    userReviewsReviewId: ID!
+    userUserId: ID!
+  ): RemoveFromUserPayload
+  createUser(
+    email: String!
+    facebookUserId: String
+    gender: String
+    name: String
+    password: String!
+    userReviewsIds: [ID!]
+    userReviews: [UseruserReviewsReview!]
+  ): User
+  authenticateUser(email: String!, password: String!): AuthenticateUserPayload
+  signupUser(email: String!, password: String!): SignupUserPayload
+  invokeFunction(input: InvokeFunctionInput!): InvokeFunctionPayload
 }
-input UpdateUserInput {
+
+interface Node {
   key: ID!
-  name: String
 }
-    
-input UpdateWashroomInput {
+
+type Query {
+  getFileByKey(key: ID!): File
+  getReviewByKey(key: ID!): Review
+  getUserByKey(key: ID!): User
+  getWashroomByKey(key: ID!): Washroom
+  get_QueryMetaByKey(key: ID!): _QueryMeta
+  getLoggedInUserPayloadByKey(key: ID!): LoggedInUserPayload
+  getNodeByKey(key: ID!): Node
+  allFiles(
+    filter: FileFilter
+    orderBy: FileOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [File!]!
+  allReviews(
+    filter: ReviewFilter
+    orderBy: ReviewOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Review!]!
+  allUsers(
+    filter: UserFilter
+    orderBy: UserOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [User!]!
+  allWashrooms(
+    filter: WashroomFilter
+    orderBy: WashroomOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Washroom!]!
+  _allFilesMeta(
+    filter: FileFilter
+    orderBy: FileOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): _QueryMeta!
+  _allReviewsMeta(
+    filter: ReviewFilter
+    orderBy: ReviewOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): _QueryMeta!
+  _allUsersMeta(
+    filter: UserFilter
+    orderBy: UserOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): _QueryMeta!
+  _allWashroomsMeta(
+    filter: WashroomFilter
+    orderBy: WashroomOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): _QueryMeta!
+  File(id: ID): File
+  Review(id: ID): Review
+  User(email: String, facebookUserId: String, id: ID): User
+  Washroom(id: ID, placeId: String): Washroom
+  loggedInUser: LoggedInUserPayload
+  user: User
+  node(id: ID!): Node
+}
+
+type RemoveFromReviewPayload {
+  washroomWashroom: Washroom
+  listOfReviewsReview: Review
+}
+
+type RemoveFromUserPayload {
+  userUser: User
+  userReviewsReview : Review
+}
+
+type Review implements Node {
+  comment: String
+  dryingRating: Int!
+  easeRating: Int!
   key: ID!
+  lightRating: Int!
+  placeId: String!
+  rating: Int!
+  sinkRating: Int!
+  toiletRating: Int!
+  user(filter: UserFilter): User
+  washroom(filter: WashroomFilter): Washroom
+}
+
+input ReviewFilter {
+  AND: [ReviewFilter!]
+  OR: [ReviewFilter!]
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  dryingRating: Int
+  dryingRating_not: Int
+  dryingRating_in: [Int!]
+  dryingRating_not_in: [Int!]
+  dryingRating_lt: Int
+  dryingRating_lte: Int
+  dryingRating_gt: Int
+  dryingRating_gte: Int
+  easeRating: Int
+  easeRating_not: Int
+  easeRating_in: [Int!]
+  easeRating_not_in: [Int!]
+  easeRating_lt: Int
+  easeRating_lte: Int
+  easeRating_gt: Int
+  easeRating_gte: Int
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  lightRating: Int
+  lightRating_not: Int
+  lightRating_in: [Int!]
+  lightRating_not_in: [Int!]
+  lightRating_lt: Int
+  lightRating_lte: Int
+  lightRating_gt: Int
+  lightRating_gte: Int
+  placeId: String
+  placeId_not: String
+  placeId_in: [String!]
+  placeId_not_in: [String!]
+  placeId_lt: String
+  placeId_lte: String
+  placeId_gt: String
+  placeId_gte: String
+  placeId_contains: String
+  placeId_not_contains: String
+  placeId_starts_with: String
+  placeId_not_starts_with: String
+  placeId_ends_with: String
+  placeId_not_ends_with: String
+  rating: Int
+  rating_not: Int
+  rating_in: [Int!]
+  rating_not_in: [Int!]
+  rating_lt: Int
+  rating_lte: Int
+  rating_gt: Int
+  rating_gte: Int
+  sinkRating: Int
+  sinkRating_not: Int
+  sinkRating_in: [Int!]
+  sinkRating_not_in: [Int!]
+  sinkRating_lt: Int
+  sinkRating_lte: Int
+  sinkRating_gt: Int
+  sinkRating_gte: Int
+  toiletRating: Int
+  toiletRating_not: Int
+  toiletRating_in: [Int!]
+  toiletRating_not_in: [Int!]
+  toiletRating_lt: Int
+  toiletRating_lte: Int
+  toiletRating_gt: Int
+  toiletRating_gte: Int
+  user: UserFilter
+  washroom: WashroomFilter
+}
+
+enum ReviewOrderBy {
+  comment_ASC
+  comment_DESC
+  dryingRating_ASC
+  dryingRating_DESC
+  easeRating_ASC
+  easeRating_DESC
+  id_ASC
+  id_DESC
+  lightRating_ASC
+  lightRating_DESC
+  placeId_ASC
+  placeId_DESC
+  rating_ASC
+  rating_DESC
+  sinkRating_ASC
+  sinkRating_DESC
+  toiletRating_ASC
+  toiletRating_DESC
+}
+
+type ReviewPreviousValues {
+  comment: String
+  dryingRating: Int!
+  easeRating: Int!
+  id: ID!
+  lightRating: Int!
+  placeId: String!
+  rating: Int!
+  sinkRating: Int!
+  toiletRating: Int!
+}
+
+input ReviewSubscriptionFilter {
+  AND: [ReviewSubscriptionFilter!]
+  OR: [ReviewSubscriptionFilter!]
+  mutation_in: [_ModelMutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ReviewSubscriptionFilterNode
+}
+
+input ReviewSubscriptionFilterNode {
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  dryingRating: Int
+  dryingRating_not: Int
+  dryingRating_in: [Int!]
+  dryingRating_not_in: [Int!]
+  dryingRating_lt: Int
+  dryingRating_lte: Int
+  dryingRating_gt: Int
+  dryingRating_gte: Int
+  easeRating: Int
+  easeRating_not: Int
+  easeRating_in: [Int!]
+  easeRating_not_in: [Int!]
+  easeRating_lt: Int
+  easeRating_lte: Int
+  easeRating_gt: Int
+  easeRating_gte: Int
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  lightRating: Int
+  lightRating_not: Int
+  lightRating_in: [Int!]
+  lightRating_not_in: [Int!]
+  lightRating_lt: Int
+  lightRating_lte: Int
+  lightRating_gt: Int
+  lightRating_gte: Int
+  placeId: String
+  placeId_not: String
+  placeId_in: [String!]
+  placeId_not_in: [String!]
+  placeId_lt: String
+  placeId_lte: String
+  placeId_gt: String
+  placeId_gte: String
+  placeId_contains: String
+  placeId_not_contains: String
+  placeId_starts_with: String
+  placeId_not_starts_with: String
+  placeId_ends_with: String
+  placeId_not_ends_with: String
+  rating: Int
+  rating_not: Int
+  rating_in: [Int!]
+  rating_not_in: [Int!]
+  rating_lt: Int
+  rating_lte: Int
+  rating_gt: Int
+  rating_gte: Int
+  sinkRating: Int
+  sinkRating_not: Int
+  sinkRating_in: [Int!]
+  sinkRating_not_in: [Int!]
+  sinkRating_lt: Int
+  sinkRating_lte: Int
+  sinkRating_gt: Int
+  sinkRating_gte: Int
+  toiletRating: Int
+  toiletRating_not: Int
+  toiletRating_in: [Int!]
+  toiletRating_not_in: [Int!]
+  toiletRating_lt: Int
+  toiletRating_lte: Int
+  toiletRating_gt: Int
+  toiletRating_gte: Int
+  user: UserFilter
+  washroom: WashroomFilter
+}
+
+type ReviewSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Review
+  updatedFields: [String!]
+  previousValues: ReviewPreviousValues
+}
+
+input ReviewuserUser {
+  email: String!
+  facebookUserId: String
+  gender: String
   name: String
-  stall: Int
-  toiletSeater: Boolean
-  overallRating: Float
-  numberOfReviews: Int
-  instruction: String
+  password: String!
+  userReviewsIds: [ID!]
+  userReviews: [UseruserReviewsReview!]
+}
+
+input ReviewwashroomWashroom {
   address: String
+  hoursFrom: DateTime
+  hoursTo: DateTime
+  instruction: String
   locationLat: Float
   locationLong: Float
-  hoursFrom: Int
-  hoursTo: Int
+  name: String
+  numberOfReviews: Int
+  overallRating: Float
   placeId: String
+  stall: Int
+  toiletSeater: Boolean
+  listOfPhotosId: ID
+  listOfPhotos: WashroomlistOfPhotosFile
+  listOfReviewsIds: [ID!]
+  listOfReviews: [WashroomlistOfReviewsReview!]
+}
+
+type SetWashroomPhotosPayload {
+  washroomWashroom: Washroom
+  listOfPhotosFile: File
+}
+
+type SignupUserPayload {
+  id: ID!
+  token: String!
+}
+
+type Subscription {
+  File(filter: FileSubscriptionFilter): FileSubscriptionPayload
+  Review(filter: ReviewSubscriptionFilter): ReviewSubscriptionPayload
+  User(filter: UserSubscriptionFilter): UserSubscriptionPayload
+  Washroom(filter: WashroomSubscriptionFilter): WashroomSubscriptionPayload
+}
+
+type UnsetWashroomPhotosPayload {
+  washroomWashroom: Washroom
+  listOfPhotosFile: File
+}
+
+input UpdateFile {
+  contentType: String
+  date: DateTime
+  id: ID!
+  name: String
+  url: String
+  washroomId: ID
+  washroom: FilewashroomWashroom
+}
+
+input UpdateReview {
+  comment: String
+  dryingRating: Int
+  easeRating: Int
+  id: ID!
+  lightRating: Int
+  placeId: String
+  rating: Int
+  sinkRating: Int
+  toiletRating: Int
+  userId: ID
+  user: ReviewuserUser
+  washroomId: ID
+  washroom: ReviewwashroomWashroom
+}
+
+input UpdateUser {
+  email: String
+  facebookUserId: String
+  gender: String
+  id: ID!
+  name: String
+  password: String
+  userReviewsIds: [ID!]
+  userReviews: [UseruserReviewsReview!]
+}
+
+input UpdateWashroom {
+  address: String
+  hoursFrom: DateTime
+  hoursTo: DateTime
+  id: ID!
+  instruction: String
+  locationLat: Float
+  locationLong: Float
+  name: String
+  numberOfReviews: Int
+  overallRating: Float
+  placeId: String
+  stall: Int
+  toiletSeater: Boolean
+  listOfPhotosId: ID
+  listOfPhotos: WashroomlistOfPhotosFile
+  listOfReviewsIds: [ID!]
+  listOfReviews: [WashroomlistOfReviewsReview!]
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  email: String!
+  facebookUserId: String
+  gender: String
+  key: ID!
+  name: String
+  password: String!
+  updatedAt: DateTime!
+  userReviews(
+    filter: ReviewFilter
+    orderBy: ReviewOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Review!]
+  _userReviewsMeta(
+    filter: ReviewFilter
+    orderBy: ReviewOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): _QueryMeta!
+}
+
+input UserFilter {
+  AND: [UserFilter!]
+  OR: [UserFilter!]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  facebookUserId: String
+  facebookUserId_not: String
+  facebookUserId_in: [String!]
+  facebookUserId_not_in: [String!]
+  facebookUserId_lt: String
+  facebookUserId_lte: String
+  facebookUserId_gt: String
+  facebookUserId_gte: String
+  facebookUserId_contains: String
+  facebookUserId_not_contains: String
+  facebookUserId_starts_with: String
+  facebookUserId_not_starts_with: String
+  facebookUserId_ends_with: String
+  facebookUserId_not_ends_with: String
+  gender: String
+  gender_not: String
+  gender_in: [String!]
+  gender_not_in: [String!]
+  gender_lt: String
+  gender_lte: String
+  gender_gt: String
+  gender_gte: String
+  gender_contains: String
+  gender_not_contains: String
+  gender_starts_with: String
+  gender_not_starts_with: String
+  gender_ends_with: String
+  gender_not_ends_with: String
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  userReviews_every: ReviewFilter
+  userReviews_some: ReviewFilter
+  userReviews_none: ReviewFilter
+}
+
+enum UserOrderBy {
+  createdAt_ASC
+  createdAt_DESC
+  email_ASC
+  email_DESC
+  facebookUserId_ASC
+  facebookUserId_DESC
+  gender_ASC
+  gender_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  password_ASC
+  password_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  createdAt: DateTime!
+  email: String!
+  facebookUserId: String
+  gender: String
+  id: ID!
+  name: String
+  password: String!
+  updatedAt: DateTime!
+}
+
+input UserSubscriptionFilter {
+  AND: [UserSubscriptionFilter!]
+  OR: [UserSubscriptionFilter!]
+  mutation_in: [_ModelMutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserSubscriptionFilterNode
+}
+
+input UserSubscriptionFilterNode {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  facebookUserId: String
+  facebookUserId_not: String
+  facebookUserId_in: [String!]
+  facebookUserId_not_in: [String!]
+  facebookUserId_lt: String
+  facebookUserId_lte: String
+  facebookUserId_gt: String
+  facebookUserId_gte: String
+  facebookUserId_contains: String
+  facebookUserId_not_contains: String
+  facebookUserId_starts_with: String
+  facebookUserId_not_starts_with: String
+  facebookUserId_ends_with: String
+  facebookUserId_not_ends_with: String
+  gender: String
+  gender_not: String
+  gender_in: [String!]
+  gender_not_in: [String!]
+  gender_lt: String
+  gender_lte: String
+  gender_gt: String
+  gender_gte: String
+  gender_contains: String
+  gender_not_contains: String
+  gender_starts_with: String
+  gender_not_starts_with: String
+  gender_ends_with: String
+  gender_not_ends_with: String
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  userReviews_every: ReviewFilter
+  userReviews_some: ReviewFilter
+  userReviews_none: ReviewFilter
+}
+
+type UserSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UseruserReviewsReview {
+  comment: String
+  dryingRating: Int!
+  easeRating: Int!
+  lightRating: Int!
+  placeId: String!
+  rating: Int!
+  sinkRating: Int!
+  toiletRating: Int!
+  washroomId: ID
+  washroom: ReviewwashroomWashroom
+}
+
+type Washroom implements Node {
+  address: String
+  hoursFrom: DateTime
+  hoursTo: DateTime
+  key: ID!
+  instruction: String
+  listOfPhotos(filter: FileFilter): File
+  listOfReviews(
+    filter: ReviewFilter
+    orderBy: ReviewOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Review!]
+  locationLat: Float
+  locationLong: Float
+  name: String
+  numberOfReviews: Int
+  overallRating: Float
+  placeId: String
+  stall: Int
+  toiletSeater: Boolean
+  _listOfReviewsMeta(
+    filter: ReviewFilter
+    orderBy: ReviewOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): _QueryMeta!
+}
+
+input WashroomFilter {
+  AND: [WashroomFilter!]
+  OR: [WashroomFilter!]
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  hoursFrom: DateTime
+  hoursFrom_not: DateTime
+  hoursFrom_in: [DateTime!]
+  hoursFrom_not_in: [DateTime!]
+  hoursFrom_lt: DateTime
+  hoursFrom_lte: DateTime
+  hoursFrom_gt: DateTime
+  hoursFrom_gte: DateTime
+  hoursTo: DateTime
+  hoursTo_not: DateTime
+  hoursTo_in: [DateTime!]
+  hoursTo_not_in: [DateTime!]
+  hoursTo_lt: DateTime
+  hoursTo_lte: DateTime
+  hoursTo_gt: DateTime
+  hoursTo_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  instruction: String
+  instruction_not: String
+  instruction_in: [String!]
+  instruction_not_in: [String!]
+  instruction_lt: String
+  instruction_lte: String
+  instruction_gt: String
+  instruction_gte: String
+  instruction_contains: String
+  instruction_not_contains: String
+  instruction_starts_with: String
+  instruction_not_starts_with: String
+  instruction_ends_with: String
+  instruction_not_ends_with: String
+  locationLat: Float
+  locationLat_not: Float
+  locationLat_in: [Float!]
+  locationLat_not_in: [Float!]
+  locationLat_lt: Float
+  locationLat_lte: Float
+  locationLat_gt: Float
+  locationLat_gte: Float
+  locationLong: Float
+  locationLong_not: Float
+  locationLong_in: [Float!]
+  locationLong_not_in: [Float!]
+  locationLong_lt: Float
+  locationLong_lte: Float
+  locationLong_gt: Float
+  locationLong_gte: Float
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  numberOfReviews: Int
+  numberOfReviews_not: Int
+  numberOfReviews_in: [Int!]
+  numberOfReviews_not_in: [Int!]
+  numberOfReviews_lt: Int
+  numberOfReviews_lte: Int
+  numberOfReviews_gt: Int
+  numberOfReviews_gte: Int
+  overallRating: Float
+  overallRating_not: Float
+  overallRating_in: [Float!]
+  overallRating_not_in: [Float!]
+  overallRating_lt: Float
+  overallRating_lte: Float
+  overallRating_gt: Float
+  overallRating_gte: Float
+  placeId: String
+  placeId_not: String
+  placeId_in: [String!]
+  placeId_not_in: [String!]
+  placeId_lt: String
+  placeId_lte: String
+  placeId_gt: String
+  placeId_gte: String
+  placeId_contains: String
+  placeId_not_contains: String
+  placeId_starts_with: String
+  placeId_not_starts_with: String
+  placeId_ends_with: String
+  placeId_not_ends_with: String
+  stall: Int
+  stall_not: Int
+  stall_in: [Int!]
+  stall_not_in: [Int!]
+  stall_lt: Int
+  stall_lte: Int
+  stall_gt: Int
+  stall_gte: Int
+  toiletSeater: Boolean
+  toiletSeater_not: Boolean
+  listOfPhotos: FileFilter
+  listOfReviews_every: ReviewFilter
+  listOfReviews_some: ReviewFilter
+  listOfReviews_none: ReviewFilter
+}
+
+input WashroomlistOfPhotosFile {
+  contentType: String
+  date: DateTime
+  name: String
+  url: String!
+}
+
+input WashroomlistOfReviewsReview {
+  comment: String
+  dryingRating: Int!
+  easeRating: Int!
+  lightRating: Int!
+  placeId: String!
+  rating: Int!
+  sinkRating: Int!
+  toiletRating: Int!
+  userId: ID
+  user: ReviewuserUser
+}
+
+enum WashroomOrderBy {
+  address_ASC
+  address_DESC
+  hoursFrom_ASC
+  hoursFrom_DESC
+  hoursTo_ASC
+  hoursTo_DESC
+  id_ASC
+  id_DESC
+  instruction_ASC
+  instruction_DESC
+  locationLat_ASC
+  locationLat_DESC
+  locationLong_ASC
+  locationLong_DESC
+  name_ASC
+  name_DESC
+  numberOfReviews_ASC
+  numberOfReviews_DESC
+  overallRating_ASC
+  overallRating_DESC
+  placeId_ASC
+  placeId_DESC
+  stall_ASC
+  stall_DESC
+  toiletSeater_ASC
+  toiletSeater_DESC
+}
+
+type WashroomPreviousValues {
+  address: String
+  hoursFrom: DateTime
+  hoursTo: DateTime
+  id: ID!
+  instruction: String
+  locationLat: Float
+  locationLong: Float
+  name: String
+  numberOfReviews: Int
+  overallRating: Float
+  placeId: String
+  stall: Int
+  toiletSeater: Boolean
+}
+
+input WashroomSubscriptionFilter {
+  AND: [WashroomSubscriptionFilter!]
+  OR: [WashroomSubscriptionFilter!]
+  mutation_in: [_ModelMutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: WashroomSubscriptionFilterNode
+}
+
+input WashroomSubscriptionFilterNode {
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  hoursFrom: DateTime
+  hoursFrom_not: DateTime
+  hoursFrom_in: [DateTime!]
+  hoursFrom_not_in: [DateTime!]
+  hoursFrom_lt: DateTime
+  hoursFrom_lte: DateTime
+  hoursFrom_gt: DateTime
+  hoursFrom_gte: DateTime
+  hoursTo: DateTime
+  hoursTo_not: DateTime
+  hoursTo_in: [DateTime!]
+  hoursTo_not_in: [DateTime!]
+  hoursTo_lt: DateTime
+  hoursTo_lte: DateTime
+  hoursTo_gt: DateTime
+  hoursTo_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  instruction: String
+  instruction_not: String
+  instruction_in: [String!]
+  instruction_not_in: [String!]
+  instruction_lt: String
+  instruction_lte: String
+  instruction_gt: String
+  instruction_gte: String
+  instruction_contains: String
+  instruction_not_contains: String
+  instruction_starts_with: String
+  instruction_not_starts_with: String
+  instruction_ends_with: String
+  instruction_not_ends_with: String
+  locationLat: Float
+  locationLat_not: Float
+  locationLat_in: [Float!]
+  locationLat_not_in: [Float!]
+  locationLat_lt: Float
+  locationLat_lte: Float
+  locationLat_gt: Float
+  locationLat_gte: Float
+  locationLong: Float
+  locationLong_not: Float
+  locationLong_in: [Float!]
+  locationLong_not_in: [Float!]
+  locationLong_lt: Float
+  locationLong_lte: Float
+  locationLong_gt: Float
+  locationLong_gte: Float
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  numberOfReviews: Int
+  numberOfReviews_not: Int
+  numberOfReviews_in: [Int!]
+  numberOfReviews_not_in: [Int!]
+  numberOfReviews_lt: Int
+  numberOfReviews_lte: Int
+  numberOfReviews_gt: Int
+  numberOfReviews_gte: Int
+  overallRating: Float
+  overallRating_not: Float
+  overallRating_in: [Float!]
+  overallRating_not_in: [Float!]
+  overallRating_lt: Float
+  overallRating_lte: Float
+  overallRating_gt: Float
+  overallRating_gte: Float
+  placeId: String
+  placeId_not: String
+  placeId_in: [String!]
+  placeId_not_in: [String!]
+  placeId_lt: String
+  placeId_lte: String
+  placeId_gt: String
+  placeId_gte: String
+  placeId_contains: String
+  placeId_not_contains: String
+  placeId_starts_with: String
+  placeId_not_starts_with: String
+  placeId_ends_with: String
+  placeId_not_ends_with: String
+  stall: Int
+  stall_not: Int
+  stall_in: [Int!]
+  stall_not_in: [Int!]
+  stall_lt: Int
+  stall_lte: Int
+  stall_gt: Int
+  stall_gte: Int
+  toiletSeater: Boolean
+  toiletSeater_not: Boolean
+  listOfPhotos: FileFilter
+  listOfReviews_every: ReviewFilter
+  listOfReviews_some: ReviewFilter
+  listOfReviews_none: ReviewFilter
+}
+
+type WashroomSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Washroom
+  updatedFields: [String!]
+  previousValues: WashroomPreviousValues
+}
+
+
+input UpdateFileInput {
+  key: ID!
+  contentType: String
+  name: String
+  url: String
 }
     
 input UpdateReviewInput {
   key: ID!
-  id: ID
-  lightRating: Int
-  toiletRating: Int
-  dryingRating: Int
-  sinkRating: Int
-  easeRating: Int
-  rating: Int
   comment: String
+  dryingRating: Int
+  easeRating: Int
+  lightRating: Int
   placeId: String
+  rating: Int
+  sinkRating: Int
+  toiletRating: Int
+}
+    
+input UpdateWashroomInput {
+  key: ID!
+  address: String
+  instruction: String
+  locationLat: Float
+  locationLong: Float
+  name: String
+  numberOfReviews: Int
+  overallRating: Float
+  placeId: String
+  stall: Int
+  toiletSeater: Boolean
+}
+    
+input UpdateUserInput {
+  key: ID!
+  email: String
+  facebookUserId: String
+  gender: String
+  name: String
+  password: String
+}
+    
+input UpdateSetWashroomPhotosPayloadInput {
+  key: ID!
+  
+}
+    
+input UpdateUnsetWashroomPhotosPayloadInput {
+  key: ID!
+  
+}
+    
+input UpdateAddToReviewPayloadInput {
+  key: ID!
+  
+}
+    
+input UpdateAddToUserPayloadInput {
+  key: ID!
+  
+}
+    
+input UpdateRemoveFromReviewPayloadInput {
+  key: ID!
+  
+}
+    
+input UpdateRemoveFromUserPayloadInput {
+  key: ID!
+  
+}
+    
+input UpdateAuthenticateUserPayloadInput {
+  key: ID!
+  id: ID
+  token: String
+}
+    
+input UpdateSignupUserPayloadInput {
+  key: ID!
+  id: ID
+  token: String
+}
+    
+input UpdateInvokeFunctionPayloadInput {
+  key: ID!
+  result: String
+  clientMutationId: String
 }
     

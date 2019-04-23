@@ -1,43 +1,43 @@
-"use strict";
+'use strict'
 
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const graphqlHTTP = require("express-graphql");
-const { makeExecutableSchema } = require("graphql-tools");
-const firebaseClient = require("firebase");
+const express = require('express')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const graphqlHTTP = require('express-graphql')
+const { makeExecutableSchema } = require('graphql-tools')
+const firebaseClient = require('firebase')
 
-const gqlServerConfig = require("./api");
+const gqlServerConfig = require('./api')
 
-if (process.env.NODE_ENV === "development") {
-  require("dotenv").config({ path: "development.env" });
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config({ path: 'development.env' })
 }
 
-const app = express();
+const app = express()
 
-app.set("port", process.env.PORT || 7000);
-app.use(bodyParser.json({ limit: "10mb" }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.set('port', process.env.PORT || 7000)
+app.use(bodyParser.json({ limit: '10mb' }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(cors());
+app.use(cors())
 
-const schema = makeExecutableSchema(gqlServerConfig);
+const schema = makeExecutableSchema(gqlServerConfig)
 
 const firebase = firebaseClient.initializeApp({
   apiKey: process.env.FIREBASE_API_KEY,
   databaseURL: process.env.FIREBASE_DATABASE_URL
 });
 
-app.use("/graphql", (req, res) => {
+app.use('/graphql', (req, res) => {
   graphqlHTTP({
     schema,
     graphiql: true,
     context: { firebase }
-  })(req, res);
-});
+  })(req, res)
+})
 
-const server = app.listen(app.get("port"), () => {
-  console.log(`Server running -> PORT ${server.address().port}`);
-});
+const server = app.listen(app.get('port'), () => {
+  console.log(`Server running -> PORT ${server.address().port}`)
+})
 
-module.exports = app;
+module.exports = app

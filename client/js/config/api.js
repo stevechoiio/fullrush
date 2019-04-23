@@ -41,8 +41,35 @@ const query = gql`
     }
   }
 `;
+const mutation = gql`
+  fragment WashroomInput on firebase {
+    name: String
+    stall: Int
+  }
+
+  mutation($ref: string, $input: WashroomInput!) {
+    updateArticle(input: $input) @rtdbPush(ref: $ref) {
+      id @pushKey
+      stall
+    }
+  }
+`;
 
 // Invoke the query and log the person's name
-client.query({ query }).then(response => {
-  console.log(response.data);
-});
+// client.query({ query }).then(response => {
+//   console.log(response.data);
+// });
+client
+  .mutate({
+    variables: {
+      ref: "/washrooms",
+      input: { name: "DevHub", stall: 5 }
+    },
+    mutation
+  })
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.log(error);
+  });

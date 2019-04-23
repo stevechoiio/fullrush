@@ -1,34 +1,22 @@
 import gql from "graphql-tag";
 
+// Queries
 export const GET_ALL_WASHROOMS = gql`
   query GetAllWashrooms {
     washrooms @rtdbQuery(ref: "/washrooms", type: "Washrooms") @array {
       id @key
       name
+      instruction
+      overallRating
+      numberOfReviews
+      address
+      placeId
+      locationLat
+      locationLong
+      toiletSeater
     }
   }
 `;
-// Queries
-// export const GET_ALL_WASHROOMS = gql`
-//   query GetAllWashrooms {
-//     allWashrooms {
-//       id
-//       name
-//       instruction
-//       overallRating
-//       numberOfReviews
-//       address
-//       placeId
-//       locationLat
-//       locationLong
-//       toiletSeater
-//       listOfPhotos {
-//         id
-//         url
-//       }
-//     }
-//   }
-// `;
 export const CHECK_DUPLICATE_WASHROOM = gql`
   query CheckDuplicate($placeId: String!) {
     allWashrooms(filter: { placeId: $placeId }) {
