@@ -7,8 +7,9 @@ import SplashScreen from "react-native-splash-screen";
 import { Root } from "native-base";
 import Amplify from "aws-amplify";
 import awsconfig from "../aws-exports";
+import * as firebase from 'react-native-firebase';
 
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
 
 export default class App extends Component {
   componentDidMount() {
@@ -19,9 +20,9 @@ export default class App extends Component {
     return (
       <Root>
         <ApolloProvider client={client}>
-          <Rehydrated>
+          {/* <Rehydrated> */}
             <RootStackNavigator />
-          </Rehydrated>
+          {/* </Rehydrated> */}
         </ApolloProvider>
       </Root>
     );

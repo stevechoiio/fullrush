@@ -35,13 +35,12 @@ export default class HomeContainer extends Component {
           }
           console.log(createuser);
           return (
-            <View />
-            // <Home
-            //   nav={this.props.navigation}
-            //   refetch={refetch}
-            //   data={data.allWashrooms}
-            //   location={this.state}
-            // />
+            <Home
+              nav={this.props.navigation}
+              refetch={refetch}
+              data={data.allWashrooms}
+              location={this.state}
+            />
           );
         }}
       </Mutation>
