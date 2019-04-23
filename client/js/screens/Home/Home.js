@@ -37,7 +37,8 @@ class Home extends Component {
     super(props);
     this.state = {
       refreshing: false,
-      filterDistance: true
+      filterDistance: true,
+      filterRating: false
     };
   }
   handleGetDirections = async (lat, long) => {
@@ -114,18 +115,23 @@ class Home extends Component {
                     destructiveButtonIndex: DESTRUCTIVE_INDEX,
                     title: "Sort by:"
                   },
-                  a => {
-                    if (a === 1) {
-                      this.setState({
-                        filterDistance: false
-                      });
-                    } else {
-                      this.setState({
-                        filterDistance: true
-                      });
-                    }
+                  sortIndex => {
+                    this.setState({
+                      sort: BUTTONS[sortIndex]
+                    });
+                    // if (sortIndex === 1) {
+                    //   this.setState({
+                    //     filterDistance: true,
+                    //     filterRating: false
+                    //   });
+                    // } else {
+                    //   this.setState({
+                    //     filterDistance: false,
+                    //     filterRating: true
+                    //   });
+                    // }
 
-                    console.log(this.state.filterDistance);
+                    // console.log(this.state.filterDistance);
                   }
                 );
               }}

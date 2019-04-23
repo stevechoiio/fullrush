@@ -58,7 +58,7 @@ class Review extends Component {
     let stateCopy = { ...this.state };
     delete stateCopy.userId;
     let total = Object.values(stateCopy).reduce((a, b) => a + b) / 5;
-
+    console.log("alert has popped up")
     let reviewID = await add_review({
       variables: {
         userId: this.state.userId,
@@ -96,6 +96,7 @@ class Review extends Component {
     });
 
     this.setState({ alert: false });
+    console.log("Try this");
     nav.navigate("Home");
   };
   render() {
@@ -106,7 +107,7 @@ class Review extends Component {
         <View behavior="padding">
           <Overlay
             isVisible={this.state.alert}
-            onBackdropPress={() => this.setState({ isVisible: false })}
+            onBackdropPress={() => this.setState({ alert: false })}
             overlayStyle={{ borderRadius: 20 }}
             style={{
               flex: 1,
