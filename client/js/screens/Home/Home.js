@@ -225,10 +225,10 @@ class Home extends Component {
                   marginLeft: 0
                 }}
               >
-                <Thumbnail
+                {/* <Thumbnail
                   square
                   source={{ uri: checkForPhoto(item.listOfPhotos) }}
-                />
+                /> */}
                 {/* //item.listOfPhotos.url}}/> */}
                 {/* //source={{uri: item.listOfPhotos[0]}}/> */}
 
@@ -242,7 +242,7 @@ class Home extends Component {
                     disabled={true}
                     maxStars={5}
                     rating={item.overallRating}
-                    starSize={12}
+                    starSize={15}
                     halfStarColor="#FFDF00"
                     emptyStarColor="#FFDF00"
                     fullStarColor="#FFDF00"

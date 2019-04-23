@@ -229,35 +229,6 @@ class AddWashroom extends Component {
                     ) : (
                       <Text>no photo</Text>
                     )} */}
-                      <TouchableOpacity
-                        style={{
-                          margin: 3,
-                          backgroundColor: "#BFD7EA",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          width: 200,
-                          height: 40,
-                          borderRadius: 13
-                        }}
-                        onPress={() => {
-                          this.props.nav.navigate("Camera");
-                        }}
-                      >
-                        <Text
-                          style={{
-                            ...material.title,
-                            color: "white"
-                          }}
-                        >
-                          <Icon
-                            style={{ marginRight: 2 }}
-                            name={"camera"}
-                            size={20}
-                            color={"white"}
-                          />{" "}
-                          Take a photo!
-                        </Text>
-                      </TouchableOpacity>
 
                       <TouchableOpacity
                         style={{
