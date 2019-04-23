@@ -34,11 +34,13 @@ class Review extends Component {
       this.setState({ userId });
     });
   };
+  
   onStarRatingPress(rating, criteria) {
     this.setState({
       [criteria]: rating
     });
   }
+  
   addReview = async () => {
     const {
       washroomData,
@@ -58,10 +60,9 @@ class Review extends Component {
     let stateCopy = { ...this.state };
     delete stateCopy.userId;
     let total = Object.values(stateCopy).reduce((a, b) => a + b) / 5;
-    console.log("alert has popped up")
+    // console.log("alert has popped up")
     let reviewID = await add_review({
       variables: {
-        userId: this.state.userId,
         washroomId: washroomData.id,
         rating: total,
         lightRating: this.state.light,
@@ -96,9 +97,9 @@ class Review extends Component {
     });
 
     this.setState({ alert: false });
-    console.log("Try this");
     nav.navigate("Home");
   };
+  
   render() {
     let { add_review, update_washroom_rating } = this.props;
 

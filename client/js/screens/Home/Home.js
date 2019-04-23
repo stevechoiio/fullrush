@@ -20,25 +20,26 @@ import { material } from "react-native-typography";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Map from "../../components/Map";
 import getDirections from "react-native-google-maps-directions";
-let defaultImage = "https://dummyimage.com/600x400/000/fff";
+
+//let defaultImage = "https://dummyimage.com/600x400/000/fff";
 
 var BUTTONS = ["Distance", "Rating", "Cancel"];
 var DESTRUCTIVE_INDEX = 2;
-let checkForPhoto = item => {
-  if (item == null) {
-    return defaultImage;
-  } else {
-    return item.url;
-  }
-};
+
+// let checkForPhoto = item => {
+//   if (item == null) {
+//     return defaultImage;
+//   } else {
+//     return item.url;
+//   }
+// };
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       refreshing: false,
-      filterDistance: true,
-      filterRating: false
+      filterDistance: true
     };
   }
   handleGetDirections = async (lat, long) => {
@@ -140,23 +141,18 @@ class Home extends Component {
                     destructiveButtonIndex: DESTRUCTIVE_INDEX,
                     title: "Sort by:"
                   },
-                  sortIndex => {
-                    this.setState({
-                      sort: BUTTONS[sortIndex]
-                    });
-                    // if (sortIndex === 1) {
-                    //   this.setState({
-                    //     filterDistance: true,
-                    //     filterRating: false
-                    //   });
-                    // } else {
-                    //   this.setState({
-                    //     filterDistance: false,
-                    //     filterRating: true
-                    //   });
-                    // }
+                  a => {
+                    if (a === 1) {
+                      this.setState({
+                        filterDistance: false
+                      });
+                    } else {
+                      this.setState({
+                        filterDistance: true
+                      });
+                    }
 
-                    // console.log(this.state.filterDistance);
+                    console.log(this.state.filterDistance);
                   }
                 );
               }}

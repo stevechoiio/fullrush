@@ -41,23 +41,21 @@ class AddWashroom extends Component {
     this.state = {
       text: "",
       loading: false,
-      login: true,
       starCount: 3,
       language: null,
       num: null,
       hasSeater: false,
       locationName: null,
-      userId: null,
-      photo: null
     };
   }
 
   componentDidMount = async () => {
     this.setState({ num: 3 });
-    AsyncStorage.getItem("id").then(userId => {
-      this.setState({ userId });
-    });
+    // AsyncStorage.getItem("id").then(userId => {
+    //   this.setState({ userId });
+    // });
   };
+
   onStarRatingPress(rating) {
     this.setState({
       starCount: rating
@@ -68,12 +66,10 @@ class AddWashroom extends Component {
     let {
       add_washroom,
       add_review,
-      add_washroom_photo,
       name,
       vicinity,
       location,
-      id,
-      photos
+      id
     } = this.props;
     // let photoURL = photos ? photos[0].photo_reference : null;
     // let API_KEY = "AIzaSyAr_W5HFV59akkn9SOTu5PJr0SWz_38_NE";
@@ -196,7 +192,7 @@ class AddWashroom extends Component {
                         buttonColor={"#ff6b6b"}
                         borderColor={"#ff6b6b"}
                         hasPadding
-                        onPress={value => this.setState({ nul: value })}
+                        onPress={value => this.setState({ num: value })}
                       />
                       <Text style={{ ...material.body1, marginTop: 10 }}>
                         Are there toilet seat covers?
@@ -242,17 +238,6 @@ class AddWashroom extends Component {
                         }}
                         onPress={async () => {
                           try {
-                            // let washroomPhoto = await add_washroom_photo({
-                            //   variables: {
-                            //     url: photo ? photo.uri : null,
-                            //     name: "Sample Image",
-                            //     contentType: "image/png"
-                            //   }
-                            // });
-                            //{washroomPhoto 	? console.log(washroomPhoto.data.createFile.washroom.id) : console.log("Photo is empty")}
-                            // console.log("tEST MARK");
-                            // console.log(typeof washroomPhoto.data.createFile.id);
-
                             let washroomId = await add_washroom({
                               variables: {
                                 placeId: id,
@@ -262,7 +247,6 @@ class AddWashroom extends Component {
                                 overallRating: 0,
                                 numberOfReviews: 0,
                                 toiletSeater: this.state.hasSeater,
-                                // listOfPhotosId: washroomPhoto.data.createFile.id,
                                 lat: location.lat,
                                 long: location.lng
                               },
