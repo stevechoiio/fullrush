@@ -11,8 +11,13 @@ buildscript {
         googlePlayServicesVisionVersion = "15.0.2"
     }
     repositories {
+        mavenLocal()
+        mavenCentral()
         google()
         jcenter()
+        maven {
+            url "$rootDir/../node_modules/react-native/android"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.1'
