@@ -5,8 +5,8 @@ import gql from "graphql-tag";
 import firebase from "firebase";
 let config = {
   apiKey: "AIzaSyDQBEmK46BdXynCQ0AiIUkn9e4gXJdyEJk",
-  authDomain: "https://fullrush-c4cfe.firebaseio.com",
-  databaseURL: "https://fullrush-c4cfe.firebaseio.com",
+  authDomain: "https://fullrush-c4cfe-1553e.firebaseio.com/",
+  databaseURL: "https://fullrush-c4cfe-1553e.firebaseio.com/",
   projectId: "fullrush-c4cfe",
   storageBucket: "fullrush-c4cfe.appspot.com",
   messagingSenderId: "XXXXXXX"
@@ -36,5 +36,5 @@ const query = gql`
 
 // Invoke the query and log the person's name
 client.query({ query }).then(response => {
-  console.log(response.data.name);
+  console.log(response.data.users);
 });

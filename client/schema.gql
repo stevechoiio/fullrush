@@ -1,0 +1,63 @@
+type User {
+  key: ID!
+
+  name: String!
+}
+type Washroom @model {
+  key: ID! 
+  name: String
+  stall: Int
+  listOfReviews: [Review!]!
+  toiletSeater: Boolean
+  overallRating: Float
+  numberOfReviews:Int
+  instruction: String
+  address: String
+  locationLat: Float
+  locationLong: Float
+  hoursFrom: DateTime
+  hoursTo: DateTime
+  placeId:String 
+}
+
+type Review @model {
+  id: ID! @isUnique
+  user: User 
+  washroom: Washroom 
+  lightRating: Int! 
+  toiletRating: Int! 
+  dryingRating: Int! 
+  sinkRating: Int! 
+  easeRating: Int! 
+  rating:Int!
+  comment: String 
+  placeId: String!
+}
+
+type File  {
+  id: ID! 
+  contentType: String
+  name: String
+  url: String!
+  washroom: Washroom 
+  date: DateTime
+}
+
+input UserInput {    
+  name: String!
+}
+
+
+type Query {
+  getUserByUsername(name: String!): User!
+  getUsers: [User!]!
+  getReviewByID(key: ID!): Review!
+  getReviews: [Review!]!
+  getWashroomByID(key: ID!): Washroom!
+  getWashrooms: [Washroom!]!
+}
+
+type Mutation {
+  createUser(input: UserInput!): User!
+ 
+}

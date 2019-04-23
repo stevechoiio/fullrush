@@ -1,0 +1,29 @@
+type User {
+  key: ID!
+
+  name: String!
+}
+
+
+input UserInput {    
+  name: String!
+}
+
+
+type Query {
+  getUserByKey(key: ID!): User
+  getUserByUsername(name: String!): User!
+  getUsers: [User!]!
+ 
+}
+
+type Mutation {
+  updateUserByKey(input: UpdateUserInput!): User
+  createUser(input: UserInput!): User!
+ 
+}
+input UpdateUserInput {
+  key: ID!
+  name: String
+}
+    
