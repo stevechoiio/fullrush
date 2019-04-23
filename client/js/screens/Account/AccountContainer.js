@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import Account from "./Account";
-import { Text, View } from "react-native";
-import { Query } from "react-apollo";
-import { GET_USER_INFO } from "../../config/queries";
 import AsyncStorage from "@react-native-community/async-storage";
-import Spinner from "react-native-loading-spinner-overlay";
+import About from "../About";
+import { Header } from "react-native-elements";
+import { Container } from "native-base";
+
 export default class AccountContainer extends Component {
   constructor(props) {
     super(props);
@@ -16,25 +15,31 @@ export default class AccountContainer extends Component {
   };
   render() {
     return (
-      <Query query={GET_USER_INFO} variables={{ id: this.state.id }}>
-        {({ loading, error, data }) => {
-          if (loading) return <Spinner visible={true} />;
-          if (error)
-            return (
-              <View>
-                <Text>Error...</Text>
-                <Text>{error.message}</Text>
-              </View>
-            );
-          console.log(data.allUsers[0]);
-          return (
-            <Account
-              navigation={this.props.navigation}
-              user={data.allUsers[0]}
-            />
-          );
+      <Container
+        style={{
+          background: "linear-gradient(to right bottom, #430089, #82ffa1)"
         }}
-      </Query>
+      >
+        <Header
+          containerStyle={{
+            backgroundColor: "#ff6b6b",
+            justifyContent: "space-around"
+          }}
+          statusBarProps={{ barStyle: "light-content" }}
+          centerComponent={{
+            text: "Loyal Flush",
+            style: { color: "#fff", fontSize: 20 }
+          }}
+        />
+        <Container
+          style={{
+            flex: 1,
+            justifyContent: "center"
+          }}
+        >
+          <About />
+        </Container>
+      </Container>
     );
   }
 }
