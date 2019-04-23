@@ -17,7 +17,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import {
   ADD_REVIEW,
   UPDATE_WASHROOM_RATING,
-  GET_ALL_WASHROOMS,
+  GET_ALL_WASHROOM_BY_DISTANCE,
   GET_REVIEWS_FOR_WASHROOM
 } from "../../config/queries";
 import BackButton from "../../components/BackButton";
@@ -85,7 +85,7 @@ class Review extends Component {
       },
       refetchQueries: [
         {
-          query: GET_ALL_WASHROOMS
+          query: GET_ALL_WASHROOM_BY_DISTANCE
         },
         {
           query: GET_REVIEWS_FOR_WASHROOM,
@@ -101,8 +101,6 @@ class Review extends Component {
   };
   
   render() {
-    let { add_review, update_washroom_rating } = this.props;
-
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View behavior="padding">
@@ -160,116 +158,111 @@ class Review extends Component {
               resetScrollToCoords={{ x: 0, y: 0 }}
               scrollEnabled={false}
             >
-              <View style={{ flex: 0, justifyContent: "flex-end" }}>
-                <View
-                  style={{
-                    marginLeft: 40,
-                    marginRight: 40,
-                    padding: 10
-                  }}
-                >
-                  <Text style={material.headline}>How was the...</Text>
-                  <View>
-                    <Text style={material.body1}>Lighting?</Text>
-                    <StarRating
-                      disabled={false}
-                      emptyStar={"ios-star-outline"}
-                      fullStar={"ios-star"}
-                      halfStar={"ios-star-half"}
-                      iconSet={"Ionicons"}
-                      maxStars={5}
-                      rating={this.state.light}
-                      selectedStar={rating =>
-                        this.onStarRatingPress(rating, "light")
-                      }
-                      halfStarColor="#FFDF00"
-                      emptyStarColor="#FFDF00"
-                      fullStarColor="#FFDF00"
-                    />
-                  </View>
-                  <View style={{ marginTop: 10 }}>
-                    <Text style={material.body1}>Ease of access?</Text>
-                    <StarRating
-                      disabled={false}
-                      emptyStar={"ios-star-outline"}
-                      fullStar={"ios-star"}
-                      halfStar={"ios-star-half"}
-                      iconSet={"Ionicons"}
-                      maxStars={5}
-                      rating={this.state.ease}
-                      selectedStar={rating =>
-                        this.onStarRatingPress(rating, "ease")
-                      }
-                      halfStarColor="#FFDF00"
-                      emptyStarColor="#FFDF00"
-                      fullStarColor="#FFDF00"
-                    />
-                  </View>
-                  <View style={{ marginTop: 10 }}>
-                    <Text style={material.body1}>Toilet?</Text>
-                    <StarRating
-                      disabled={false}
-                      emptyStar={"ios-star-outline"}
-                      fullStar={"ios-star"}
-                      halfStar={"ios-star-half"}
-                      iconSet={"Ionicons"}
-                      maxStars={5}
-                      rating={this.state.toilet}
-                      selectedStar={rating =>
-                        this.onStarRatingPress(rating, "toilet")
-                      }
-                      halfStarColor="#FFDF00"
-                      emptyStarColor="#FFDF00"
-                      fullStarColor="#FFDF00"
-                    />
-                  </View>
-                  <View style={{ marginTop: 10 }}>
-                    <Text style={material.body1}>Drying method?</Text>
-                    <StarRating
-                      disabled={false}
-                      emptyStar={"ios-star-outline"}
-                      fullStar={"ios-star"}
-                      halfStar={"ios-star-half"}
-                      iconSet={"Ionicons"}
-                      maxStars={5}
-                      rating={this.state.drying}
-                      selectedStar={rating =>
-                        this.onStarRatingPress(rating, "drying")
-                      }
-                      halfStarColor="#FFDF00"
-                      emptyStarColor="#FFDF00"
-                      fullStarColor="#FFDF00"
-                    />
-                  </View>
-                  <View style={{ marginTop: 10 }}>
-                    <Text style={material.body1}>Sink?</Text>
-                    <StarRating
-                      disabled={false}
-                      emptyStar={"ios-star-outline"}
-                      fullStar={"ios-star"}
-                      halfStar={"ios-star-half"}
-                      iconSet={"Ionicons"}
-                      maxStars={5}
-                      rating={this.state.sink}
-                      selectedStar={rating =>
-                        this.onStarRatingPress(rating, "sink")
-                      }
-                      halfStarColor="#FFDF00"
-                      emptyStarColor="#FFDF00"
-                      fullStarColor="#FFDF00"
-                    />
-                  </View>
-
-                  <Item floatingLabel style={{ margin: 10 }}>
-                    <Label style={material.body1}>Add comments</Label>
-                    <Input maxLength={50} />
-                  </Item>
+              <View
+                style={{
+                  marginLeft: 40,
+                  marginRight: 40,
+                  marginTop: 30,
+                  height: "40%"
+                }}
+              >
+                <Text style={material.headline}>How was the...</Text>
+                <View>
+                  <Text style={material.body1}>Lighting?</Text>
+                  <StarRating
+                    disabled={false}
+                    emptyStar={"ios-star-outline"}
+                    fullStar={"ios-star"}
+                    halfStar={"ios-star-half"}
+                    iconSet={"Ionicons"}
+                    maxStars={5}
+                    rating={this.state.light}
+                    selectedStar={rating =>
+                      this.onStarRatingPress(rating, "light")
+                    }
+                    halfStarColor="#FFDF00"
+                    emptyStarColor="#FFDF00"
+                    fullStarColor="#FFDF00"
+                  />
                 </View>
-                <View
-                  style={{
-                    alignItems: "center"
-                  }}
-                >
+                <View style={{ marginTop: 10 }}>
+                  <Text style={material.body1}>Ease of access?</Text>
+                  <StarRating
+                    disabled={false}
+                    emptyStar={"ios-star-outline"}
+                    fullStar={"ios-star"}
+                    halfStar={"ios-star-half"}
+                    iconSet={"Ionicons"}
+                    maxStars={5}
+                    rating={this.state.ease}
+                    selectedStar={rating =>
+                      this.onStarRatingPress(rating, "ease")
+                    }
+                    halfStarColor="#FFDF00"
+                    emptyStarColor="#FFDF00"
+                    fullStarColor="#FFDF00"
+                  />
+                </View>
+                <View style={{ marginTop: 10 }}>
+                  <Text style={material.body1}>Toilet?</Text>
+                  <StarRating
+                    disabled={false}
+                    emptyStar={"ios-star-outline"}
+                    fullStar={"ios-star"}
+                    halfStar={"ios-star-half"}
+                    iconSet={"Ionicons"}
+                    maxStars={5}
+                    rating={this.state.toilet}
+                    selectedStar={rating =>
+                      this.onStarRatingPress(rating, "toilet")
+                    }
+                    halfStarColor="#FFDF00"
+                    emptyStarColor="#FFDF00"
+                    fullStarColor="#FFDF00"
+                  />
+                </View>
+                <View style={{ marginTop: 10 }}>
+                  <Text style={material.body1}>Drying method?</Text>
+                  <StarRating
+                    disabled={false}
+                    emptyStar={"ios-star-outline"}
+                    fullStar={"ios-star"}
+                    halfStar={"ios-star-half"}
+                    iconSet={"Ionicons"}
+                    maxStars={5}
+                    rating={this.state.drying}
+                    selectedStar={rating =>
+                      this.onStarRatingPress(rating, "drying")
+                    }
+                    halfStarColor="#FFDF00"
+                    emptyStarColor="#FFDF00"
+                    fullStarColor="#FFDF00"
+                  />
+                </View>
+                <View style={{ marginTop: 10 }}>
+                  <Text style={material.body1}>Sink?</Text>
+                  <StarRating
+                    disabled={false}
+                    emptyStar={"ios-star-outline"}
+                    fullStar={"ios-star"}
+                    halfStar={"ios-star-half"}
+                    iconSet={"Ionicons"}
+                    maxStars={5}
+                    rating={this.state.sink}
+                    selectedStar={rating =>
+                      this.onStarRatingPress(rating, "sink")
+                    }
+                    halfStarColor="#FFDF00"
+                    emptyStarColor="#FFDF00"
+                    fullStarColor="#FFDF00"
+                  />
+                </View>
+
+                <Item floatingLabel style={{ margin: 10 }}>
+                  <Label style={material.body1}>Add comments</Label>
+                  <Input maxLength={50} />
+                </Item>
+                <View style={{ flex: 0, alignItems: "center" }}>
                   <TouchableOpacity
                     style={{
                       margin: 3,
