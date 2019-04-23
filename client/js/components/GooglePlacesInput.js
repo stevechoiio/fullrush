@@ -32,7 +32,6 @@ class GooglePlacesInput extends Component {
     navigator.geolocation
       .getCurrentPosition(pos => {
         var crd = pos.coords;
-
         lat = crd.latitude;
         long = crd.longitude;
         let location = `${lat},${long}`;
