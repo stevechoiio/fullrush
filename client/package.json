@@ -15,7 +15,7 @@
     "react": "16.8.3",
     "react-apollo": "^2.5.3",
     "react-final-form": "^4.1.0",
-    "react-native": "0.59.2",
+    "react-native": "^0.59.6",
     "react-native-awesome-alerts": "^1.2.0",
     "react-native-circular-progress": "^1.1.0",
     "react-native-elements": "^1.1.0",
