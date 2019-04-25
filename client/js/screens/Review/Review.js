@@ -157,7 +157,9 @@ class Review extends Component {
             />
             <KeyboardAwareScrollView
               resetScrollToCoords={{ x: 0, y: 0 }}
+              contentContainerStyle={{flexfrow: 1}}
               scrollEnabled={false}
+              enableOnAndroid= {true}
             >
               <View
                 style={{
