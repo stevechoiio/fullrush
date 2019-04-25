@@ -29,7 +29,7 @@ Developer options
 2. ```react-native link```
 3. ```react-native run-ios OR run-android```
   (you may need to run a separate terminal for server on Android.)
-  (If you see an index error, please run ```npm star -- --reset-cache on another terminal```.
+  (If you see an index error, please run ```npm start -- --reset-cache``` on another terminal.
 
 4. Enjoy!
 
