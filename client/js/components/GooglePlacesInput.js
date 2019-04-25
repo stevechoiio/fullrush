@@ -154,7 +154,9 @@ class GooglePlacesInput extends Component {
                 listViewDisplayed="auto" // true/false/undefined
                 fetchDetails={true}
                 renderDescription={row => {
-                  return [row.description, row.name];
+                  return ([
+                    row.description || row.name
+                  ])
                 }} // custom description render
                 onPress={async (data, details = null) => {
                   let washroom = await this.props.getId.refetch({
