@@ -110,7 +110,7 @@ export default ({ reviews, refetch, data, nav }) => {
             <Text style={material.title}>Most Recent Review:</Text>
             <ListItem>
               <Body>
-                <Text>not bad</Text>
+                <Text>Add the recent review.comment right here</Text>
               </Body>
               <Right>
                 <StarRating
@@ -118,7 +118,7 @@ export default ({ reviews, refetch, data, nav }) => {
                   starSize={5}
                   maxStars={5}
                   rating={
-                    reviews.allReviews[0] ? reviews.allReviews[0].rating : 5
+                    reviews.allReviews[0] ? reviews.allReviews[0].rating : 5 // Edit this too
                   }
                   halfStarColor="#FFDF00"
                   emptyStarColor="#FFDF00"
@@ -143,7 +143,7 @@ export default ({ reviews, refetch, data, nav }) => {
                         return (
                           <ListItem key={index}>
                             <Body>
-                              <Text>Jesus's love is here</Text>
+                              <Text>Add review.comment right here</Text>
                             </Body>
                             <Right>
                               <StarRating
@@ -230,7 +230,7 @@ export default ({ reviews, refetch, data, nav }) => {
                   textDecorationLine: "underline"
                 }}
               >
-                Is the infromation incorrect?
+                Is the Information Incorrect?
               </Text>
             </TouchableOpacity>
           </View>
