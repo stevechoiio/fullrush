@@ -61,6 +61,42 @@ class AddWashroom extends Component {
     });
   }
 
+  addWashroom = async () => {
+    let { 
+      add_washroom,
+      name,
+      vicinity,
+      location,
+      id
+     } = this.props;
+    try {
+      let washroomId = await add_washroom({
+        variables: {
+          placeId: id,
+          name,
+          address: vicinity,
+          stall: this.state.num,
+          overallRating: 0,
+          numberOfReviews: 0,
+          toiletSeater: this.state.hasSeater,
+          lat: location.lat,
+          long: location.lng
+        },
+        refetchQueries: [
+          {
+            query: GET_ALL_WASHROOMS
+          }
+        ]
+      });
+      
+      this.props.navigation.navigate("Review", {
+        data: washroomId.data.createWashroom
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   render() {
     let {
       add_washroom,
@@ -88,7 +124,7 @@ class AddWashroom extends Component {
               leftComponent={<BackButton />}
               rightComponent={() => {
                 return (
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={this.addWashroom}>
                     <Icon
                       style={{ marginRight: 10 }}
                       name={"check"}

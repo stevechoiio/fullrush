@@ -66,11 +66,11 @@ class Review extends Component {
       variables: {
         washroomId: washroomData.id,
         rating: total,
-        lightRating: this.state.light,
-        dryingRating: this.state.drying,
-        toiletRating: this.state.toilet,
-        sinkRating: this.state.sink,
-        easeRating: this.state.ease,
+        lightRating: this.state.light || 0,
+        dryingRating: this.state.drying || 0,
+        toiletRating: this.state.toilet || 0,
+        sinkRating: this.state.sink || 0,
+        easeRating: this.state.ease || 0,
         comment: "none",
         placeId: washroomData.placeId
       }

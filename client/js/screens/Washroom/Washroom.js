@@ -9,6 +9,7 @@ import BackButton from "../../components/BackButton";
 import { Container } from "native-base";
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Accordion, List, ListItem, Right, Body } from "native-base";
+import email from "react-native-email"
 
 const handleGetDirections = async (lat, long) => {
   await navigator.geolocation.getCurrentPosition(pos => {
@@ -46,6 +47,14 @@ const handleGetDirections = async (lat, long) => {
 //     return item.url;
 //   }
 // };
+
+sendEmail = async (washroomName) => {
+  const to = ["jinsukkim94@gmail.com", "stevechoi93@gmail.com"];
+  email(to, {
+    subject: "Info on this washroom is wrong : " + washroomName,
+    body: "Hey, I have found an error in the washroom details."
+  }).catch(console.error)
+}
 
 export default ({ reviews, refetch, data, nav }) => {
   return (
@@ -210,7 +219,9 @@ export default ({ reviews, refetch, data, nav }) => {
                 justifyContent: "center",
                 height: 40
               }}
-              onPress={() => {}}
+              onPress={ () =>
+                this.sendEmail(data.name)
+              }
             >
               <Text
                 style={{
