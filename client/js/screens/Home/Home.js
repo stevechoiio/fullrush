@@ -209,7 +209,6 @@ class Home extends Component {
                 </Text>
               </Separator>
             </TouchableOpacity>
-
             {data.map((item, key) => (
               <ListItem
                 key={key}

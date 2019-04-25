@@ -113,8 +113,8 @@ android {
         minSdkVersion safeExtGet('minSdkVersion', 16)
         targetSdkVersion safeExtGet('targetSdkVersion', 28)
         missingDimensionStrategy 'react-native-camera', 'general'
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "1.2"
     }
     signingConfigs {
         release {
