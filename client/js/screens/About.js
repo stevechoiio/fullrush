@@ -11,13 +11,14 @@ export default class About extends Component {
         <CardItem>
           <Body>
             <Text>
-              our app does this that those and these for these reasons
-              blahbalhasd clena washroom finding yesyesyes
+              Loyal Flush is a Crowd-Sourced Multi-Platform Mobile Application
+              that finds you the cleanest washroom around, hand-picked by honest
+              users.
             </Text>
           </Body>
         </CardItem>
         <CardItem footer>
-          <Text>@copyright loyalflush</Text>
+          <Text>©Loyal Flush</Text>
         </CardItem>
       </Card>
     );
