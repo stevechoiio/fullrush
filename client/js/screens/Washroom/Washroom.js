@@ -7,9 +7,9 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { Header } from "react-native-elements";
 import BackButton from "../../components/BackButton";
 import { Container } from "native-base";
-import { Col, Row, Grid } from "react-native-easy-grid";
+import { Col, Grid } from "react-native-easy-grid";
 import { Accordion, List, ListItem, Right, Body } from "native-base";
-import email from "react-native-email"
+import email from "react-native-email";
 
 const handleGetDirections = async (lat, long) => {
   await navigator.geolocation.getCurrentPosition(pos => {
@@ -39,22 +39,13 @@ const handleGetDirections = async (lat, long) => {
   });
 };
 
-// let defaultImage = "https://dummyimage.com/600x400/000/fff";
-// let checkForPhoto = item => {
-//   if (item == null) {
-//     return defaultImage;
-//   } else {
-//     return item.url;
-//   }
-// };
-
-sendEmail = async (washroomName) => {
+sendEmail = async washroomName => {
   const to = ["jinsukkim94@gmail.com", "stevechoi93@gmail.com"];
   email(to, {
     subject: "Info on this washroom is wrong : " + washroomName,
     body: "Hey, I have found an error in the washroom details."
-  }).catch(console.error)
-}
+  }).catch(console.error);
+};
 
 export default ({ reviews, refetch, data, nav }) => {
   return (
@@ -109,8 +100,11 @@ export default ({ reviews, refetch, data, nav }) => {
           <View style={{ margin: 5 }}>
             <Text style={material.title}>Most Recent Review:</Text>
             <ListItem>
+              {console.log(reviews.allReviews[0])}
               <Body>
-                <Text>Add the recent review.comment right here</Text>
+                <Text>
+                  {reviews.allReviews[0] && reviews.allReviews[0].comment}
+                </Text>
               </Body>
               <Right>
                 <StarRating
@@ -118,7 +112,7 @@ export default ({ reviews, refetch, data, nav }) => {
                   starSize={5}
                   maxStars={5}
                   rating={
-                    reviews.allReviews[0] ? reviews.allReviews[0].rating : 5 // Edit this too
+                    (reviews.allReviews[0] && reviews.allReviews[0].rating) || 0 // Edit this too
                   }
                   halfStarColor="#FFDF00"
                   emptyStarColor="#FFDF00"
@@ -131,7 +125,11 @@ export default ({ reviews, refetch, data, nav }) => {
               renderHeader={() => {
                 return (
                   <Text style={material.subheading}>
-                    see more reviews ({reviews.allReviews.length})
+                    see more reviews (
+                    {reviews.allReviews.length === 0
+                      ? 0
+                      : reviews.allReviews.length - 1}
+                    )
                   </Text>
                 );
               }}
@@ -140,24 +138,26 @@ export default ({ reviews, refetch, data, nav }) => {
                   <List>
                     {reviews.allReviews &&
                       reviews.allReviews.map((review, index) => {
-                        return (
-                          <ListItem key={index}>
-                            <Body>
-                              <Text>Add review.comment right here</Text>
-                            </Body>
-                            <Right>
-                              <StarRating
-                                disabled={true}
-                                starSize={5}
-                                maxStars={5}
-                                rating={review.rating}
-                                halfStarColor="#FFDF00"
-                                emptyStarColor="#FFDF00"
-                                fullStarColor="#FFDF00"
-                              />
-                            </Right>
-                          </ListItem>
-                        );
+                        if (index > 0) {
+                          return (
+                            <ListItem key={index}>
+                              <Body>
+                                <Text>{review.comment}</Text>
+                              </Body>
+                              <Right>
+                                <StarRating
+                                  disabled={true}
+                                  starSize={5}
+                                  maxStars={5}
+                                  rating={review.rating}
+                                  halfStarColor="#FFDF00"
+                                  emptyStarColor="#FFDF00"
+                                  fullStarColor="#FFDF00"
+                                />
+                              </Right>
+                            </ListItem>
+                          );
+                        }
                       })}
                   </List>
                 );
@@ -219,9 +219,7 @@ export default ({ reviews, refetch, data, nav }) => {
                 justifyContent: "center",
                 height: 40
               }}
-              onPress={ () =>
-                this.sendEmail(data.name)
-              }
+              onPress={() => this.sendEmail(data.name)}
             >
               <Text
                 style={{

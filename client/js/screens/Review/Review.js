@@ -26,7 +26,8 @@ class Review extends Component {
     super(props);
     this.state = {
       userId: null,
-      alert: false
+      alert: false,
+      comments: ""
     };
   }
   componentDidMount = async () => {
@@ -34,13 +35,13 @@ class Review extends Component {
       this.setState({ userId });
     });
   };
-  
+
   onStarRatingPress(rating, criteria) {
     this.setState({
       [criteria]: rating
     });
   }
-  
+
   addReview = async () => {
     const {
       washroomData,
@@ -59,19 +60,19 @@ class Review extends Component {
     }
     this.setState({ alert: true });
     let stateCopy = { ...this.state };
-    delete stateCopy.userId;
+    delete stateCopy.comments;
     let total = Object.values(stateCopy).reduce((a, b) => a + b) / 5;
-    // console.log("alert has popped up")
+
     let reviewID = await add_review({
       variables: {
         washroomId: washroomData.id,
-        rating: total,
+        rating: total || 0,
         lightRating: this.state.light || 0,
         dryingRating: this.state.drying || 0,
         toiletRating: this.state.toilet || 0,
         sinkRating: this.state.sink || 0,
         easeRating: this.state.ease || 0,
-        comment: "none",
+        comment: this.state.comments,
         placeId: washroomData.placeId
       }
     });
@@ -100,7 +101,7 @@ class Review extends Component {
     this.setState({ alert: false });
     nav.navigate("Home");
   };
-  
+
   render() {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -157,9 +158,9 @@ class Review extends Component {
             />
             <KeyboardAwareScrollView
               resetScrollToCoords={{ x: 0, y: 0 }}
-              contentContainerStyle={{flexfrow: 1}}
+              contentContainerStyle={{ flexfrow: 1 }}
               scrollEnabled={false}
-              enableOnAndroid= {true}
+              enableOnAndroid={true}
             >
               <View
                 style={{
@@ -263,7 +264,13 @@ class Review extends Component {
 
                 <Item floatingLabel style={{ margin: 10 }}>
                   <Label style={material.body1}>Add comments</Label>
-                  <Input maxLength={50} />
+                  <Input
+                    maxLength={50}
+                    onChangeText={text => {
+                      console.log(text);
+                      this.setState({ comments: text });
+                    }}
+                  />
                 </Item>
                 <View style={{ flex: 0, alignItems: "center" }}>
                   <TouchableOpacity

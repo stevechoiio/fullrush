@@ -42,7 +42,7 @@ export default props => {
           backgroundColor: "#BFD7EA",
           image: <Text style={{ fontSize: 40 }}>🏁</Text>,
           title: "Let's get started!",
-          subtitle: "Sign Up/Log In/Continue without an account"
+          subtitle: ""
         }
       ]}
     />

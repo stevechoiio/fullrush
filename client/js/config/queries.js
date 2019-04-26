@@ -77,6 +77,7 @@ export const GET_REVIEWS_FOR_WASHROOM = gql`
     allReviews(filter: { placeId: $placeId }) {
       rating
       placeId
+      comment
     }
   }
 `;
@@ -89,7 +90,7 @@ export const GET_REVIEWS_FOR_WASHROOM = gql`
 //       email
 //       userReviews {
 //         id
-//       }  
+//       }
 //     }
 //   }
 // `;
