@@ -11,17 +11,12 @@ export default class About extends Component {
         <CardItem>
           <Body>
             <Text>
-<<<<<<< HEAD
-              Loyal Flush is a Crowd-Sourced Multi-Platform Mobile Application
-              that finds you the cleanest washroom around, hand-picked by honest
-              users.
-=======
-              Loyal Flush is a crowd-sourced Public Washroom Information App. It allows users to locate and share their opinions on public washrooms. 
-              Furthermore, active users can rate each washroom on how clean the washroom is. 
-              It also provides details and auto-navigation to the closest or chosen washroom.
-
-              Make a clean flush with Loyal Flush, your loyal washroom locator!
->>>>>>> master
+              Loyal Flush is a crowd-sourced Public Washroom Information App. It
+              allows users to locate and share their opinions on public
+              washrooms. Furthermore, active users can rate each washroom on how
+              clean the washroom is. It also provides details and
+              auto-navigation to the closest or chosen washroom. Make a clean
+              flush with Loyal Flush, your loyal washroom locator!
             </Text>
           </Body>
         </CardItem>
