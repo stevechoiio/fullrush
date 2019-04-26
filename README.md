@@ -7,9 +7,12 @@ Loyal Flush is a Crowd-Sourced Multi-Platform Mobile Application that finds you 
 - Steve Choi | [GitHub](https://github.com/stevechoiio) | [LinkedIn](https://www.linkedin.com/in/stevechoi93/) | [Website](choisteve.com)
 - Jin Suk Kim | [GitHub](https://github.com/jinsukkim94) | [LinkedIn](https://www.linkedin.com/in/jinsukkim94//)
 
-## Screenshots
+## Cover
 
 ![Screenshot](./client/js/assets/screenshots/ad_1.jpg)
+
+## Screenshots
+
 <img src="./client/js/assets/screenshots/screenshot1.png" width="270" height="400">
 <img src="./client/js/assets/screenshots/screenshot2.png" width="270" height="400">
 <img src="./client/js/assets/screenshots/screenshot3.png" width="270" height="400">
