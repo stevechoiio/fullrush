@@ -10,6 +10,11 @@ Loyal Flush is a Crowd-Sourced Multi-Platform Mobile Application that finds you 
 ## Screenshots
 
 ![Screenshot](./client/js/assets/screenshots/ad_1.jpg)
+![Screenshot](./client/js/assets/screenshots/screenshot1.png)
+![Screenshot](./client/js/assets/screenshots/screenshot2.png)
+![Screenshot](./client/js/assets/screenshots/screenshot3.png)
+![Screenshot](./client/js/assets/screenshots/screenshot4.png)
+![Screenshot](./client/js/assets/screenshots/screenshot5.png)
 
 ## Technologies Used
 
