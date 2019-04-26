@@ -93,7 +93,7 @@ class GooglePlacesInput extends Component {
                 <Text style={{ ...material.body1, color: "gray" }}>
                   you can:
                 </Text>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   style={{
                     margin: 3,
                     backgroundColor: "#BFD7EA",
@@ -105,16 +105,18 @@ class GooglePlacesInput extends Component {
                   }}
                   onPress={() => {
                     this.props.navigation.navigate("Review", {
-                      ...this.state.data,
+                      ...this.state.data.id,
                       ...this.state.details
                     });
+                    console.log(this.state.data.id);
+                    console.log(this.state.details);
                     this.setState({ isVisible: false });
                   }}
                 >
                   <Text style={{ ...material.body2, color: "white" }}>
                     leave a review
                   </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity
                   style={{
                     margin: 3,
