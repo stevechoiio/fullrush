@@ -4,7 +4,7 @@ Loyal Flush is a Crowd-Sourced Multi-Platform Mobile Application that finds you 
 
 ## Authors
 
-- Steve Choi | [GitHub](https://github.com/stevechoiio) | [LinkedIn](https://www.linkedin.com/in/stevechoi93/) | [Website](choisteve.com)
+- Steve Choi | [GitHub](https://github.com/stevechoiio) | [LinkedIn](https://www.linkedin.com/in/stevechoi93/) | [Website](https://choisteve.com)
 - Jin Suk Kim | [GitHub](https://github.com/jinsukkim94) | [LinkedIn](https://www.linkedin.com/in/jinsukkim94//)
 
 ## Cover
