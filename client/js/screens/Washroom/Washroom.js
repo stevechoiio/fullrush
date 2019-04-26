@@ -102,7 +102,9 @@ export default ({ reviews, refetch, data, nav }) => {
             <ListItem>
               {console.log(reviews.allReviews[0])}
               <Body>
-                <Text>{reviews.allReviews[0].comment}</Text>
+                <Text>
+                  {reviews.allReviews[0] && reviews.allReviews[0].comment}
+                </Text>
               </Body>
               <Right>
                 <StarRating
@@ -110,7 +112,7 @@ export default ({ reviews, refetch, data, nav }) => {
                   starSize={5}
                   maxStars={5}
                   rating={
-                    reviews.allReviews[0].rating || 0 // Edit this too
+                    (reviews.allReviews[0] && reviews.allReviews[0].rating) || 0 // Edit this too
                   }
                   halfStarColor="#FFDF00"
                   emptyStarColor="#FFDF00"
@@ -123,7 +125,11 @@ export default ({ reviews, refetch, data, nav }) => {
               renderHeader={() => {
                 return (
                   <Text style={material.subheading}>
-                    see more reviews ({reviews.allReviews.length - 1})
+                    see more reviews (
+                    {reviews.allReviews.length === 0
+                      ? 0
+                      : reviews.allReviews.length - 1}
+                    )
                   </Text>
                 );
               }}
