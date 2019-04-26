@@ -7,7 +7,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { Header } from "react-native-elements";
 import BackButton from "../../components/BackButton";
 import { Container } from "native-base";
-import { Col, Row, Grid } from "react-native-easy-grid";
+import { Col, Grid } from "react-native-easy-grid";
 import { Accordion, List, ListItem, Right, Body } from "native-base";
 import email from "react-native-email";
 
@@ -38,15 +38,6 @@ const handleGetDirections = async (lat, long) => {
     getDirections(data);
   });
 };
-
-// let defaultImage = "https://dummyimage.com/600x400/000/fff";
-// let checkForPhoto = item => {
-//   if (item == null) {
-//     return defaultImage;
-//   } else {
-//     return item.url;
-//   }
-// };
 
 sendEmail = async washroomName => {
   const to = ["jinsukkim94@gmail.com", "stevechoi93@gmail.com"];
@@ -132,7 +123,7 @@ export default ({ reviews, refetch, data, nav }) => {
               renderHeader={() => {
                 return (
                   <Text style={material.subheading}>
-                    see more reviews ({reviews.allReviews.length})
+                    see more reviews ({reviews.allReviews.length - 1})
                   </Text>
                 );
               }}
