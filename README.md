@@ -34,7 +34,7 @@ Loyal Flush is a Crowd-Sourced Multi-Platform Mobile Application that finds you 
 Loyal Flush is available in both Play Store and App Store.
 
 - Play Store : https://play.google.com/store/apps/details?id=com.fullrush
-- App Store : 
+- App Store(Test) : https://testflight.apple.com/v1/app/1460198033?build=41110122
 
 Developer options
 
