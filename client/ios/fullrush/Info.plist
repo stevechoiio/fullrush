@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>your message to user when the library is used</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -23,7 +25,7 @@
 	<key>CFBundleVersion</key>
 	<string>5</string>
 	<key>LSApplicationCategoryType</key>
-	<string/>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -41,10 +43,6 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Your message to user when the camera is accessed for the first time</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your message to user when the location is accessed for the first time</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your message to user when the location is accessed for the first time</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Your message to user when the photo library is accessed for the first time</string>
 	<key>NSPhotoLibraryUsageDescription</key>
