@@ -20,5 +20,10 @@ export default (styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F5FCFE"
+  },
+  empty: {
+    fontSize: 20,
+    textAlign: "center",
+    justifyContent: "center"
   }
 }));

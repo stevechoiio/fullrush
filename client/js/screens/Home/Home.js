@@ -78,6 +78,13 @@ class Home extends Component {
   originalPosition = height => {
     return height == 150 ? "100%" : 150;
   };
+  handleEmpty = (data) => {
+    return (
+      <View>
+
+      </View>
+    )
+  }
   render() {
     let { nav, data, location } = this.props;
     console.log(data);
@@ -167,111 +174,124 @@ class Home extends Component {
           originalPosition={this.originalPosition}
         />
         <Content
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this._onRefresh}
-            />
-          }
-          dataArray={this.props.contacts}
-          renderRow={row => <Row row={row} />}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }
+        dataArray={this.props.contacts}
+        renderRow={row => <Row row={row} />}
+      >
+        {!data.length ? 
+        <View 
+          justifyContent= {"center"}
+          alignItems= {"center"}
+          backgroundColor= {"#F5FCFE"}
         >
-          <List>
-            <TouchableOpacity
-              onPress={() => {
-                ActionSheet.show(
-                  {
-                    options: BUTTONS,
-                    destructiveButtonIndex: DESTRUCTIVE_INDEX,
-                    title: "Sort by:"
-                  },
-                  a => {
-                    if (a === 1) {
-                      this.setState({
-                        filterDistance: false
-                      });
-                    } else {
-                      this.setState({
-                        filterDistance: true
-                      });
-                    }
-
-                    console.log(this.state.filterDistance);
+          <Text fontSize={20}
+    textAlign={"center"}
+    justifyContent= {"center"}>
+            Oh no! I don't see any washrooms nearby.
+          </Text>
+        </View> : 
+        <List>
+          <TouchableOpacity
+            onPress={() => {
+              ActionSheet.show(
+                {
+                  options: BUTTONS,
+                  destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                  title: "Sort by:"
+                },
+                a => {
+                  if (a === 1) {
+                    this.setState({
+                      filterDistance: false
+                    });
+                  } else {
+                    this.setState({
+                      filterDistance: true
+                    });
                   }
-                );
+
+                  console.log(this.state.filterDistance);
+                }
+              );
+            }}
+          >
+            <Separator>
+              <Text>
+                {this.state.filterDistance
+                  ? "sorted by distance:"
+                  : "sorted by rating:"}
+              </Text>
+            </Separator>
+          </TouchableOpacity>
+          {data.map((item, key) => (
+            <ListItem
+              key={key}
+              washroom={item}
+              TouchableOpacity
+              onPress={() => nav.navigate("Washroom", { data: item })}
+              style={{
+                justifyContent: "flex-end",
+                borderRadius: 5,
+                borderColor: "white",
+                borderStyle: "solid",
+                backgroundColor: "white",
+                height: 70,
+                marginBottom: 5,
+                marginLeft: 0
               }}
             >
-              <Separator>
-                <Text>
-                  {this.state.filterDistance
-                    ? "sorted by distance:"
-                    : "sorted by rating:"}
-                </Text>
-              </Separator>
-            </TouchableOpacity>
-            {data.map((item, key) => (
-              <ListItem
-                key={key}
-                washroom={item}
-                TouchableOpacity
-                onPress={() => nav.navigate("Washroom", { data: item })}
-                style={{
-                  justifyContent: "flex-end",
-                  borderRadius: 5,
-                  borderColor: "white",
-                  borderStyle: "solid",
-                  backgroundColor: "white",
-                  height: 70,
-                  marginBottom: 5,
-                  marginLeft: 0
-                }}
-              >
-                {/* <Thumbnail
-                  square
-                  source={{ uri: checkForPhoto(item.listOfPhotos) }}
-                /> */}
-                {/* //item.listOfPhotos.url}}/> */}
-                {/* //source={{uri: item.listOfPhotos[0]}}/> */}
+              {/* <Thumbnail
+                square
+                source={{ uri: checkForPhoto(item.listOfPhotos) }}
+              /> */}
+              {/* //item.listOfPhotos.url}}/> */}
+              {/* //source={{uri: item.listOfPhotos[0]}}/> */}
 
-                <Body>
-                  <Text numberOfLines={2} adjustsFontSizeToFit>
-                    {item.name}
-                  </Text>
-                </Body>
-                <Right>
-                  <StarRating
-                    disabled={true}
-                    maxStars={5}
-                    rating={item.overallRating}
-                    starSize={15}
-                    halfStarColor="#FFDF00"
-                    emptyStarColor="#FFDF00"
-                    fullStarColor="#FFDF00"
-                  />
-                  <Text style={material.caption}>
-                    {geolib.getDistance(
-                      { latitude: location.lat, longitude: location.long },
-                      {
-                        latitude: item.locationLat,
-                        longitude: item.locationLong
-                      }
-                    )}
-                    M
-                  </Text>
-                  {item.toiletSeater ? (
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center"
-                      }}
-                    >
-                      <Icon name={"toilet"} size={12} color={"#d3d3d3"} />
-                    </View>
-                  ) : null}
-                </Right>
-              </ListItem>
-            ))}
-          </List>
+              <Body>
+                <Text numberOfLines={2} adjustsFontSizeToFit>
+                  {item.name}
+                </Text>
+              </Body>
+              <Right>
+                <StarRating
+                  disabled={true}
+                  maxStars={5}
+                  rating={item.overallRating}
+                  starSize={15}
+                  halfStarColor="#FFDF00"
+                  emptyStarColor="#FFDF00"
+                  fullStarColor="#FFDF00"
+                />
+                <Text style={material.caption}>
+                  {geolib.getDistance(
+                    { latitude: location.lat, longitude: location.long },
+                    {
+                      latitude: item.locationLat,
+                      longitude: item.locationLong
+                    }
+                  )}
+                  M
+                </Text>
+                {item.toiletSeater ? (
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center"
+                    }}
+                  >
+                    <Icon name={"toilet"} size={12} color={"#d3d3d3"} />
+                  </View>
+                ) : null}
+              </Right>
+            </ListItem>
+          ))}
+        </List>
+        }
         </Content>
       </Container>
     );
